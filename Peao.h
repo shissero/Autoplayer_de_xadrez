@@ -1,5 +1,8 @@
-#include"Peca.h"
+#include<array>
 
-class Peao : Peca {
+class Peao : public Peca {
+	public:
+	
+		Peao(array posicao, int cor)
 
 };
