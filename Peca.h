@@ -1,9 +1,18 @@
 #include"Posicao.h"
 
 class Peca {
-	int cor;
-	Posicao posicao_atual;
-	Posicao posicao_destino;
 
-	virtual void movimento();
+	public:
+
+		const int BRANCA = 0, PRETA = 1;
+	
+	
+		Peca(Posicao posicao, cor);
+
+		virtual void movimento();
+		
+	private:
+	
+	int cor;
+	Posicao posicao;
 };
