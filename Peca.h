@@ -1,13 +1,14 @@
+#ifndef PECA_H_
+#define PECA_H_
 #include<array>
+
+#define BRANCO 0
+#define PRETO 1
 
 class Peca {
 
 	public:
-
-		const int BRANCA = 0, PRETA = 1;
-	
-	
-		Peca(array posicao, cor);
+		Peca(array posicao, int cor);
 
 		virtual void movimento();
 		
@@ -16,3 +17,5 @@ class Peca {
 	int cor;
 	array posicao;
 };
+
+#endif

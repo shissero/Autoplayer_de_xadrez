@@ -3,11 +3,7 @@
 class Peca {
 
 	public:
-
-		const int BRANCA = 0, PRETA = 1;
-	
-	
-		Peca(array posicao, cor){
+		Peca(array posicao, int cor){
 			this.cor = cor;
 			this.posicao = posicao;
 		}
