@@ -10,7 +10,7 @@ class Peca {
 	public:
 		Peca(array posicao, int cor);
 
-		virtual void movimento();
+		virtual bool mover();
 		
 	private:
 	

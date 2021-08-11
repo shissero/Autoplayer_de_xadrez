@@ -8,7 +8,7 @@ class Peca {
 			this.posicao = posicao;
 		}
 
-		virtual void movimento();
+		virtual bool mover();
 		
 	private:
 	
