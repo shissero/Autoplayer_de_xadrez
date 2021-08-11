@@ -3,7 +3,7 @@
 class Peao : public Peca {
 	public:
 	
-		Peao(array posicao, int cor){
+		Peao(int coluna, int linha, int cor){
 			super(posicao, cor);
 		}
 }
