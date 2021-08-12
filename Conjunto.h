@@ -15,6 +15,8 @@ class Conjunto {
 	vector<Peca> Conjunto;
 	
 	Conjunto(const int COR);
+	
+	void jogar();
     
 };
 
