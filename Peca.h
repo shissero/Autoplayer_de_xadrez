@@ -10,7 +10,7 @@ class Peca {
 	public:
 		Peca(array posicao, int cor);
 
-		virtual bool mover();
+		virtual bool mover(Peca peca);
 		
 	private:
 	

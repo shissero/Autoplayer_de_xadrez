@@ -8,7 +8,7 @@ class Peca {
 			this.posicao = posicao;
 		}
 
-		virtual bool mover();
+		virtual bool mover(Peca peca);
 		
 	private:
 	
