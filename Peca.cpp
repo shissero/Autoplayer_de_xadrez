@@ -3,7 +3,7 @@
 class Peca {
 
 	public:
-		Peca(array posicao, int cor){
+		Peca(Posicao posicao, int cor){
 			this.cor = cor;
 			this.posicao = posicao;
 		}
@@ -13,5 +13,5 @@ class Peca {
 	private:
 	
 	int cor;
-	array posicao;
+	Posicao posicao;
 };
