@@ -1,66 +1,100 @@
 #include<vector>
-#include"Peca"
+#include"Peca.h"
 #include"Peao.h"
+
+/*
 #include"Torre.h"
 #include"Cavalo.h"
 #include"Bispo.h"
 #include"Dama.h"
 #include"Rei.h"
-#include"Aleatoria.h"
+#include"Aleatoria.h"*/
 
 using std::vector
 
 class Conjunto {
-    vector<Peca> conjunto;
+
+	public:
+	
+		const int FIMDEJOGO = 789;
+		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+		static void build(){
+			if(Brancas == NULL){
+
+				for(int i = 1; i < 9; i++){
+					Brancas.insert(Peao(i, 2, Peca.BRANCO);
+				}
+    		
+				/*Brancas.insert(Torre(1, 1, Peca.BRANCO));
+				Brancas.insert(Torre(8, 1, Peca.BRANCO));
+    		
+				Brancas.insert(Cavalo(2, 1, Peca.BRANCO));
+				Brancas.insert(Cavalo(7, 1 Peca.BRANCO));
+		
+				Brancas.insert(Bispo(3, 1, Peca.BRANCO));
+				Brancas.insert(Bispo(6, 1, Peca.BRANCO));
+		
+				Brancas.insert(Dama(4, 1, Peca.BRANCO));
+		
+				Brancas.insert(Rei(5, 1, Peca.BRANCO));*/
+			}
+			
+			if(Pretas == NULL){
+			
+				for(int i = 1; i < 9; i++){
+					Pretas.insert(Peao(i, 7, Peca.PRETO));
+				}
+    		
+				/*Pretas.insert(Torre(1, 8, Peca.PRETO));
+				Pretas.insert(Torre(8, 8, Peca.PRETO));
+    		
+				Pretas.insert(Cavalo(2, 8, Peca.PRETO));
+				Pretas.insert(Cavalo(7, 8, Peca.PRETO));
+		
+				Pretas.insert(Bispo(3, 8, Peca.PRETO));
+				Pretas.insert(Bispo(6, 8, Peca.PRETO));
+		
+				Pretas.insert(Dama(4, 8, Peca.PRETO));
+		
+				Pretas.insert(Rei(5, 8, Peca.PRETO));*/
+			}
+		}
+		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+		
+		void destruaBranca(int casa){
+			for(int i = 0
+		}
+		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
     
-    Conjunto(int COR):
-    	if(COR == BRANCO){
-    		// Inicialize as peças brancas
+		void jogar(){
+    	
+    			Peca movendo;
     		
-    		
-    		for(int i = 1; i < 9; i++){
-    			conjunto.insert(Peao(i, 2, COR);
+    			while(this[Aleatoria.aleatoria(conjunto.length)].mover(movendo)){}
     		}
     		
-    		conjunto.insert(Torre(1, 1, COR));
-    		conjunto.insert(Torre(8, 1, COR));
-    		
-		conjunto.insert(Cavalo(2, 1, COR));
-		conjunto.insert(Cavalo(7, 1 COR));
-		
-		conjunto.insert(Bispo(3, 1, COR));
-		conjunto.insert(Bispo(6, 1, COR));
-		
-		conjunto.insert(Dama(4, 1, COR));
-		
-		conjunto.insert(Rei(5, 1, COR));
-    	}
-    	else{
-    		// Inicialize as peças pretas
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
     		
     		
-    		for(int i = 1; i < 9; i++){
-    			conjunto.insert(Peao(i, 7, COR));
-    		}
-    		
-    		conjunto.insert(Torre(1, 8, COR));
-    		conjunto.insert(Torre(8, 8, COR));
-    		
-		conjunto.insert(Cavalo(2, 8, COR));
-		conjunto.insert(Cavalo(7, 8, COR));
-		
-		conjunto.insert(Bispo(3, 8, COR));
-		conjunto.insert(Bispo(6, 8, COR));
-		
-		conjunto.insert(Dama(4, 8, COR));
-		
-		conjunto.insert(Rei(5, 8, COR));
-    	}
+    	private:
     	
-    	void jogar(){
-    	
-    		Peca movendo;
+    		vector<Peca> Brancas, Pretas;
     		
-    		while(conjunto[Aleatoria.aleatoria(conjunto.length)].mover(movendo)){}
-    	}
+    		Conjunto(){}
+    	
+    	
 };
