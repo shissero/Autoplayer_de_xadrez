@@ -1,11 +1,8 @@
-#include"Peca.h"
 #include"Conjunto.h"
 
 int main(){
-    Conjunto Brancas = Conjunto(BRANCO), Pretas = Conjunto(PRETO);
+    Conjunto conjunto = Conjunto();
+    conjunto.build;
     
-    while(true){
-    	Brancas.jogar();
-    	Pretas.jogar();
-    }    
+       
 };
