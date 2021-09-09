@@ -1,4 +1,9 @@
+#include<array>
+#include"Posicao.h"
+
+using std::array
+
 class Posicao {
-    char coluna;
-    int linha;
+
+	int casa[2] = {0, 0};
 };
