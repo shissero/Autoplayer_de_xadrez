@@ -1,9 +1,17 @@
-#include"Posicao.h"
+#include<array>
 
 class Peca {
-	int cor;
-	Posicao posicao_atual;
-	Posicao posicao_destino;
 
-	virtual void movimento();
+	public:
+		Peca(Posicao posicao, int cor){
+			this.cor = cor;
+			this.posicao = posicao;
+		}
+
+		virtual bool mover(Peca peca);
+		
+	private:
+	
+	int cor;
+	Posicao posicao;
 };
