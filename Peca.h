@@ -1,9 +1,21 @@
-#include"Posicao.h"
+#ifndef PECA_H_
+#define PECA_H_
+#include<array>
+
+#define BRANCO 0
+#define PRETO 1
 
 class Peca {
-	int cor;
-	Posicao posicao_atual;
-	Posicao posicao_destino;
 
-	virtual void movimento();
+	public:
+		Peca(array posicao, int cor);
+
+		virtual bool mover(Peca peca);
+		
+	private:
+	
+	int cor;
+	array posicao;
 };
+
+#endif
