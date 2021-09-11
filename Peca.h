@@ -8,14 +8,14 @@
 class Peca {
 
 	public:
-		Peca(array posicao, int cor);
+		Peca(Posicao posicao, int cor);
 
 		virtual bool mover(Peca peca);
 		
 	private:
 	
 	int cor;
-	array posicao;
+	Posicao posicao;
 };
 
 #endif
