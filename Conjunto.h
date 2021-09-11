@@ -1,3 +1,6 @@
+#ifndef CONJUNTO_H_
+#define CONJUNTO_H_
+
 #include"Peao.h"
 #include"Torre.h"
 #include"Cavalo.h"
@@ -5,11 +8,16 @@
 #include"Dama.h"
 #include"Rei.h"
 
+using std::vector
+
 class Conjunto {
-    Peao peoes[8];
-    Torre torres[2];
-    Cavalo cavalos[2];
-    Bispo bispos[2];
-    Dama dama;
-    Rei rei;
+
+	vector<Peca> Conjunto;
+	
+	Conjunto(const int COR);
+	
+	void jogar();
+    
 };
+
+#endif
