@@ -1,5 +1,13 @@
-#include"Peca.h"
+#ifndef PEAO_H_
+#define PEAO_H_
 
-class Peao : Peca {
+#include<array>
+
+class Peao : public Peca {
+	public:
+	
+		Peao(int coluna, int linha, int cor);
 
 };
+
+#endif
