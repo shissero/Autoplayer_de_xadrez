@@ -1,16 +1,19 @@
 #ifndef PECA_H_
 #define PECA_H_
 #include<array>
-
-#define BRANCO 0
-#define PRETO 1
+#include"Posicao.h"
 
 class Peca {
 
 	public:
-		Peca(Posicao posicao, int cor);
+		Peca(Posicao, int);
 
-		virtual bool mover(Peca peca);
+		virtual bool mover(Peca);
+		
+		static int PRETO;
+		static int BRANCO;
+		
+		Posicao getPosicao();
 		
 	private:
 	

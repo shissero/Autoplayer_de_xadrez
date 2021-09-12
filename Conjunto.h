@@ -1,22 +1,20 @@
 #ifndef CONJUNTO_H_
 #define CONJUNTO_H_
 
+#include<vector>
 #include"Peao.h"
-#include"Torre.h"
-#include"Cavalo.h"
-#include"Bispo.h"
-#include"Dama.h"
-#include"Rei.h"
 
-using std::vector
+using namespace std;
 
 class Conjunto {
 
-	vector<Peca> Conjunto;
+	public:
+    		
+    	Conjunto();
 	
-	Conjunto(const int COR);
+	private:
 	
-	void jogar();
+	vector<Peca> Brancas, Pretas;
     
 };
 
