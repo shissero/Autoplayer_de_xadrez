@@ -3,22 +3,22 @@
 #include<array>
 #include"Posicao.h"
 
+#define BRANCO 0
+#define PRETO 1
+
 class Peca {
 
 	public:
 		Peca(Posicao, int);
 
-		virtual bool mover(Peca);
+		virtual void mover();
 		
-		static int PRETO;
-		static int BRANCO;
+		Posicao obterPosicao();
 		
-		Posicao getPosicao();
-		
-	private:
+	protected:
 	
 	int cor;
-	Posicao posicao;
+	Posicao casa;
 };
 
 #endif

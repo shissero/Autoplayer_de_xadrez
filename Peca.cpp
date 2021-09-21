@@ -1,15 +1,13 @@
 #include"Peca.h"
 #include"Posicao.h"
+#include<iostream>
 
 Peca::Peca(Posicao pos, int color)
-	: posicao(pos), cor(color)
+	: casa (pos), cor (color)
 	{}
-		
-int Peca::PRETO = 1;
-int Peca::BRANCO = 0;
 
-bool Peca::mover(Peca peca){}
+void Peca::mover(){ std::cout << "Works"; }
 		
-Posicao Peca::getPosicao(){
-	return Peca::posicao;
+Posicao Peca::obterPosicao(){
+	return Peca::casa;
 }

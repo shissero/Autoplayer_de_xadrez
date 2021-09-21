@@ -1,41 +1,65 @@
 #include<vector>
+#include<Conjunto.h>
 #include"Peao.h"
 #include"Peca.h"
 #include"Posicao.h"
 
 
-
+Peao::Peao(Posicao posicao, int cor) : Peca(posicao, cor) {}
 		
-		/*bool mover(Peca peca){
-			vector movimentos;
+void Peao::mover(){
+	vector<Posicao> movimentos;
 			
-			if( this.cor == BRANCO){
-				if(posicao.posicao[1] > 0){
-					/* Procurar peça adversária na linha seguinte e coluna anterior
-					movimentos.insert(Posicao(posicao.posicao[0] - 1, posicao.posicao[1] + 1);
-				}
-				else if(posicao.posicao[1] < 7){
-					/* Procurar peça adversária na linha e coluna seguintes
-					movimentos.insert(Posicao(posicao.posicao[0] + 1, posicao.posicao[1] + 1);
-				}
-				else{
-					/* Procurar peça na mesma coluna, na linha seguinte *
-					movimentos.insert(Posicao(posicao.posicao[0], posicao.posicao[1] + 1);
-				}
+	if(Peca::cor == BRANCO){
+		if(this->casa.linha == 2
+			&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha + 1))
+			&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha + 2))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna, this->casa.linha + 2));
+		}
+		
+		if(this->casa.linha < 8
+				&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha + 1))){
+
+				movimentos.push_back(Posicao(this->casa.coluna, this->casa.linha + 1));
 			}
-			else{
-				if(posicao.posicao[1] > 0){
-					/* Procurar peça adversária na linha seguinte e coluna anterior*
-					movimentos.insert(Posicao(posicao.posicao[0] - 1, posicao.posicao[1] - 1);
-				}
-				else if(posicao.posicao[1] < 7){
-					/* Procurar peça adversária na linha e coluna seguintes*
-					movimentos.insert(Posicao(posicao.posicao[0] + 1, posicao.posicao[1] - 1);
-				}
-				else{
-					/* Procurar peça na mesma coluna, na linha seguinte *
-					movimentos.insert(Posicao(posicao.posicao[0], posicao.posicao[1] - 1);
-				}
-			}*/
-			
-			/* Teste se movimentos está vazia */
+				
+		if(this->casa.coluna > 1
+			&& Conjunto::pretaOcupa(Posicao(this->casa.coluna - 1, this->casa.linha + 1))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna - 1, this->casa.linha + 1));
+		}
+				
+		if(this->casa.coluna < 8
+			&& Conjunto::pretaOcupa(Posicao(this->casa.coluna + 1, this->casa.linha + 1))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna + 1, this->casa.linha + 1));
+		}
+	}
+	else{
+		if(this->casa.linha == 7
+			&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha - 1))
+			&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha - 2))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna, this->casa.linha - 2));
+		}
+		
+		if(this->casa.linha > 1
+				&& Conjunto::estaVazia(Posicao(this->casa.coluna, this->casa.linha - 1))){
+
+				movimentos.push_back(Posicao(this->casa.coluna, this->casa.linha - 1));
+		}
+				
+		if(this->casa.coluna > 1
+			&& Conjunto::brancaOcupa(Posicao(this->casa.coluna - 1, this->casa.linha - 1))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna - 1, this->casa.linha - 1));
+		}
+				
+		if(this->casa.coluna < 8
+			&& Conjunto::brancaOcupa(Posicao(this->casa.coluna + 1, this->casa.linha - 1))){
+					
+			movimentos.push_back(Posicao(this->casa.coluna + 1, this->casa.linha - 1));
+		}
+	}
+}

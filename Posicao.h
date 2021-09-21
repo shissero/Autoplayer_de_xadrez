@@ -9,10 +9,13 @@ using namespace std;
 class Posicao {
 
 	public:
+		
+		int coluna;
+		int linha;
 
 		Posicao(int, int);
 
-		int casa[2];
+		bool operator==(const Posicao&);
 	
 		string toString();
 };

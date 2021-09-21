@@ -5,10 +5,14 @@
 
 
 Posicao::Posicao(int coluna, int linha)
-	: casa {coluna, linha}
+	: coluna (coluna), linha (linha)
 {}
-	
+
+bool Posicao::operator==(const Posicao& posicao){
+	return this->coluna == posicao.coluna && this->linha == posicao.linha ? true : false;
+}
+
 string Posicao::toString(){
 	string str = "";
-	return str + to_string(Posicao::casa[0]) + ", " + to_string(Posicao::casa[1]) + "\n";
+	return str + to_string(this->coluna) + ", " + to_string(this->linha) + "\n";
 }

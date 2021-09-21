@@ -8,8 +8,8 @@
 class Peao : public Peca {
 	public:
 	
-		using Peca::Peca;
-
+		Peao(Posicao, int);
+		void mover();
 };
 
 #endif

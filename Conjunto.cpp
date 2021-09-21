@@ -14,10 +14,14 @@
 #include"Aleatoria.h"*/
 
 using namespace std;
-	
-		Conjunto::Conjunto(){
 
-			for(int i = 1; i < 9; i++) Brancas.push_back( Peao(Posicao(i, 2), Peca::BRANCO) );
+vector<Peca*> Conjunto::Brancas, Conjunto::Pretas;
+	
+Conjunto::Conjunto(){
+
+	for(int i = 1; i < 9; i++){
+		Conjunto::Brancas.push_back(new Peao(Posicao(i, 2), BRANCO));
+	}
     		
 				/*Brancas.insert(Torre(1, 1, Peca.BRANCO));
 				Brancas.insert(Torre(8, 1, Peca.BRANCO));
@@ -32,8 +36,9 @@ using namespace std;
 		
 				Brancas.insert(Rei(5, 1, Peca.BRANCO));*/
 			
-			for(int i = 1; i < 9; i++) Pretas.push_back(Peao(Posicao(i, 7), Peca::PRETO));
-    		
+	for(int i = 1; i < 9; i++){
+    		Conjunto::Pretas.push_back(new Peao(Posicao(i, 7), PRETO));
+    	}
 				/*Pretas.insert(Torre(1, 8, Peca.PRETO));
 				Pretas.insert(Torre(8, 8, Peca.PRETO));
     		
@@ -46,8 +51,39 @@ using namespace std;
 				Pretas.insert(Dama(4, 8, Peca.PRETO));
 		
 				Pretas.insert(Rei(5, 8, Peca.PRETO));*/
-		}
+}
 		
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************/
+
+bool Conjunto::estaVazia(Posicao casa){
+	for(Peca* a : Conjunto::Brancas) if(a->obterPosicao() == casa) return false;
+	for(Peca* a : Conjunto::Pretas) if(a->obterPosicao() == casa) return false;
+	
+	return true;
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+bool Conjunto::pretaOcupa(Posicao posicao){
+	for(Peca* a : Conjunto::Pretas) if(a->obterPosicao() == posicao) return true;
+	
+	return false;
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+bool Conjunto::brancaOcupa(Posicao posicao){
+	for(Peca* a : Conjunto::Brancas) if(a->obterPosicao() == posicao) return true;
+	
+	return false;
+}
+
+void Conjunto::mover1(){
+	for(int i = 0; i < 8; i++) Conjunto::Brancas[i]->mover();
+}
