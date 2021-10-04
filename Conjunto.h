@@ -20,6 +20,12 @@ class Conjunto {
     	static bool brancaOcupa(Posicao);
     	
     	static void mover1();
+    	
+    	static void destruir(Posicao, int);
+    	
+    	void jogarBranca();
+    	
+    	void jogarPreta();
 	
 	private:
 	

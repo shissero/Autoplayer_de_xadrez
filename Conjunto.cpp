@@ -1,5 +1,6 @@
 #include<vector>
 #include<iostream>
+#include"Aleatoria.h"
 #include"Peca.h"
 #include"Peao.h"
 #include"Posicao.h"
@@ -84,6 +85,40 @@ bool Conjunto::brancaOcupa(Posicao posicao){
 	return false;
 }
 
-void Conjunto::mover1(){
-	for(int i = 0; i < 8; i++) Conjunto::Brancas[i]->mover();
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+void Conjunto::destruir(Posicao posicao, int cor){
+	vector<Peca *> aux;
+	int i = 0;
+	
+	aux = cor==BRANCO? Brancas : Pretas;
+	
+	for(Peca *p : aux){
+		if((*p).obterPosicao() == posicao){
+			delete p;
+			aux.erase(aux.begin() + i);
+			return;
+		}
+		i++;
+	}
+	
+	return;
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+void Conjunto::jogarBranca(){
+	while(!Conjunto::Brancas[Aleatoria::aleatoria(Brancas.size())]->mover()){}
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+void Conjunto::jogarPreta(){
+	while(!Conjunto::Pretas[Aleatoria::aleatoria(Pretas.size())]->mover()){}
 }

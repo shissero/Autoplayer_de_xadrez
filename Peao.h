@@ -9,7 +9,10 @@ class Peao : public Peca {
 	public:
 	
 		Peao(Posicao, int);
-		void mover();
+		bool mover();
+	private:
+	
+		void gerarMovimentos(vector<Posicao *> &);
 };
 
 #endif

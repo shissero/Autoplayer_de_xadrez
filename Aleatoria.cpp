@@ -1,10 +1,9 @@
 #include<stdlib.h>
 #include<ctime>
+#include"Aleatoria.h"
 
-class Aleatoria {
-	static int aleatoria(int range){
-		srand((unsigned)clock());
+int Aleatoria::aleatoria(int range){
+	srand((unsigned)clock());
 		
-		return rand()%range;
-	}
+	return rand()%range;
 }

@@ -1,6 +1,6 @@
 #ifndef PECA_H_
 #define PECA_H_
-#include<array>
+#include<vector>
 #include"Posicao.h"
 
 #define BRANCO 0
@@ -11,14 +11,16 @@ class Peca {
 	public:
 		Peca(Posicao, int);
 
-		virtual void mover();
+		virtual bool mover();
 		
 		Posicao obterPosicao();
 		
 	protected:
 	
-	int cor;
-	Posicao casa;
+		int cor;
+		Posicao casa;
+		virtual void gerarMovimentos(vector<Posicao *>);
+		void mudarPosicao(Posicao);
 };
 
 #endif
