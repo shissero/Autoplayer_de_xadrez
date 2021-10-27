@@ -1,6 +1,10 @@
 #ifndef PECA_H_
 #define PECA_H_
-#include<array>
+
+#include<vector>
+#include<string>
+
+#include"Posicao.h"
 
 #define BRANCO 0
 #define PRETO 1
@@ -8,14 +12,24 @@
 class Peca {
 
 	public:
-		Peca(Posicao posicao, int cor);
+		Peca(Posicao, int);
 
-		virtual bool mover(Peca peca);
+		virtual bool mover();
 		
-	private:
+		Posicao obterPosicao();
+		
+		int obterCor();
+		
+		std::string obterCorComoString();
+		
+		virtual std::string obterClasse();
+		
+	protected:
 	
-	int cor;
-	Posicao posicao;
+		int cor;
+		Posicao casa;
+		virtual void gerarMovimentos(vector<Posicao *>);
+		void mudarPosicao(Posicao);
 };
 
 #endif
