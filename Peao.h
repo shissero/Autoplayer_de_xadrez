@@ -2,13 +2,11 @@
 #define PEAO_H_
 
 #include<array>
-#include"Posicao.h"
-#include"Peca.h"
 
 class Peao : public Peca {
 	public:
 	
-		using Peca::Peca;
+		Peao(int coluna, int linha, int cor);
 
 };
 

@@ -1,5 +1,8 @@
 #include"Conjunto.h"
 
 int main(){
-    Conjunto conjunto = Conjunto();     
+    Conjunto conjunto = Conjunto();
+    conjunto.build;
+    
+       
 };

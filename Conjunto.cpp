@@ -1,9 +1,6 @@
 #include<vector>
-#include<iostream>
 #include"Peca.h"
 #include"Peao.h"
-#include"Posicao.h"
-#include"Conjunto.h"
 
 /*
 #include"Torre.h"
@@ -13,11 +10,24 @@
 #include"Rei.h"
 #include"Aleatoria.h"*/
 
-using namespace std;
-	
-		Conjunto::Conjunto(){
+using std::vector
 
-			for(int i = 1; i < 9; i++) Brancas.push_back( Peao(Posicao(i, 2), Peca::BRANCO) );
+class Conjunto {
+
+	public:
+	
+		const int FIMDEJOGO = 789;
+		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+		static void build(){
+			if(Brancas == NULL){
+
+				for(int i = 1; i < 9; i++){
+					Brancas.insert(Peao(i, 2, Peca.BRANCO);
+				}
     		
 				/*Brancas.insert(Torre(1, 1, Peca.BRANCO));
 				Brancas.insert(Torre(8, 1, Peca.BRANCO));
@@ -31,8 +41,13 @@ using namespace std;
 				Brancas.insert(Dama(4, 1, Peca.BRANCO));
 		
 				Brancas.insert(Rei(5, 1, Peca.BRANCO));*/
+			}
 			
-			for(int i = 1; i < 9; i++) Pretas.push_back(Peao(Posicao(i, 7), Peca::PRETO));
+			if(Pretas == NULL){
+			
+				for(int i = 1; i < 9; i++){
+					Pretas.insert(Peao(i, 7, Peca.PRETO));
+				}
     		
 				/*Pretas.insert(Torre(1, 8, Peca.PRETO));
 				Pretas.insert(Torre(8, 8, Peca.PRETO));
@@ -46,8 +61,40 @@ using namespace std;
 				Pretas.insert(Dama(4, 8, Peca.PRETO));
 		
 				Pretas.insert(Rei(5, 8, Peca.PRETO));*/
+			}
 		}
 		
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************/
+		
+		void destruaBranca(int casa){
+			for(int i = 0
+		}
+		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+    
+		void jogar(){
+    	
+    			Peca movendo;
+    		
+    			while(this[Aleatoria.aleatoria(conjunto.length)].mover(movendo)){}
+    		}
+    		
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+    		
+    		
+    	private:
+    	
+    		vector<Peca> Brancas, Pretas;
+    		
+    		Conjunto(){}
+    	
+    	
+};

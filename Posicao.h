@@ -4,17 +4,11 @@
 
 #include<array>
 
-using namespace std;
+using std::array
 
 class Posicao {
 
-	public:
-
-		Posicao(int, int);
-
-		int casa[2];
-	
-		string toString();
+	int casa[2];
 };
 
 #endif

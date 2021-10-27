@@ -1,15 +1,17 @@
-#include"Peca.h"
-#include"Posicao.h"
+#include<array>
 
-Peca::Peca(Posicao pos, int color)
-	: posicao(pos), cor(color)
-	{}
-		
-int Peca::PRETO = 1;
-int Peca::BRANCO = 0;
+class Peca {
 
-bool Peca::mover(Peca peca){}
+	public:
+		Peca(Posicao posicao, int cor){
+			this.cor = cor;
+			this.posicao = posicao;
+		}
+
+		virtual bool mover(Peca peca);
 		
-Posicao Peca::getPosicao(){
-	return Peca::posicao;
-}
+	private:
+	
+	int cor;
+	Posicao posicao;
+};
