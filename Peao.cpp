@@ -1,5 +1,7 @@
 #include<vector>
 #include<iostream>
+#include<string>
+
 #include"Conjunto.h"
 #include"Peao.h"
 #include"Peca.h"
@@ -17,13 +19,22 @@ bool Peao::mover(){
 	
 	if(!movimentos.size()) return false;
 	else{
+	
+		Posicao origem = this -> casa;
 		Posicao destino = *movimentos[Aleatoria::aleatoria(movimentos.size())];
 		
-		if(destino.coluna != this->casa.coluna){
-			Conjunto::destruir(destino, this->cor);
-		}
 		
-		this->mudarPosicao(destino);
+
+		if(origem.coluna != destino.coluna) Conjunto::capturar(destino, this->cor);
+			
+		if(destino.linha == 8 || destino.linha == 1){
+			
+			Conjunto::promover(*this, destino);
+		}
+		else{
+			
+			this->mudarPosicao(destino);
+		}
 	}
 	
 	return true;
@@ -82,4 +93,8 @@ void Peao::gerarMovimentos(vector<Posicao *> &vetor){
 			vetor.push_back(new Posicao(this->casa.coluna + 1, this->casa.linha - 1));
 		}
 	}
+}
+
+std::string Peao::obterClasse(){
+	return "Peao";
 }

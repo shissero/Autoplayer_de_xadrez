@@ -13,23 +13,27 @@ class Conjunto {
     		
     	Conjunto();
     	
+    	static void capturar(Posicao, int);
+    	
     	static bool estaVazia(Posicao);
     	
     	static bool pretaOcupa(Posicao);
     	
     	static bool brancaOcupa(Posicao);
     	
-    	static void mover1();
-    	
     	static void destruir(Posicao, int);
     	
     	void jogarBranca();
     	
     	void jogarPreta();
+    	
+    	static void promover(Peao, Posicao);
+    	
+    	static void listarTodasAsPecas();
 	
 	private:
 	
-	static vector<Peca*> Brancas, Pretas;
+	static vector<Peca *> Brancas, Pretas;
     
 };
 

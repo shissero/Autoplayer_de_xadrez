@@ -1,18 +1,20 @@
 #include<vector>
+#include"Torre.h"
+#include<iostream>
+#include<string>
 
-class Torre {
 
-	public:
-		Peca(Posicao posicao, int cor){
-			this.cor = cor;
-			this.posicao = posicao;
-		}
+Torre::Torre(Posicao posicao, int cor) : Peca(posicao, cor) {}
 
-		virtual bool mover(){
+std::string Torre::obterClasse(){
+	return "Torre";
+}
+
+/*		virtual bool mover(){
 			vector<Posicao> movimentos;
 			Posicao mover_para = this.posicao;
 			
-			/* Gerar coluna no sentido crescente das linhas */
+			/* Gerar coluna no sentido crescente das linhas *
 			
 			mover_para.linha++;
 			
@@ -21,7 +23,7 @@ class Torre {
 				mover_para.linha++;
 			}
 			
-			/* Gerar coluna no sentido decrescente das linhas */
+			/* Gerar coluna no sentido decrescente das linhas *
 			
 			mover_para = this.posicao;
 			
@@ -32,7 +34,7 @@ class Torre {
 				mover_para.linha--;
 			}
 			
-			/* Gerar linha no sentido crescente das colunas */
+			/* Gerar linha no sentido crescente das colunas *
 			
 			mover_para = this.posicao;
 			
@@ -43,7 +45,7 @@ class Torre {
 				mover_para.coluna++;
 			}
 			
-			/* Gerar linha no sentido decrescente das colunas */
+			/* Gerar linha no sentido decrescente das colunas 
 			
 			mover_para = this.posicao;
 			
@@ -54,9 +56,4 @@ class Torre {
 				mover_para.coluna--;
 			}
 		};
-		
-	private:
-	
-	int cor;
-	array posicao;
-};
+		*/

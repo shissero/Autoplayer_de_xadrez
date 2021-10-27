@@ -14,5 +14,7 @@ bool Posicao::operator==(const Posicao& posicao){
 
 string Posicao::toString(){
 	string str = "";
-	return str + to_string(this->coluna) + ", " + to_string(this->linha) + "\n";
+	str.push_back(static_cast<char>(this->coluna + 96));
+	
+	return str + ", " + to_string(this->linha);
 }
