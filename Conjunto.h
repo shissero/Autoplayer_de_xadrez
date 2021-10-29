@@ -1,22 +1,49 @@
 #ifndef CONJUNTO_H_
 #define CONJUNTO_H_
 
-#include"Peao.h"
-#include"Torre.h"
-#include"Cavalo.h"
-#include"Bispo.h"
-#include"Dama.h"
-#include"Rei.h"
+#include<vector>
 
-using std::vector
+#include"Peca.h"
+#include"Peao.h"
+
+using namespace std;
 
 class Conjunto {
 
-	vector<Peca> Conjunto;
+	public:
+    		
+    	Conjunto();
+    	
+    	static void capturar(Posicao, int);
+    	
+    	static void definirEnPassant(Peao *);
+    	
+    	static bool estaVazia(Posicao);
+    	
+    	static bool pretaOcupa(Posicao);
+    	
+    	static bool brancaOcupa(Posicao);
+    	
+    	static void destruir(Posicao, int);
+    	
+    	void jogarBranca();
+    	
+    	void jogarPreta();
+    	
+    	static void limparEnPassant();
+    	
+    	static Peca *obterEnPassant();
+    	
+    	static void promover(Peao, Posicao);
+    	
+    	static bool valeEnPassant(Posicao);
+    	
+    	static void listarTodasAsPecas();
 	
-	Conjunto(const int COR);
+	private:
 	
-	void jogar();
+	static vector<Peca *> Brancas, Pretas;
+	static Peca *enPassant;
     
 };
 
