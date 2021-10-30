@@ -2,7 +2,6 @@
 
 int main(){
     Conjunto conjunto = Conjunto();
-    conjunto.build;
     
        
 };
