@@ -1,5 +1,7 @@
 #include"Peca.h"
 
-class Torre : Peca {
+class Torre : public Peca {
 
+	public:
+		Torre(Posicao, int);
 };
