@@ -3,7 +3,7 @@
 
 class Aleatoria {
 	public:
-		static int aleatoria(int range);
+		static int aleatoria(int);
 };
 
 #endif
