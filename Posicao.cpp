@@ -1,5 +1,6 @@
 #include<array>
 #include<string>
+
 #include"Posicao.h"
 
 
