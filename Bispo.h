@@ -1,4 +1,8 @@
 #include"Peca.h"
 
-class Bispo {
+class Bispo : public Peca{
+
+	public:
+	
+		Bispo(Posicao, int);
 };
