@@ -9,8 +9,6 @@ class Cavalo : public Peca {
 
 	public:
 		Cavalo(Posicao, int);
-		
-		std::string obterClasse();
 
 };
 
