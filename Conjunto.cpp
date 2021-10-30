@@ -9,7 +9,6 @@
 #include"Dama.h"
 #include"Peao.h"
 #include"Peca.h"
-#include"Posicao.h"
 #include"Torre.h"
 
 
@@ -60,11 +59,11 @@ Conjunto::Conjunto(){
 **********************************************************************************************
 *********************************************************************************************/
 
-bool Conjunto::estaVazia(Posicao casa){
-	for(Peca* a : Conjunto::Brancas) if(a->obterPosicao() == casa) return false;
-	for(Peca* a : Conjunto::Pretas) if(a->obterPosicao() == casa) return false;
+Peca *Conjunto::estaVazia(Posicao casa){
+	for(Peca *a : Conjunto::Brancas) if(a->obterPosicao() == casa) return a;
+	for(Peca *a : Conjunto::Pretas) if(a->obterPosicao() == casa) return a;
 	
-	return true;
+	return 0;
 }
 
 /*********************************************************************************************

@@ -18,7 +18,7 @@ class Conjunto {
     	
     	static void definirEnPassant(Peao *);
     	
-    	static bool estaVazia(Posicao);
+    	static Peca *estaVazia(Posicao);
     	
     	static bool pretaOcupa(Posicao);
     	
