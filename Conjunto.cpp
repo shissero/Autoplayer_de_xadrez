@@ -1,16 +1,16 @@
-#include<vector>
 #include<iostream>
 #include<stdlib.h>
+#include<vector>
 
 #include"Aleatoria.h"
-#include"Peca.h"
-#include"Peao.h"
-#include"Posicao.h"
-#include"Conjunto.h"
-#include"Torre.h"
-#include"Cavalo.h"
 #include"Bispo.h"
+#include"Cavalo.h"
+#include"Conjunto.h"
 #include"Dama.h"
+#include"Peao.h"
+#include"Peca.h"
+#include"Posicao.h"
+#include"Torre.h"
 
 
 
