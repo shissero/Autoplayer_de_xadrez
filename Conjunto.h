@@ -18,13 +18,11 @@ class Conjunto {
     	
     	static void definirEnPassant(Peao *);
     	
-    	static Peca *estaVazia(Posicao);
-    	
-    	static bool pretaOcupa(Posicao);
-    	
-    	static bool brancaOcupa(Posicao);
-    	
     	static void destruir(Posicao, int);
+    	
+    	static bool estaVazia(Posicao);
+    	
+    	static bool inimigaOcupa(int, Posicao);
     	
     	void jogarBranca();
     	
@@ -32,13 +30,13 @@ class Conjunto {
     	
     	static void limparEnPassant();
     	
-    	static Peca *obterEnPassant();
+    	static void listarTodasAsPecas();
     	
     	static void promover(Peao, Posicao);
     	
-    	static bool valeEnPassant(Posicao);
+    	static Peca *obterEnPassant();
     	
-    	static void listarTodasAsPecas();
+    	static bool valeEnPassant(Posicao);
 	
 	private:
 	

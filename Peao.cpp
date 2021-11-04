@@ -19,60 +19,57 @@ Peao::Peao(Posicao posicao, int cor) : Peca(posicao, cor) {}
 void Peao::gerarMovimentos(vector<Posicao *> *vetor){
 
 	if(this->cor == BRANCO){
-	
-		// Testa se o peão branco pode avançar duas posicaos
-		if(this->posicao.linha == 2
-			&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 1))
-			&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 2))){
-
-			vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 2));
-		}
 		
-		// Testa se o peão branco pode avançar uma posicao
+
 		if(this->posicao.linha < 8
 				&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 1))){
 				
 				vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 1));
+				
+				if(this->posicao.linha == 2
+					&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 2)))
+				{
+					vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 2));
+				}
 		}
 		
 			
 		if(this->posicao.coluna > 1
-			&& ( Conjunto::pretaOcupa(Posicao(this->posicao.coluna - 1, this->posicao.linha + 1))
+			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna - 1, this->posicao.linha + 1))
 				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha + 1)) )){
 					
 			vetor -> push_back(new Posicao(this->posicao.coluna - 1, this->posicao.linha + 1));
 		}
 				
 		if(this->posicao.coluna < 8
-			&& ( Conjunto::pretaOcupa(Posicao(this->posicao.coluna + 1, this->posicao.linha + 1))
+			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna + 1, this->posicao.linha + 1))
 			 	|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna + 1, this->posicao.linha + 1)) )){
 					
 			vetor -> push_back(new Posicao(this->posicao.coluna + 1, this->posicao.linha + 1));
 		}
 	}
 	else{
-		if(this->posicao.linha == 7
-			&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha - 1))
-			&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha - 2))){
-					
-			vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha - 2));
-		}
-		
 		if(this->posicao.linha > 1
-				&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha - 1))){
-
-				vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha - 1));
+				&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 1))){
+				
+				vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 1));
+				
+				if(this->posicao.linha == 7
+					&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 2)))
+				{
+					vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 2));
+				}
 		}
 				
 		if(this->posicao.coluna > 1
-			&& ( Conjunto::brancaOcupa(Posicao(this->posicao.coluna - 1, this->posicao.linha - 1))
+			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna - 1, this->posicao.linha - 1))
 				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha - 1)) )){
 					
 			vetor -> push_back(new Posicao(this->posicao.coluna - 1, this->posicao.linha - 1));
 		}
 				
 		if(this->posicao.coluna < 8
-			&& ( Conjunto::brancaOcupa(Posicao(this->posicao.coluna + 1, this->posicao.linha - 1))
+			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna + 1, this->posicao.linha - 1))
 				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha + 1)) )){
 					
 			vetor -> push_back(new Posicao(this->posicao.coluna + 1, this->posicao.linha - 1));

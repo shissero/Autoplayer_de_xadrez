@@ -17,21 +17,21 @@ class Peca {
 	public:
 		Peca(Posicao, int);
 		
-		int obterCor();
-		
 		virtual void gerarMovimentos(vector<Posicao *> *);
 		
-		void gerarMovimentosCardeais(Peca, vector<Posicao *> *);
-		
-		string obterCorComoString();
-		
-		virtual string obterClasse();
-		
-		Posicao obterPosicao();
+		void gerarMovimentosCardeais(vector<Posicao *> *);
 
 		virtual bool mover();
 		
 		void mudarPosicao(Posicao);
+		
+		virtual string obterClasse();
+		
+		int obterCor();
+		
+		string obterCorComoString();
+		
+		Posicao obterPosicao();
 		
 	protected:
 	
