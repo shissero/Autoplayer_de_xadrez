@@ -1,7 +1,17 @@
+#include<iostream>
+
+
 #include"Conjunto.h"
 
 int main(){
     Conjunto conjunto = Conjunto();
     
-       
-};
+    for(int i = 0; i < 50; i++){
+    
+    	std::cout << i + 1 << endl;
+    
+    	conjunto.jogarBranca();
+    	
+    	conjunto.jogarPreta();
+    }
+}

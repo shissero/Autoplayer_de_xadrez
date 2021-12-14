@@ -5,10 +5,11 @@
 #include<string>
 #include<vector>
 
+#include"Movimento.h"
 #include"Posicao.h"
 
-#define BRANCO 0
-#define PRETO 1
+#define BRANCO 1
+#define PRETO -1
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class Peca {
 	public:
 		Peca(Posicao, int);
 		
-		virtual void gerarMovimentos(vector<Posicao *> *);
+		virtual void gerarMovimentos(vector<Movimento *> *);
 		
 		void gerarMovimentosCardeais(vector<Posicao *> *);
 
@@ -35,7 +36,7 @@ class Peca {
 		
 	protected:
 	
-	int cor;
+	const int cor;
 	Posicao posicao;
 };
 

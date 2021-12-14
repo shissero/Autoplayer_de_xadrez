@@ -4,6 +4,7 @@
 #include<array>
 #include<string>
 
+#include"Movimento.h"
 #include"Peca.h"
 
 using namespace std;
@@ -13,13 +14,17 @@ class Peao : public Peca {
 	
 		Peao(Posicao, int);
 		
+		string emString();
 		
-		void gerarMovimentos(vector<Posicao *> *);
+		void gerarMovimentos(vector<Movimento *> *);
 		
 		bool mover();
 		
 		string obterClasse();
 		
+	private:
+	
+		bool primeiroMovimento = true;	
 
 };
 

@@ -20,6 +20,8 @@ class Conjunto {
     	
     	static void destruir(Posicao, int);
     	
+    	static void destruirEnPassant();
+    	
     	static bool estaVazia(Posicao);
     	
     	static bool inimigaOcupa(int, Posicao);
@@ -36,7 +38,7 @@ class Conjunto {
     	
     	static Peca *obterEnPassant();
     	
-    	static bool valeEnPassant(Posicao);
+    	static bool valeEnPassant(Posicao, int);
 	
 	private:
 	

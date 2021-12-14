@@ -15,10 +15,12 @@ class Posicao {
 		int linha;
 
 		Posicao(int, int);
+		
+		Posicao *copiar();
 
 		bool operator==(const Posicao&);
 	
-		string toString();
+		string emString();
 };
 
 #endif

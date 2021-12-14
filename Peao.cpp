@@ -1,9 +1,11 @@
+#include<cmath>
 #include<iostream>
 #include<string>
 #include<vector>
 
 #include"Aleatoria.h"
 #include"Conjunto.h"
+#include"Movimento.h"
 #include"Peao.h"
 #include"Peca.h"
 
@@ -12,67 +14,67 @@ using namespace std;
 
 Peao::Peao(Posicao posicao, int cor) : Peca(posicao, cor) {}
 
-/*********************************************************************************************************
-**********************************************************************************************************
-*********************************************************************************************************/
+/**********************************************************************************************************************
+***********************************************************************************************************************
+**********************************************************************************************************************/
 
-void Peao::gerarMovimentos(vector<Posicao *> *vetor){
+string Peao::emString(){
 
-	if(this->cor == BRANCO){
-		
+	string str = "Peao ";
+	
+	return str + ( this -> cor == PRETO ? "preto" : "branco");
+}
 
-		if(this->posicao.linha < 8
-				&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 1))){
+/**********************************************************************************************************************
+***********************************************************************************************************************
+**********************************************************************************************************************/
+
+
+
+void Peao::gerarMovimentos(vector<Movimento *> *vetor){
+
+	Posicao pos = Posicao(this -> posicao.coluna, this -> posicao.linha + this -> cor);
+
+	if(this->posicao.linha < 8 && Conjunto::estaVazia(pos)){
 				
-				vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 1));
-				
-				if(this->posicao.linha == 2
-					&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 2)))
-				{
-					vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 2));
-				}
-		}
+		vetor -> push_back(new Movimento(pos, NEUTRO));
 		
+		
+		pos = Posicao(this->posicao.coluna, this->posicao.linha + 2*(this -> cor));
+				
+		if(this -> primeiroMovimento && Conjunto::estaVazia(pos)){
 			
-		if(this->posicao.coluna > 1
-			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna - 1, this->posicao.linha + 1))
-				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha + 1)) )){
-					
-			vetor -> push_back(new Posicao(this->posicao.coluna - 1, this->posicao.linha + 1));
-		}
-				
-		if(this->posicao.coluna < 8
-			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna + 1, this->posicao.linha + 1))
-			 	|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna + 1, this->posicao.linha + 1)) )){
-					
-			vetor -> push_back(new Posicao(this->posicao.coluna + 1, this->posicao.linha + 1));
+			vetor -> push_back(new Movimento(pos, EN_PASSANT_PASSIVA));
 		}
 	}
-	else{
-		if(this->posicao.linha > 1
-				&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 1))){
-				
-				vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 1));
-				
-				if(this->posicao.linha == 7
-					&& Conjunto::estaVazia(Posicao(this->posicao.coluna, this->posicao.linha + 2)))
-				{
-					vetor -> push_back(new Posicao(this->posicao.coluna, this->posicao.linha + 2));
-				}
-		}
-				
-		if(this->posicao.coluna > 1
-			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna - 1, this->posicao.linha - 1))
-				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha - 1)) )){
+
+	
+	pos = Posicao(this->posicao.coluna - 1, this->posicao.linha + this -> cor);
+
+	if(this->posicao.coluna > 1){
+	
+		if(Conjunto::inimigaOcupa(this -> cor, pos)){
 					
-			vetor -> push_back(new Posicao(this->posicao.coluna - 1, this->posicao.linha - 1));
+			vetor -> push_back(new Movimento(pos, CAPTURA));
 		}
+		else if(Conjunto::valeEnPassant(pos, -(this -> cor))){
+		
+			vetor -> push_back(new Movimento(pos, EN_PASSANT_ATIVA));
+		}
+	}
+
+
+	pos = Posicao(this->posicao.coluna + 1, this->posicao.linha + this -> cor);
 				
-		if(this->posicao.coluna < 8
-			&& ( Conjunto::inimigaOcupa(this -> cor, Posicao(this->posicao.coluna + 1, this->posicao.linha - 1))
-				|| Conjunto::valeEnPassant(Posicao(this->posicao.coluna - 1, this->posicao.linha + 1)) )){
+	if(this->posicao.coluna < 8){
+	
+		if(Conjunto::inimigaOcupa(this -> cor, pos)){
 					
-			vetor -> push_back(new Posicao(this->posicao.coluna + 1, this->posicao.linha - 1));
+			vetor -> push_back(new Movimento(pos, CAPTURA));
+		}
+		else if(Conjunto::valeEnPassant(pos, -(this -> cor))){
+		
+			vetor -> push_back(new Movimento(pos, EN_PASSANT_ATIVA));
 		}
 	}
 }
@@ -84,9 +86,11 @@ void Peao::gerarMovimentos(vector<Posicao *> *vetor){
 		
 bool Peao::mover(){
 
+	int cor1 = this -> cor, cor2;
+
 	this -> Peca::mover();
 
-	vector<Posicao *> movimentos;
+	vector<Movimento *> movimentos;
 	
 	this->gerarMovimentos( &movimentos );
 	
@@ -94,22 +98,29 @@ bool Peao::mover(){
 	else{
 	
 		Posicao origem = this -> posicao;
-		Posicao destino = *movimentos[Aleatoria::aleatoria(movimentos.size())];
 		
+		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
 		
-
-		if(origem.coluna != destino.coluna) Conjunto::capturar(destino, this->cor);
+		this -> primeiroMovimento = false;
 		
-		if(origem.linha == destino.linha - 2) Conjunto::definirEnPassant(this);
-			
-		if(destino.linha == 8 || destino.linha == 1){
-			
-			Conjunto::promover(*this, destino);
+		this -> mudarPosicao(mov.obterDestino());
+		
+		switch(mov.obterNatureza()){
+		
+			case CAPTURA:
+				Conjunto::destruir(mov.obterDestino(), -(this -> obterCor()));
+				break;
+				
+			case EN_PASSANT_PASSIVA:
+				Conjunto::definirEnPassant(this);
+				break;
+				
+			case EN_PASSANT_ATIVA:
+				Conjunto::destruirEnPassant();
+				
 		}
-		else{
-			
-			this -> mudarPosicao(destino);
-		}
+		
+		cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
 	}
 	
 	return true;
