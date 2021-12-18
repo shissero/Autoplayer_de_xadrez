@@ -14,8 +14,6 @@ class Peao : public Peca {
 	
 		Peao(Posicao, int);
 		
-		string emString();
-		
 		void gerarMovimentos(vector<Movimento *> *);
 		
 		bool mover();

@@ -18,24 +18,11 @@ Peao::Peao(Posicao posicao, int cor) : Peca(posicao, cor) {}
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-string Peao::emString(){
-
-	string str = "Peao ";
-	
-	return str + ( this -> cor == PRETO ? "preto" : "branco");
-}
-
-/**********************************************************************************************************************
-***********************************************************************************************************************
-**********************************************************************************************************************/
-
-
-
 void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 
 	Posicao pos = Posicao(this -> posicao.coluna, this -> posicao.linha + this -> cor);
 
-	if(this->posicao.linha < 8 && Conjunto::estaVazia(pos)){
+	if( (1 < this->posicao.linha && this->posicao.linha < 8) && Conjunto::estaVazia(pos)){
 				
 		vetor -> push_back(new Movimento(pos, NEUTRO));
 		
@@ -73,7 +60,7 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 			vetor -> push_back(new Movimento(pos, CAPTURA));
 		}
 		else if(Conjunto::valeEnPassant(pos, -(this -> cor))){
-		
+			
 			vetor -> push_back(new Movimento(pos, EN_PASSANT_ATIVA));
 		}
 	}
@@ -85,8 +72,6 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 
 		
 bool Peao::mover(){
-
-	int cor1 = this -> cor, cor2;
 
 	this -> Peca::mover();
 
@@ -105,6 +90,8 @@ bool Peao::mover(){
 		
 		this -> mudarPosicao(mov.obterDestino());
 		
+		Conjunto::definirStatusEnPassant(true);
+		
 		switch(mov.obterNatureza()){
 		
 			case CAPTURA:
@@ -113,6 +100,7 @@ bool Peao::mover(){
 				
 			case EN_PASSANT_PASSIVA:
 				Conjunto::definirEnPassant(this);
+				Conjunto::definirStatusEnPassant(false);
 				break;
 				
 			case EN_PASSANT_ATIVA:

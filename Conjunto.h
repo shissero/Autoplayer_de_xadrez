@@ -18,6 +18,8 @@ class Conjunto {
     	
     	static void definirEnPassant(Peao *);
     	
+    	static void definirStatusEnPassant(bool);
+    	
     	static void destruir(Posicao, int);
     	
     	static void destruirEnPassant();
@@ -38,12 +40,15 @@ class Conjunto {
     	
     	static Peca *obterEnPassant();
     	
+    	static bool obterStatusEnPassant();
+    	
     	static bool valeEnPassant(Posicao, int);
 	
 	private:
 	
 	static vector<Peca *> Brancas, Pretas;
 	static Peca *enPassant;
+	static bool statusEnPassant;
     
 };
 

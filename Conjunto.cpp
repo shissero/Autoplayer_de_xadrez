@@ -19,6 +19,10 @@ vector<Peca *> Conjunto::Brancas, Conjunto::Pretas;
 
 Peca *Conjunto::enPassant = 0;
 
+bool Conjunto::statusEnPassant = true;
+
+
+
 /*********************************************************************************************
 **********************************************************************************************
 **********************************************************************************************/
@@ -84,6 +88,15 @@ void Conjunto::definirEnPassant(Peao *peao){ Conjunto::enPassant = peao; }
 **********************************************************************************************
 *********************************************************************************************/
 
+void Conjunto::definirStatusEnPassant(bool status){
+	
+	Conjunto::statusEnPassant = status;
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
 void Conjunto::destruir(Posicao posicao, int cor){
 
 	vector<Peca *> *aux = cor == BRANCO ? &Brancas : &Pretas;
@@ -141,6 +154,8 @@ bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 
 void Conjunto::jogarBranca(){
 
+	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
+
 	while(!Conjunto::Brancas[Aleatoria::aleatoria(Brancas.size())]->mover()){}
 }
 
@@ -149,6 +164,9 @@ void Conjunto::jogarBranca(){
 *********************************************************************************************/
 
 void Conjunto::jogarPreta(){
+
+	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
+	
 	while(!Conjunto::Pretas[Aleatoria::aleatoria(Pretas.size())]->mover()){}
 }
 
@@ -216,14 +234,23 @@ Peca *Conjunto::obterEnPassant(){ return Conjunto::enPassant; }
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
+bool Conjunto::obterStatusEnPassant(){
+
+	return Conjunto::statusEnPassant;
+}
+
+/**********************************************************************************************************************
+***********************************************************************************************************************
+**********************************************************************************************************************/
+
 bool Conjunto::valeEnPassant(Posicao posicao, int cor){
 
 	if(!Conjunto::enPassant) return false;
 	else{
-	
-		Posicao aux = Posicao( posicao.coluna, posicao.linha + 1);
 		
-		if(aux == posicao && Conjunto::enPassant -> obterCor() == cor) return true;
+		Posicao aux = Posicao( posicao.coluna, posicao.linha + cor);
+		
+		if(Conjunto::enPassant -> obterPosicao() == aux && Conjunto::enPassant -> obterCor() == cor) return true;
 		else return false;
 	}
 }

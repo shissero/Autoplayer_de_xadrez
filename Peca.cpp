@@ -15,6 +15,13 @@ Peca::Peca(Posicao pos, int color)
 ***********************************************************************************************************
 **********************************************************************************************************/
 
+string Peca::emString(){
+
+	string str = this -> obterClasse();
+	
+	return str + " " + this -> obterCorComoString()+ " " + this -> obterPosicao().emString();
+}
+
 void Peca::gerarMovimentos(vector<Movimento *> *movimentos){}
 
 /**********************************************************************************************************

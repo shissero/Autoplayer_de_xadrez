@@ -18,6 +18,8 @@ class Peca {
 	public:
 		Peca(Posicao, int);
 		
+		string emString();
+		
 		virtual void gerarMovimentos(vector<Movimento *> *);
 		
 		void gerarMovimentosCardeais(vector<Posicao *> *);
