@@ -71,33 +71,22 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 *********************************************************************************************************/
 
 		
-bool Peao::mover(){
+int Peao::mover(){
 
-	this -> Peca::mover();
+cout << this -> obterCorComoString();
 
-	vector<Movimento *> movimentos;
+	int natureza = this -> Peca::mover();
+
 	
-	this->gerarMovimentos( &movimentos );
-	
-	if(!movimentos.size()) return false;
-	else{
-	
-		Posicao origem = this -> posicao;
 		
-		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
-		
+	if(natureza != -1){
+	
 		this -> primeiroMovimento = false;
-		
-		this -> mudarPosicao(mov.obterDestino());
 		
 		Conjunto::definirStatusEnPassant(true);
 		
-		switch(mov.obterNatureza()){
+		switch(natureza){
 		
-			case CAPTURA:
-				Conjunto::destruir(mov.obterDestino(), -(this -> obterCor()));
-				break;
-				
 			case EN_PASSANT_PASSIVA:
 				Conjunto::definirEnPassant(this);
 				Conjunto::definirStatusEnPassant(false);
@@ -107,11 +96,9 @@ bool Peao::mover(){
 				Conjunto::destruirEnPassant();
 				
 		}
-		
-		cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
 	}
 	
-	return true;
+	return natureza;
 }
 
 /*********************************************************************************************************

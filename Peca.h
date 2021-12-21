@@ -24,7 +24,7 @@ class Peca {
 		
 		void gerarMovimentosCardeais(vector<Posicao *> *);
 
-		virtual bool mover();
+		virtual int mover();
 		
 		void mudarPosicao(Posicao);
 		

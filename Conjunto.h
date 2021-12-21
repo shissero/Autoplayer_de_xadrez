@@ -28,9 +28,7 @@ class Conjunto {
     	
     	static bool inimigaOcupa(int, Posicao);
     	
-    	void jogarBranca();
-    	
-    	void jogarPreta();
+    	void jogar(int);
     	
     	static void limparEnPassant();
     	

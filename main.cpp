@@ -10,8 +10,8 @@ int main(){
     
     	std::cout << i + 1 << endl;
     
-    	conjunto.jogarBranca();
+    	conjunto.jogar(BRANCO);
     	
-    	conjunto.jogarPreta();
+    	conjunto.jogar(PRETO);
     }
 }

@@ -33,34 +33,34 @@ Conjunto::Conjunto(){
 		Conjunto::Brancas.push_back(new Peao(Posicao(i, 2), BRANCO));
 	}
     		
-				/*Brancas.insert(Torre(1, 1, Peca.BRANCO));
-				Brancas.insert(Torre(8, 1, Peca.BRANCO));
-    		
-				Brancas.insert(Cavalo(2, 1, Peca.BRANCO));
-				Brancas.insert(Cavalo(7, 1 Peca.BRANCO));
+				//Brancas.push_back(new Torre(Posicao(1, 1), BRANCO));
+			//	Brancas.push_back(new Torre(Posicao(8, 1), BRANCO));
+    		/*
+				Brancas.push_back(Cavalo(2, 1, Peca.BRANCO));
+				Brancas.push_back(Cavalo(7, 1 Peca.BRANCO));
 		
-				Brancas.insert(Bispo(3, 1, Peca.BRANCO));
-				Brancas.insert(Bispo(6, 1, Peca.BRANCO));
+				Brancas.push_back(Bispo(3, 1, Peca.BRANCO));
+				Brancas.push_back(Bispo(6, 1, Peca.BRANCO));
 		
-				Brancas.insert(Dama(4, 1, Peca.BRANCO));
+				Brancas.push_back(Dama(4, 1, Peca.BRANCO));
 		
-				Brancas.insert(Rei(5, 1, Peca.BRANCO));*/
+				Brancas.push_back(Rei(5, 1, Peca.BRANCO));*/
 			
 	for(int i = 1; i < 9; i++){
     		Conjunto::Pretas.push_back(new Peao(Posicao(i, 7), PRETO));
     	}
-				/*Pretas.insert(Torre(1, 8, Peca.PRETO));
-				Pretas.insert(Torre(8, 8, Peca.PRETO));
+			//	Pretas.push_back(new Torre(Posicao(1, 8), PRETO));
+			//	Pretas.push_back(new Torre(Posicao(8, 8), PRETO));
     		
-				Pretas.insert(Cavalo(2, 8, Peca.PRETO));
-				Pretas.insert(Cavalo(7, 8, Peca.PRETO));
+				/*Pretas.push_back(Cavalo(2, 8, Peca.PRETO));
+				Pretas.push_back(Cavalo(7, 8, Peca.PRETO));
 		
-				Pretas.insert(Bispo(3, 8, Peca.PRETO));
-				Pretas.insert(Bispo(6, 8, Peca.PRETO));
+				Pretas.push_back(Bispo(3, 8, Peca.PRETO));
+				Pretas.push_back(Bispo(6, 8, Peca.PRETO));
 		
-				Pretas.insert(Dama(4, 8, Peca.PRETO));
+				Pretas.push_back(Dama(4, 8, Peca.PRETO));
 		
-				Pretas.insert(Rei(5, 8, Peca.PRETO));*/
+				Pretas.push_back(Rei(5, 8, Peca.PRETO));*/
 }
 		
 /*********************************************************************************************
@@ -152,22 +152,22 @@ bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::jogarBranca(){
+void Conjunto::jogar(int cor){
 
-	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
-
-	while(!Conjunto::Brancas[Aleatoria::aleatoria(Brancas.size())]->mover()){}
-}
-
-/*********************************************************************************************
-**********************************************************************************************
-*********************************************************************************************/
-
-void Conjunto::jogarPreta(){
-
-	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
+	vector<Peca *> pecasJogaveis, aux = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
 	
-	while(!Conjunto::Pretas[Aleatoria::aleatoria(Pretas.size())]->mover()){}
+	for(Peca *a : aux) pecasJogaveis.push_back(a);
+
+	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
+
+	while(pecasJogaveis.size()){
+	
+		int i = Aleatoria::aleatoria(pecasJogaveis.size());
+	
+		int natureza = pecasJogaveis[i] -> mover();
+		
+		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
+	}
 }
 
 /*********************************************************************************************

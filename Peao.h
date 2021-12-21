@@ -16,7 +16,7 @@ class Peao : public Peca {
 		
 		void gerarMovimentos(vector<Movimento *> *);
 		
-		bool mover();
+		int mover();
 		
 		string obterClasse();
 		

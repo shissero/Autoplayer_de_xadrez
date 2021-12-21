@@ -2,6 +2,7 @@
 #include<vector>
 #include<string>
 
+#include"Aleatoria.h"
 #include"Conjunto.h"
 #include"Peca.h"
 
@@ -111,11 +112,27 @@ void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-bool Peca::mover(){
+int Peca::mover(){
 	
-	if( (Conjunto::obterEnPassant() != 0)
-		&& (this -> obterCor() == Conjunto::obterEnPassant() -> cor) ) Conjunto::limparEnPassant();
-	return false;
+	vector<Movimento *> movimentos;
+	
+	this->gerarMovimentos( &movimentos );
+	
+	if(!movimentos.size()) return -1;
+	else{
+	
+		Posicao origem = this -> posicao;
+		
+		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
+		
+		this -> mudarPosicao(mov.obterDestino());
+		
+		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
+		
+		//cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
+		
+		return mov.obterNatureza();
+	}
 }
 
 /**********************************************************************************************************
