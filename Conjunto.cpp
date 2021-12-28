@@ -167,6 +167,7 @@ void Conjunto::jogar(int cor){
 		int natureza = pecasJogaveis[i] -> mover();
 		
 		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
+		else break;
 	}
 }
 

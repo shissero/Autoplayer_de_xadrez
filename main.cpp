@@ -6,7 +6,7 @@
 int main(){
     Conjunto conjunto = Conjunto();
     
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < 1; i++){
     
     	std::cout << i + 1 << endl;
     
