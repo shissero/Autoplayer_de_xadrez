@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #ifndef POSICAO_H_
 #define POSICAO_H_
 

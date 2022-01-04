@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #include<array>
 #include<string>
 

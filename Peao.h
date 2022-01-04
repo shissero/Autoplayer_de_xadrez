@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #ifndef PEAO_H_
 #define PEAO_H_
 
@@ -10,6 +17,7 @@
 using namespace std;
 
 class Peao : public Peca {
+
 	public:
 	
 		Peao(Posicao, int);

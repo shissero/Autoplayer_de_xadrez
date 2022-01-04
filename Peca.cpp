@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -29,7 +36,7 @@ void Peca::gerarMovimentos(vector<Movimento *> *movimentos){}
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
+void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 
 	Posicao *aux;
 
@@ -40,9 +47,9 @@ void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
 		
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(aux);
+			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(aux);
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
 				
 				break;
 			}
@@ -58,9 +65,9 @@ void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
 		
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(aux);
+			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(aux);
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
 				
 				break;
 			}
@@ -73,14 +80,12 @@ void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
 	if(this -> posicao.coluna > 1){
 	
 		for(int i = this -> posicao.coluna - 1; i > 0; i--){
-		
-			
-		
+
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(aux);
+			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(aux);
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
 				
 				break;
 			}
@@ -96,9 +101,9 @@ void Peca::gerarMovimentosCardeais(vector<Posicao *> *movimentos){
 		
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(aux);
+			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(aux);
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
 				
 				break;
 			}
@@ -116,7 +121,7 @@ int Peca::mover(){
 	
 	vector<Movimento *> movimentos;
 	
-	this->gerarMovimentos( &movimentos );
+	this -> gerarMovimentos( &movimentos );
 	
 	if(!movimentos.size()) return -1;
 	else{
@@ -129,7 +134,7 @@ int Peca::mover(){
 		
 		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
 		
-		//cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
+		cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
 		
 		return mov.obterNatureza();
 	}

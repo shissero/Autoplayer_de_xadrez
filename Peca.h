@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #ifndef PECA_H_
 #define PECA_H_
 
@@ -22,7 +29,7 @@ class Peca {
 		
 		virtual void gerarMovimentos(vector<Movimento *> *);
 		
-		void gerarMovimentosCardeais(vector<Posicao *> *);
+		void gerarMovimentosCardeais(vector<Movimento *> *);
 
 		virtual int mover();
 		

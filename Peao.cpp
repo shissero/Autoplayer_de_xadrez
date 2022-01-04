@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #include<cmath>
 #include<iostream>
 #include<string>
@@ -73,14 +80,11 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 		
 int Peao::mover(){
 
-cout << this -> obterCorComoString();
-
 	int natureza = this -> Peca::mover();
 
-	
-		
+
 	if(natureza != -1){
-	
+		
 		this -> primeiroMovimento = false;
 		
 		Conjunto::definirStatusEnPassant(true);

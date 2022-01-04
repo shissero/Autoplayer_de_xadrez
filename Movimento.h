@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 04/01/2021
+
+*/
+
 #ifndef MOVIMENTO_H_
 #define MOVIMENTO_H_
 
@@ -11,11 +18,6 @@
 
 
 class Movimento{
-
-	private:
-	
-		Posicao destino;
-		int natureza;
 		
 	public:
 	
@@ -24,6 +26,11 @@ class Movimento{
 		Posicao obterDestino();
 		
 		int obterNatureza();
+
+	private:
+	
+		Posicao destino;
+		int natureza;
 };
 
 #endif

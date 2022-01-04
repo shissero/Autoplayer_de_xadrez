@@ -7,6 +7,7 @@
 class Torre : public Peca {
 
 	public:
+
 		Torre(Posicao, int);
 		
 		void gerarMovimentos(vector<Movimento *> *);
@@ -16,6 +17,7 @@ class Torre : public Peca {
 		string obterClasse();
 	
 	private:
+
 		bool primeiroMovimento = true;
 };
 
