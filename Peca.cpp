@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 05/01/2021
 
 */
 
@@ -122,6 +122,8 @@ int Peca::mover(){
 	vector<Movimento *> movimentos;
 	
 	this -> gerarMovimentos( &movimentos );
+	
+	for(Movimento *mov : movimentos) cout << mov -> emString() << "\n" << endl;
 	
 	if(!movimentos.size()) return -1;
 	else{

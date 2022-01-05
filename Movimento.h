@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 05/01/2021
 
 */
 
@@ -22,6 +22,8 @@ class Movimento{
 	public:
 	
 		Movimento(Posicao, int);
+		
+		string emString();
 		
 		Posicao obterDestino();
 		

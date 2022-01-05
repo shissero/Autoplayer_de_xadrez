@@ -42,6 +42,11 @@ Conjunto::Conjunto(){
 	Conjunto::Brancas.push_back(new Peao(Posicao(4, 3), BRANCO));
 	Conjunto::Brancas.push_back(new Peao(Posicao(3, 4), BRANCO));
 	Conjunto::Brancas.push_back(new Peao(Posicao(5, 4), BRANCO));
+	
+	Conjunto::Pretas.push_back(new Peao(Posicao(4, 7), PRETO));
+	Conjunto::Pretas.push_back(new Peao(Posicao(4, 1), PRETO));
+	Conjunto::Pretas.push_back(new Peao(Posicao(7, 4), PRETO));
+	Conjunto::Pretas.push_back(new Peao(Posicao(1, 4), PRETO));
 
 	/*for(int i = 1; i < 9; i++){
 		Conjunto::Brancas.push_back(new Peao(Posicao(i, 2), BRANCO));
@@ -169,9 +174,7 @@ bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 
 void Conjunto::jogar(int cor){
 
-	vector<Peca *> pecasJogaveis, aux = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
-	
-	for(Peca *a : aux) pecasJogaveis.push_back(a);
+	vector<Peca *> pecasJogaveis = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
 
 	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
 

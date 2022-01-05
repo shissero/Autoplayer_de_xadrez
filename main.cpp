@@ -13,19 +13,25 @@ int main(){
 
     Conjunto conjunto = Conjunto();
     
+   /* int p = 1;
+    
+    int k;
+    
     for(Peca *a : conjunto.Brancas){
     
-    	cout << a -> emString() << endl;
-    	
     	a -> mostrarMovimentos();
-    }
-    
-    /*for(int i = 0; i < 50; i++){
-    
-    	std::cout << i + 1 << endl;
-    
-    	conjunto.jogar(BRANCO);
     	
-    	conjunto.jogar(PRETO);
+    	cout << endl;
     }*/
+    
+    
+    
+    for(int i = 0; i < 50; i++){
+    
+    	conjunto.jogar(p);
+    	
+    	p *= -1;
+    	
+    	cin >> k;
+    }
 }
