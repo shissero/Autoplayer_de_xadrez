@@ -26,6 +26,8 @@ class Movimento{
 		Posicao obterDestino();
 		
 		int obterNatureza();
+		
+		string obterNaturezaComoString();
 
 	private:
 	

@@ -33,6 +33,8 @@ class Peca {
 
 		virtual int mover();
 		
+		void mostrarMovimentos();
+		
 		void mudarPosicao(Posicao);
 		
 		virtual string obterClasse();

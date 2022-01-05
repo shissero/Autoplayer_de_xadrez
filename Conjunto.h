@@ -18,6 +18,8 @@ using namespace std;
 class Conjunto {
 
 	public:
+	
+	static vector<Peca *> Brancas, Pretas;
     		
     		Conjunto();
     	
@@ -51,7 +53,7 @@ class Conjunto {
 	
 	private:
 	
-		static vector<Peca *> Brancas, Pretas;
+		
 		static Peca *enPassant;
 		static bool statusEnPassant;
     

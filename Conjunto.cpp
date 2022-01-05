@@ -36,12 +36,19 @@ bool Conjunto::statusEnPassant = true;
 	
 Conjunto::Conjunto(){
 
-	for(int i = 1; i < 9; i++){
+	Brancas.push_back(new Torre(Posicao(4, 4), BRANCO));
+	
+	Conjunto::Brancas.push_back(new Peao(Posicao(4, 5), BRANCO));
+	Conjunto::Brancas.push_back(new Peao(Posicao(4, 3), BRANCO));
+	Conjunto::Brancas.push_back(new Peao(Posicao(3, 4), BRANCO));
+	Conjunto::Brancas.push_back(new Peao(Posicao(5, 4), BRANCO));
+
+	/*for(int i = 1; i < 9; i++){
 		Conjunto::Brancas.push_back(new Peao(Posicao(i, 2), BRANCO));
 	}
     		
-				//Brancas.push_back(new Torre(Posicao(1, 1), BRANCO));
-			//	Brancas.push_back(new Torre(Posicao(8, 1), BRANCO));
+	Brancas.push_back(new Torre(Posicao(1, 1), BRANCO));
+	Brancas.push_back(new Torre(Posicao(8, 1), BRANCO));
     		/*
 				Brancas.push_back(Cavalo(2, 1, Peca.BRANCO));
 				Brancas.push_back(Cavalo(7, 1 Peca.BRANCO));
@@ -52,12 +59,13 @@ Conjunto::Conjunto(){
 				Brancas.push_back(Dama(4, 1, Peca.BRANCO));
 		
 				Brancas.push_back(Rei(5, 1, Peca.BRANCO));*/
-			
+	/*		
 	for(int i = 1; i < 9; i++){
     		Conjunto::Pretas.push_back(new Peao(Posicao(i, 7), PRETO));
     	}
-			//	Pretas.push_back(new Torre(Posicao(1, 8), PRETO));
-			//	Pretas.push_back(new Torre(Posicao(8, 8), PRETO));
+	
+	Pretas.push_back(new Torre(Posicao(1, 8), PRETO));
+	Pretas.push_back(new Torre(Posicao(8, 8), PRETO));
     		
 				/*Pretas.push_back(Cavalo(2, 8, Peca.PRETO));
 				Pretas.push_back(Cavalo(7, 8, Peca.PRETO));
