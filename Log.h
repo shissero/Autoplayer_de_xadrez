@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 07/01/2021
+	Última edição: 08/01/2021
 
 */
 
@@ -24,17 +24,17 @@ class Log{
 		
 	public:
 	
-		Log(Log &log) = delete;
+		Log(Log &) = delete;
+		
+		Log(Log const&) = delete;
 		
 		static void escrever(string);
 		
 		static void fechar();
 		
-		void operator=(const Log &) = delete;
-		
 		static Log *obterInstancia();
 		
-		Log(Log const&) = delete;
+		void operator=(const Log &) = delete;
 };
 
 #endif

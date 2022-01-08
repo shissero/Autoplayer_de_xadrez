@@ -43,10 +43,10 @@ Conjunto::Conjunto(){
     		
 	Brancas.push_back(new Torre(Posicao(1, 1), BRANCO));
 	Brancas.push_back(new Torre(Posicao(8, 1), BRANCO));
-    		/*
-				Brancas.push_back(Cavalo(2, 1, Peca.BRANCO));
-				Brancas.push_back(Cavalo(7, 1 Peca.BRANCO));
-		
+    		
+	Brancas.push_back(new Cavalo(Posicao(2, 1), BRANCO));
+	Brancas.push_back(new Cavalo(Posicao(7, 1), BRANCO));
+		/*
 				Brancas.push_back(Bispo(3, 1, Peca.BRANCO));
 				Brancas.push_back(Bispo(6, 1, Peca.BRANCO));
 		
@@ -61,9 +61,9 @@ Conjunto::Conjunto(){
 	Pretas.push_back(new Torre(Posicao(1, 8), PRETO));
 	Pretas.push_back(new Torre(Posicao(8, 8), PRETO));
     		
-				/*Pretas.push_back(Cavalo(2, 8, Peca.PRETO));
-				Pretas.push_back(Cavalo(7, 8, Peca.PRETO));
-		
+	Pretas.push_back(new Cavalo(Posicao(2, 8), PRETO));
+	Pretas.push_back(new Cavalo(Posicao(7, 8), PRETO));
+		/*
 				Pretas.push_back(Bispo(3, 8, Peca.PRETO));
 				Pretas.push_back(Bispo(6, 8, Peca.PRETO));
 		

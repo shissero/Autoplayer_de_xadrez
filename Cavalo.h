@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 08/01/2021
 
 */
 
@@ -17,6 +17,12 @@ class Cavalo : public Peca {
 	public:
 
 		Cavalo(Posicao, int);
+		
+		void gerarMovimentos(vector<Movimento *> *);
+		
+		int mover();
+		
+		string obterClasse();
 
 };
 

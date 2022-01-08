@@ -184,8 +184,6 @@ int Peca::mover(){
 		
 		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
 		
-		cout << this -> emString() << " vai de " << origem.emString() << " para " << mov.obterDestino().emString() << endl;
-		
 		return mov.obterNatureza();
 	}
 }
