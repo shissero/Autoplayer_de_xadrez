@@ -33,6 +33,8 @@ class Log{
 		void operator=(const Log &) = delete;
 		
 		static Log *obterInstancia();
+		
+		Log(Log const&) = delete;
 };
 
 #endif

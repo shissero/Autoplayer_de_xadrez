@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 05/01/2021
+	Última edição: 08/01/2021
 
 */
 
@@ -11,6 +11,7 @@
 
 #include"Aleatoria.h"
 #include"Conjunto.h"
+#include"Log.h"
 #include"Peca.h"
 
 using namespace std;
@@ -47,9 +48,19 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 		
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
+			if(Conjunto::estaVazia(*aux)){
+			
+				Movimento *mov = new Movimento(*aux, NEUTRO);
+				
+				movimentos -> push_back(mov);
+			}
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
+				
+					Movimento *mov = new Movimento(*aux, CAPTURA);
+				
+					movimentos -> push_back(mov);
+				}
 				
 				break;
 			}
@@ -65,9 +76,19 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 		
 			aux = new Posicao(this -> posicao.coluna, i);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
+			if(Conjunto::estaVazia(*aux)){
+			
+				Movimento *mov = new Movimento(*aux, NEUTRO);
+				
+				movimentos -> push_back(mov);
+			}
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
+				
+					Movimento *mov = new Movimento(*aux, CAPTURA);
+				
+					movimentos -> push_back(mov);
+				}
 				
 				break;
 			}
@@ -81,11 +102,21 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 	
 		for(int i = this -> posicao.coluna - 1; i > 0; i--){
 
-			aux = new Posicao(this -> posicao.coluna, i);
+			aux = new Posicao(i, this -> posicao.linha);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
+			if(Conjunto::estaVazia(*aux)){
+			
+				Movimento *mov = new Movimento(*aux, NEUTRO);
+				
+				movimentos -> push_back(mov);
+			}
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
+				
+					Movimento *mov = new Movimento(*aux, CAPTURA);
+				
+					movimentos -> push_back(mov);
+				}
 				
 				break;
 			}
@@ -99,11 +130,20 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 	
 		for(int i = this -> posicao.coluna + 1; i < 9; i++){
 		
-			aux = new Posicao(this -> posicao.coluna, i);
+			aux = new Posicao(i, this -> posicao.linha);
 			
-			if(Conjunto::estaVazia(*aux)) movimentos -> push_back(new Movimento(*aux, NEUTRO));
+			if(Conjunto::estaVazia(*aux)){
+			
+				Movimento *mov = new Movimento(*aux, NEUTRO);
+				
+				movimentos -> push_back(mov);
+			}
 			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)) movimentos -> push_back(new Movimento(*aux, CAPTURA));
+				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
+				
+					Movimento *mov = new Movimento(*aux, CAPTURA);
+					movimentos -> push_back(mov);
+				}
 				
 				break;
 			}
@@ -123,14 +163,22 @@ int Peca::mover(){
 	
 	this -> gerarMovimentos( &movimentos );
 	
-	for(Movimento *mov : movimentos) cout << mov -> emString() << "\n" << endl;
-	
 	if(!movimentos.size()) return -1;
 	else{
+	
+		Log::escrever("\t" + this -> emString() + "\n\n");
+		
+		Log::escrever("\tMovimentos possíveis:\n");
+		
+		for(int i = 0; i < movimentos.size(); i++) Log::escrever("\t\t" + movimentos[i] -> emString() + "\n");
+		
+		Log::escrever("\n");
 	
 		Posicao origem = this -> posicao;
 		
 		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
+		
+		Log::escrever("\t\t\t" + mov.emString() + "\n");
 		
 		this -> mudarPosicao(mov.obterDestino());
 		

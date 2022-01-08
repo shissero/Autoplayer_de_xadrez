@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 05/01/2021
+	Última edição: 08/01/2021
 
 */
 
@@ -14,6 +14,7 @@
 #include"Cavalo.h"
 #include"Conjunto.h"
 #include"Dama.h"
+#include"Log.h"
 #include"Peao.h"
 #include"Peca.h"
 #include"Torre.h"
@@ -36,19 +37,7 @@ bool Conjunto::statusEnPassant = true;
 	
 Conjunto::Conjunto(){
 
-	Brancas.push_back(new Torre(Posicao(4, 4), BRANCO));
-	
-	Conjunto::Brancas.push_back(new Peao(Posicao(4, 5), BRANCO));
-	Conjunto::Brancas.push_back(new Peao(Posicao(4, 3), BRANCO));
-	Conjunto::Brancas.push_back(new Peao(Posicao(3, 4), BRANCO));
-	Conjunto::Brancas.push_back(new Peao(Posicao(5, 4), BRANCO));
-	
-	Conjunto::Pretas.push_back(new Peao(Posicao(4, 7), PRETO));
-	Conjunto::Pretas.push_back(new Peao(Posicao(4, 1), PRETO));
-	Conjunto::Pretas.push_back(new Peao(Posicao(7, 4), PRETO));
-	Conjunto::Pretas.push_back(new Peao(Posicao(1, 4), PRETO));
-
-	/*for(int i = 1; i < 9; i++){
+	for(int i = 1; i < 9; i++){
 		Conjunto::Brancas.push_back(new Peao(Posicao(i, 2), BRANCO));
 	}
     		
@@ -64,7 +53,7 @@ Conjunto::Conjunto(){
 				Brancas.push_back(Dama(4, 1, Peca.BRANCO));
 		
 				Brancas.push_back(Rei(5, 1, Peca.BRANCO));*/
-	/*		
+			
 	for(int i = 1; i < 9; i++){
     		Conjunto::Pretas.push_back(new Peao(Posicao(i, 7), PRETO));
     	}
@@ -174,6 +163,31 @@ bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 
 void Conjunto::jogar(int cor){
 
+	if(cor == BRANCO){
+	
+		Log::escrever("Vez das brancas\n\n");
+	}
+	else{
+	
+		Log::escrever("Vez das pretas\n\n");
+	}
+	
+	Log::escrever("Tabuleiro:\n\n");
+	
+	for(int i = 0; i < Conjunto::Brancas.size(); i++){
+		
+		Log::escrever(Conjunto::Brancas[i] -> emString() + "\n");
+	}
+	
+	for(int i = 0; i < Conjunto::Pretas.size(); i++){
+		
+		Log::escrever(Conjunto::Pretas[i] -> emString() + "\n");
+	}
+	
+	Log::escrever("\n");
+	
+	
+
 	vector<Peca *> pecasJogaveis = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
 
 	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
@@ -187,6 +201,8 @@ void Conjunto::jogar(int cor){
 		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
 		else break;
 	}
+	
+	Log::escrever("\n\n\n\n");
 }
 
 /*********************************************************************************************
