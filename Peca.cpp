@@ -157,6 +157,77 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 ***********************************************************************************************************
 **********************************************************************************************************/
 
+void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
+
+	// Gerar movimentos na direção Nordeste
+	if(this -> posicao.coluna < 8 && this -> posicao.linha < 8){
+	
+		for(int i = this -> posicao.coluna + 1, j = this -> posicao.linha + 1; i < 9 && j < 9; i++, j++){
+		
+			Posicao pos = Posicao(i, j);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else{
+			
+				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+		}
+	}
+	
+	// Gerar movimentos na direção Noroeste
+	if(this -> posicao.coluna > 1 && this -> posicao.linha < 8){
+	
+		for(int i = this -> posicao.coluna - 1, j = this -> posicao.linha + 1; i > 0 && j < 9; i--, j++){
+		
+			Posicao pos = Posicao(i, j);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else{
+			
+				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+		}
+	}
+	
+	// Gerar movimentos na direção Sudoeste
+	if(this -> posicao.coluna > 1 && this -> posicao.linha > 1){
+	
+		for(int i = this -> posicao.coluna - 1, j = this -> posicao.linha - 1; i > 0 && j > 0; i--, j--){
+		
+			Posicao pos = Posicao(i, j);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else{
+			
+				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+		}
+	}
+	
+	// Gerar movimentos na direção Sudeste
+	if(this -> posicao.coluna < 8 && this -> posicao.linha > 1){
+	
+		for(int i = this -> posicao.coluna + 1, j = this -> posicao.linha - 1; i < 9 && j > 0; i++, j--){
+		
+			Posicao pos = Posicao(i, j);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else{
+			
+				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+		}
+	}
+}
+
+/**********************************************************************************************************
+***********************************************************************************************************
+**********************************************************************************************************/
+
 int Peca::mover(){
 	
 	vector<Movimento *> movimentos;

@@ -30,6 +30,8 @@ class Peca {
 		virtual void gerarMovimentos(vector<Movimento *> *);
 		
 		void gerarMovimentosCardeais(vector<Movimento *> *);
+		
+		void gerarMovimentosColaterais(vector<Movimento *> *);
 
 		virtual int mover();
 		
