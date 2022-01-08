@@ -17,6 +17,7 @@
 #include"Log.h"
 #include"Peao.h"
 #include"Peca.h"
+#include"Rei.h"
 #include"Torre.h"
 
 
@@ -49,10 +50,10 @@ Conjunto::Conjunto(){
 		
 	Brancas.push_back(new Bispo(Posicao(3, 1), BRANCO));
 	Brancas.push_back(new Bispo(Posicao(6, 1), BRANCO));
-		/*
-				Brancas.push_back(Dama(4, 1, Peca.BRANCO));
 		
-				Brancas.push_back(Rei(5, 1, Peca.BRANCO));*/
+	Brancas.push_back(new Dama(Posicao(4, 1), BRANCO));
+		
+	Brancas.push_back(new Rei(Posicao(5, 1), BRANCO));
 			
 	for(int i = 1; i < 9; i++){
     		Conjunto::Pretas.push_back(new Peao(Posicao(i, 7), PRETO));
@@ -66,10 +67,10 @@ Conjunto::Conjunto(){
 		
 	Pretas.push_back(new Bispo(Posicao(3, 8), PRETO));
 	Pretas.push_back(new Bispo(Posicao(6, 8), PRETO));
-		/*
-				Pretas.push_back(Dama(4, 8, Peca.PRETO));
+
+	Pretas.push_back(new Dama(Posicao(4, 8), PRETO));
 		
-				Pretas.push_back(Rei(5, 8, Peca.PRETO));*/
+	Pretas.push_back(new Rei(Posicao(5, 8), PRETO));
 }
 		
 /*********************************************************************************************

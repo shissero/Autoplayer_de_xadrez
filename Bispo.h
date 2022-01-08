@@ -4,6 +4,9 @@
 	Última edição: 08/01/2021
 
 */
+#ifndef BISPO_H_
+#define BISPO_H_
+
 
 #include"Peca.h"
 
@@ -19,3 +22,5 @@ class Bispo : public Peca{
 		
 		string obterClasse();
 };
+
+#endif
