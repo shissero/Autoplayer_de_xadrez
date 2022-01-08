@@ -36,6 +36,46 @@ void Rei::gerarMovimentos(vector<Movimento *> *movimentos){
 			else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 		}
 	}
+	
+	if(this -> posicao.linha < 8){
+	
+		Posicao pos = Posicao(this -> posicao.coluna, this -> posicao.linha + 1);
+		
+		if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+		else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+		
+		if(this -> posicao.coluna > 1){
+		
+			pos = Posicao(this -> posicao.coluna - 1, this -> posicao.linha + 1);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+		}
+		
+		if(this -> posicao.coluna < 8){
+		
+			pos = Posicao(this -> posicao.coluna + 1, this -> posicao.linha + 1);
+			
+			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+			else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+		}
+	}
+	
+	if(this -> posicao.coluna > 1){
+	
+		Posicao pos = Posicao(this -> posicao.coluna - 1, this -> posicao.linha);
+		
+		if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+		else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+	}
+	
+	if(this -> posicao.coluna < 8){
+	
+		Posicao pos = Posicao(this -> posicao.coluna + 1, this -> posicao.linha);
+		
+		if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
+		else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+	}
 }
 		
 int Rei::mover(){
