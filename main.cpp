@@ -1,19 +1,24 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 05/01/2021
+	Última edição: 07/01/2021
 
 */
 
 #include<iostream>
 
 #include"Conjunto.h"
+#include"Log.h"
 
 int main(){
 
     Conjunto conjunto = Conjunto();
     
     int p = 1;
+    
+    Log::escrever("Funciona");
+    
+    Log::fechar();
     
    /* int k;
     
@@ -26,10 +31,10 @@ int main(){
     
     
     
-    for(int i = 0; i < 50; i++){
+  /*  for(int i = 0; i < 50; i++){
     
     	conjunto.jogar(p);
     	
     	p *= -1;
-    }
+    }*/
 }
