@@ -22,6 +22,8 @@ class Conjunto {
 	static vector<Peca *> Brancas, Pretas;
     		
     		Conjunto();
+    		
+    		static bool atacadaPor(Posicao, int);
     	
     		static void capturar(Posicao, int);
     	

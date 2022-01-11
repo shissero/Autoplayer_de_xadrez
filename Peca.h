@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 11/01/2021
 
 */
 
@@ -29,9 +29,9 @@ class Peca {
 		
 		virtual void gerarMovimentos(vector<Movimento *> *);
 		
-		void gerarMovimentosCardeais(vector<Movimento *> *);
+		void gerarMovimentosCardeais(vector<Movimento *> *, int);
 		
-		void gerarMovimentosColaterais(vector<Movimento *> *);
+		void gerarMovimentosColaterais(vector<Movimento *> *, int);
 
 		virtual int mover();
 		

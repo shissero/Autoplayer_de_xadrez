@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 11/01/2021
 
 */
 
@@ -17,7 +17,7 @@ Bispo::Bispo(Posicao posicao, int cor) : Peca(posicao, cor) {}
 		
 void Bispo::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosColaterais(movimentos);
+	this -> Peca::gerarMovimentosColaterais(movimentos, 0);
 }
 
 /*******************************************************************************************************

@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 11/01/2021
 
 */
 
@@ -19,7 +19,7 @@ Torre::Torre(Posicao posicao, int cor) : Peca(posicao, cor) {}
 
 void Torre::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosCardeais(movimentos);
+	this -> Peca::gerarMovimentosCardeais(movimentos, 0);
 }
 
 /********************************************************************************************************************

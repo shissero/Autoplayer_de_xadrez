@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 11/01/2021
 
 */
 
@@ -37,7 +37,7 @@ void Peca::gerarMovimentos(vector<Movimento *> *movimentos){}
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
+void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos, int reiChamou){
 
 	Posicao *aux;
 
@@ -62,6 +62,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 					movimentos -> push_back(mov);
 				}
 				
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 			
@@ -93,6 +98,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 				break;
 			}
 			
+			if(reiChamou){
+			
+				break;
+			}
+			
 		}
 		
 	}
@@ -118,6 +128,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 					movimentos -> push_back(mov);
 				}
 				
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 			
@@ -148,6 +163,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 				break;
 			}
 			
+			if(reiChamou){
+			
+				break;
+			}
+			
 		}
 		
 	}
@@ -157,7 +177,7 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
+void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiChamou){
 
 	// Gerar movimentos na direção Nordeste
 	if(this -> posicao.coluna < 8 && this -> posicao.linha < 8){
@@ -170,6 +190,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 			else{
 			
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 		}
@@ -188,6 +213,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 				break;
 			}
+			
+			if(reiChamou){
+			
+				break;
+			}
 		}
 	}
 	
@@ -204,6 +234,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 				break;
 			}
+			
+			if(reiChamou){
+			
+				break;
+			}
 		}
 	}
 	
@@ -218,6 +253,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 			else{
 			
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 		}
