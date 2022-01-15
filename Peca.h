@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 11/01/2021
+	Última edição: 14/01/2021
 
 */
 
@@ -36,6 +36,8 @@ class Peca {
 		virtual int mover();
 		
 		void mostrarMovimentos();
+		
+		bool movimentoEPossivel(Posicao);
 		
 		void mudarPosicao(Posicao);
 		

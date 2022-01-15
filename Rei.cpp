@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 11/01/2021
+	Última edição: 14/01/2021
 
 */
 
@@ -16,10 +16,10 @@ void Rei::gerarMovimentos(vector<Movimento *> *movimentos){
 	this -> Peca::gerarMovimentosCardeais(movimentos, 1);
 	this -> Peca::gerarMovimentosColaterais(movimentos, 1);
 	
-	for(int i = 0; i < movimentos -> size(); i++){
+	/*for(int i = 0; i < movimentos -> size(); i++){
 	
 		if(Conjunto::atacadaPor( ((*movimentos)[i]) -> obterDestino, -this -> cor)) movimentos -> erase(movimentos -> begin + i);
-	}
+	}*/
 }
 		
 int Rei::mover(){
