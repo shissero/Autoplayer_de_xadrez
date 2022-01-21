@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 11/01/2021
 
 */
 
@@ -17,9 +17,9 @@ Dama::Dama(Posicao posicao, int cor) : Peca(posicao, cor) {}
 		
 void Dama::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosCardeais(movimentos);
+	this -> Peca::gerarMovimentosCardeais(movimentos, 0);
 
-	this -> Peca::gerarMovimentosColaterais(movimentos);
+	this -> Peca::gerarMovimentosColaterais(movimentos, 0);
 }
 
 /*******************************************************************************************************

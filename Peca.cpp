@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 21/01/2021
 
 */
 
@@ -37,7 +37,7 @@ void Peca::gerarMovimentos(vector<Movimento *> *movimentos){}
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
+void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos, int reiChamou){
 
 	Posicao *aux;
 
@@ -62,6 +62,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 					movimentos -> push_back(mov);
 				}
 				
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 			
@@ -93,6 +98,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 				break;
 			}
 			
+			if(reiChamou){
+			
+				break;
+			}
+			
 		}
 		
 	}
@@ -118,6 +128,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 					movimentos -> push_back(mov);
 				}
 				
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 			
@@ -148,6 +163,11 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 				break;
 			}
 			
+			if(reiChamou){
+			
+				break;
+			}
+			
 		}
 		
 	}
@@ -157,7 +177,7 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos){
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
+void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiChamou){
 
 	// Gerar movimentos na direção Nordeste
 	if(this -> posicao.coluna < 8 && this -> posicao.linha < 8){
@@ -170,6 +190,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 			else{
 			
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 		}
@@ -188,6 +213,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 				break;
 			}
+			
+			if(reiChamou){
+			
+				break;
+			}
 		}
 	}
 	
@@ -202,6 +232,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 			else{
 			
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
+				break;
+			}
+			
+			if(reiChamou){
+			
 				break;
 			}
 		}
@@ -220,6 +255,11 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 				break;
 			}
+			
+			if(reiChamou){
+			
+				break;
+			}
 		}
 	}
 }
@@ -229,6 +269,8 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos){
 **********************************************************************************************************/
 
 int Peca::mover(){
+
+	Log::escrever("\t" + this -> emString() + "\n\n");
 	
 	vector<Movimento *> movimentos;
 	
@@ -237,7 +279,7 @@ int Peca::mover(){
 	if(!movimentos.size()) return -1;
 	else{
 	
-		Log::escrever("\t" + this -> emString() + "\n\n");
+		
 		
 		Log::escrever("\tMovimentos possíveis:\n");
 		
@@ -272,6 +314,20 @@ void Peca::mostrarMovimentos(){
 	for(Movimento *mov : movimentos) cout << mov -> obterDestino().emString() << " " << mov -> obterNaturezaComoString() << endl;
 }
 
+/**********************************************************************************************************
+***********************************************************************************************************
+**********************************************************************************************************/
+
+bool Peca::movimentoEPossivel(Posicao posicao){
+
+	vector<Movimento *> movimentos;
+	
+	this -> gerarMovimentos(&movimentos);
+	
+	for(Movimento *mov : movimentos) if(mov -> obterDestino() == posicao) return true;
+	
+	return false;
+}
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/

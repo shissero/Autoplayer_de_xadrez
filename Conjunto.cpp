@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 21/01/2021
 
 */
 
@@ -76,6 +76,19 @@ Conjunto::Conjunto(){
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************/
+
+bool Conjunto::atacadaPor(Posicao pos, int cor){
+
+	vector<Peca *> aux = cor == PRETO ? Conjunto::Pretas : Conjunto::Brancas;
+	
+	for(Peca *p : aux) if(p -> movimentoEPossivel(pos)) return true;
+	
+	return false;
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+**********************************************************************************************/
 
 void Conjunto::capturar(Posicao posicao, int cor){
 	
@@ -200,7 +213,14 @@ void Conjunto::jogar(int cor){
 		int natureza = pecasJogaveis[i] -> mover();
 		
 		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
-		else break;
+		else{
+		
+			if(pecasJogaveis[i] -> obterClasse() == "Peao" && pecasJogaveis[i] -> valePromocao()){
+			
+				Log("\tVale Promoção");
+			}
+			break;
+		}
 	}
 	
 	Log::escrever("\n\n\n\n");
