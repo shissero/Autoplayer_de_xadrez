@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 14/01/2021
+	Última edição: 21/01/2021
 
 */
 
@@ -269,6 +269,8 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiCha
 **********************************************************************************************************/
 
 int Peca::mover(){
+
+	Log::escrever("\t" + this -> emString() + "\n\n");
 	
 	vector<Movimento *> movimentos;
 	
@@ -277,7 +279,7 @@ int Peca::mover(){
 	if(!movimentos.size()) return -1;
 	else{
 	
-		Log::escrever("\t" + this -> emString() + "\n\n");
+		
 		
 		Log::escrever("\tMovimentos possíveis:\n");
 		

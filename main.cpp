@@ -12,14 +12,14 @@
 
 int main(){
 
-    //Conjunto conjunto = Conjunto();
+    Conjunto conjunto = Conjunto();
     
-    //int p = 1;
+    int p = 1;
     
-  /* for(int i = 0; i < 100; i++){
+   for(int i = 0; i < 100; i++){
     
     	conjunto.jogar(p);
     	
     	p *= -1;
-    }*/
+    }
 }

@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 18/01/2021
 
 */
 
@@ -37,6 +37,7 @@ Log::Log(){
 void Log::escrever(string str){
 
 	Log::obterInstancia() -> arquivoLog << str;
+	Log::obterInstancia() -> arquivoLog.flush();
 }
 
 /*********************************************************************************************************
