@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 21/01/2021
 
 */
 
@@ -27,6 +27,8 @@ class Peao : public Peca {
 		int mover();
 		
 		string obterClasse();
+		
+		bool valePromocao();
 		
 	private:
 	

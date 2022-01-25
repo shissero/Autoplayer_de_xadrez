@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 21/01/2021
 
 */
 
@@ -31,6 +31,8 @@ class Conjunto {
     	
     		static void definirStatusEnPassant(bool);
     	
+    		static void destruir(Peca *);
+    		
     		static void destruir(Posicao, int);
     	
     		static void destruirEnPassant();
@@ -45,7 +47,7 @@ class Conjunto {
     	
     		static void listarTodasAsPecas();
     	
-    		static void promover(Peao, Posicao);
+    		static Peca *promover(Peao *);
     	
     		static Peca *obterEnPassant();
     	
