@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 21/01/2021
+	Última edição: 25/01/2021
 
 */
 
@@ -95,7 +95,7 @@ void Conjunto::capturar(Posicao posicao, int cor){
 	vector<Peca *> *aux = cor==BRANCO ? &Pretas : &Brancas;
 	
 	for(Peca *a : *aux){
-		if(a -> obterPosicao() == posicao) destruir(posicao, a -> obterCor());
+		if(a -> obterPosicao() == posicao) destruir(a);
 	}
 	
 	return;
@@ -120,19 +120,20 @@ void Conjunto::definirStatusEnPassant(bool status){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::destruir(Posicao posicao, int cor){
+void Conjunto::destruir(Peca *peca){
 
-	vector<Peca *> *aux = cor == BRANCO ? &Brancas : &Pretas;
+	vector<Peca *> *aux = peca -> obterCor() == BRANCO ? &Brancas : &Pretas;
 	
-	int i = 0;
+	for(int i = 0; i < aux -> size(); i++){
 	
-	for(Peca *p : *aux){
-		if(p -> obterPosicao() == posicao){
-			delete p;
-			aux->erase(aux->begin() + i);
+		if((*aux)[i] == peca){
+		
+			delete peca;
+			
+			aux -> erase(aux -> begin() + i);
+			
 			return;
 		}
-		i++;
 	}
 }
 
@@ -140,9 +141,31 @@ void Conjunto::destruir(Posicao posicao, int cor){
 **********************************************************************************************
 *********************************************************************************************/
 
+void Conjunto::destruir(Posicao pos, int cor){
+
+	vector<Peca *> *aux = cor == PRETO ? &Pretas : &Brancas;
+	
+	for(int i = 0; i < aux -> size(); i++){
+	
+		if((*aux)[i] -> obterPosicao() == pos){
+		
+			delete (*aux)[i];
+			
+			aux -> erase(aux -> begin() + i);
+			
+			return;
+		}
+	}
+}
+
+/*********************************************************************************************
+**********************************************************************************************
+*********************************************************************************************/
+
+
 void Conjunto::destruirEnPassant(){
 
-	Conjunto::destruir(enPassant -> obterPosicao(), enPassant -> obterCor());
+	Conjunto::destruir(enPassant);
 	
 	enPassant = 0;
 }
@@ -215,9 +238,15 @@ void Conjunto::jogar(int cor){
 		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
 		else{
 		
-			if(pecasJogaveis[i] -> obterClasse() == "Peao" && pecasJogaveis[i] -> valePromocao()){
+			Peca *aux = pecasJogaveis[i];
+		
+			if(aux -> obterClasse() == "Peao" && dynamic_cast<Peao *>(aux) -> valePromocao()){
 			
-				Log("\tVale Promoção");
+				Log::escrever("Peao promovido ");
+			
+				aux = Conjunto::promover(dynamic_cast<Peao *>(aux));
+				
+				Log::escrever(aux -> emString() + "\n\n");
 			}
 			break;
 		}
@@ -247,37 +276,33 @@ void Conjunto::listarTodasAsPecas(){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::promover(Peao peao, Posicao promovido){
+Peca *Conjunto::promover(Peao *peao){
 
-	vector<Peca *> *aux = peao.obterCor() == BRANCO ? &Brancas : &Pretas;
-	
-	destruir(peao.obterPosicao(), peao.obterCor());
+	vector<Peca *> *aux = peao -> obterCor() == BRANCO ? &Brancas : &Pretas;
 	
 	switch(Aleatoria::aleatoria(4)){
 	
 		case 0:
-			aux->push_back(new Torre(promovido, peao.obterCor()));
+			aux->push_back(new Torre(peao -> obterPosicao(), peao -> obterCor()));
 			
 			break;
 			
 		case 1:
-			aux->push_back(new Cavalo(promovido, peao.obterCor()));
+			aux->push_back(new Cavalo(peao -> obterPosicao(), peao -> obterCor()));
 			break;
 			
 		case 2:
-			aux->push_back(new Bispo(promovido, peao.obterCor()));
+			aux->push_back(new Bispo(peao -> obterPosicao(), peao -> obterCor()));
 			break;
 			
 		case 3:
-			aux->push_back(new Dama(promovido, peao.obterCor()));
+			aux->push_back(new Dama(peao -> obterPosicao(), peao -> obterCor()));
 			break;
 	}
 	
-	listarTodasAsPecas();
+	Conjunto::destruir(peao);
 	
-	std::cout << "\n";
-	
-	listarTodasAsPecas();
+	return (*aux)[aux -> size() - 1];
 }
 
 /**********************************************************************************************************************
