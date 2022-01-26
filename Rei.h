@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
+	Última edição: 25/01/2021
 
 */
 
@@ -26,6 +26,9 @@ class Rei : public Peca {
 	private:
 
 		bool primeiroMovimento = true;
+		
+		
+		void adicionarRoques();
 };
 
 #endif

@@ -30,6 +30,8 @@ Peca *Conjunto::enPassant = 0;
 
 bool Conjunto::statusEnPassant = true;
 
+bool Conjunto::emXeque = false;
+
 
 
 /*********************************************************************************************
@@ -248,6 +250,11 @@ void Conjunto::jogar(int cor){
 				
 				Log::escrever(aux -> emString() + "\n\n");
 			}
+			
+			emXeque = Conjunto::xeque(aux);
+			
+			if(emXeque) Log::escrever("EM XEQUE\n\n");
+			else Log::escrever("NO XEQUE\n\n");
 			break;
 		}
 	}
@@ -315,6 +322,17 @@ Peca *Conjunto::obterEnPassant(){ return Conjunto::enPassant; }
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
+Rei Conjunto::obterRei(int cor){
+
+	vector<Peca *> aux = cor == PRETO ? Pretas : Brancas;
+	
+	for(Peca *p : aux) if(p -> obterClasse() == "Rei") return *(dynamic_cast<Rei *>(p));
+}
+
+/**********************************************************************************************************************
+***********************************************************************************************************************
+**********************************************************************************************************************/
+
 bool Conjunto::obterStatusEnPassant(){
 
 	return Conjunto::statusEnPassant;
@@ -339,3 +357,11 @@ bool Conjunto::valeEnPassant(Posicao posicao, int cor){
 /**********************************************************************************************************************
 ***********************************************************************************************************************
 **********************************************************************************************************************/
+
+bool Conjunto::xeque(Peca *peca){
+
+	Log::escrever("Xeque peca recebeu ");
+	Log::escrever(peca -> emString() + "\n\n");
+
+	return peca -> movimentoEPossivel(obterRei(-peca -> obterCor()).obterPosicao());
+}
