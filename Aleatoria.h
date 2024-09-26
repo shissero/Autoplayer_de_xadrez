@@ -1,9 +1,11 @@
 #ifndef ALEATORIA_H_
 #define ALEATORIA_H_
 
+#include<stdlib.h>
+#include<ctime>
+
 class Aleatoria {
-	public:
-		static int aleatoria(int range);
-};
+	static int aleatoria(int range);
+}
 
 #endif
