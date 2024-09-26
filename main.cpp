@@ -1,14 +1,8 @@
-#include<iostream>
 #include"Conjunto.h"
 
 int main(){
-
-	Conjunto conjunto = Conjunto();
-
-	while(1){
-	    
-		conjunto.jogarBranca();
+    Conjunto conjunto = Conjunto();
+    conjunto.build;
     
-		conjunto.jogarPreta();
-	}
+       
 };

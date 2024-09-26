@@ -2,21 +2,12 @@
 #define PEAO_H_
 
 #include<array>
-#include<string>
-
-#include"Posicao.h"
-#include"Peca.h"
 
 class Peao : public Peca {
 	public:
 	
-		Peao(Posicao, int);
-		bool mover();
-		
-		std::string obterClasse();
-	private:
-	
-		void gerarMovimentos(vector<Posicao *> &);
+		Peao(int coluna, int linha, int cor);
+
 };
 
 #endif

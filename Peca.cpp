@@ -1,34 +1,17 @@
-#include"Peca.h"
-#include"Posicao.h"
-#include<iostream>
-#include<vector>
-#include<string>
+#include<array>
 
-Peca::Peca(Posicao pos, int color)
-	: casa (pos), cor (color)
-	{}
+class Peca {
 
-bool Peca::mover(){return false;}
+	public:
+		Peca(Posicao posicao, int cor){
+			this.cor = cor;
+			this.posicao = posicao;
+		}
 
-void Peca::gerarMovimentos(vector<Posicao *> movimentos){}
+		virtual bool mover(Peca peca);
 		
-Posicao Peca::obterPosicao(){
-	return this->casa;
-}
-
-int Peca::obterCor(){
-	return this->cor;
-}
-
-std::string Peca::obterCorComoString(){
-	return this->cor == BRANCO ? "branco" : "preto";
-}
-
-void Peca::mudarPosicao(Posicao destino){
-
-	std::cout << this->casa.toString() << " para " << destino.toString() << "\n";	
+	private:
 	
-	this->casa = destino;
-}
-
-std::string Peca::obterClasse(){}
+	int cor;
+	Posicao posicao;
+};
