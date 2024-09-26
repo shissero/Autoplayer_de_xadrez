@@ -4,20 +4,11 @@
 
 #include<array>
 
-using namespace std;
+using std::array
 
 class Posicao {
 
-	public:
-		
-		int coluna;
-		int linha;
-
-		Posicao(int, int);
-
-		bool operator==(const Posicao&);
-	
-		string toString();
+	int casa[2];
 };
 
 #endif
