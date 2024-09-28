@@ -1,12 +1,15 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 28/09/2024
 
 */
 
 #ifndef ALEATORIA_H_
 #define ALEATORIA_H_
+
+#include<stdlib.h>
+#include<ctime>
 
 class Aleatoria {
 
