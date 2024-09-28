@@ -1,7 +1,8 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 25/01/2021
+
+	Última edição: 28/09/2024
 
 */
 

@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 28/09/2024
 
 */
 
@@ -14,5 +14,6 @@ int Aleatoria::aleatoria(int range){
 
 	srand((unsigned)clock());
 		
-	return rand()%range;
+		return rand()%range;
+	}
 }
