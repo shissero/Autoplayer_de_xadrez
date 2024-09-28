@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 21/01/2021
+	Última edição: 25/01/2021
 
 */
 #include<iostream>
@@ -30,6 +30,19 @@ void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 		}
 	}
 }
+
+/************************************************************************************************************
+/************************************************************************************************************
+/***********************************************************************************************************/
+
+//void Rei::adicionarRoques(vector<Movimento *> *movimentos){
+
+	
+//}
+
+/************************************************************************************************************
+/************************************************************************************************************
+/***********************************************************************************************************/
 		
 void Rei::gerarMovimentos(vector<Movimento *> *movimentos){
 
@@ -46,6 +59,8 @@ int Rei::mover(){
 	this -> gerarMovimentos( &movimentos );
 	
 	filtrarMovimentos(&movimentos, -this -> cor);
+	
+	//this -> adicionarRoques();
 	
 	if(!movimentos.size()) return -1;
 	else{
@@ -65,6 +80,8 @@ int Rei::mover(){
 		Log::escrever("\t\t\t" + mov.emString() + "\n");
 		
 		this -> mudarPosicao(mov.obterDestino());
+		
+		this -> primeiroMovimento = false;
 		
 		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
 		

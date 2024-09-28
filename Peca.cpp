@@ -269,8 +269,6 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiCha
 **********************************************************************************************************/
 
 int Peca::mover(){
-
-	Log::escrever("\t" + this -> emString() + "\n\n");
 	
 	vector<Movimento *> movimentos;
 	

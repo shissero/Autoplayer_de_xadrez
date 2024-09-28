@@ -28,6 +28,8 @@ class Peao : public Peca {
 		
 		string obterClasse();
 		
+		bool valePromocao();
+		
 	private:
 	
 		bool primeiroMovimento = true;	

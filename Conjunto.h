@@ -1,7 +1,7 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 04/01/2021
+	Última edição: 25/01/2021
 
 */
 
@@ -12,6 +12,7 @@
 
 #include"Peca.h"
 #include"Peao.h"
+#include"Rei.h"
 
 using namespace std;
 
@@ -31,6 +32,8 @@ class Conjunto {
     	
     		static void definirStatusEnPassant(bool);
     	
+    		static void destruir(Peca *);
+    		
     		static void destruir(Posicao, int);
     	
     		static void destruirEnPassant();
@@ -45,19 +48,24 @@ class Conjunto {
     	
     		static void listarTodasAsPecas();
     	
-    		static void promover(Peao, Posicao);
+    		static Peca *promover(Peao *);
     	
     		static Peca *obterEnPassant();
+    		
+    		static Rei obterRei(int);
     	
     		static bool obterStatusEnPassant();
     	
     		static bool valeEnPassant(Posicao, int);
+    		
+    		static bool xeque(Peca *);
 	
 	private:
 	
 		
 		static Peca *enPassant;
 		static bool statusEnPassant;
+		static bool emXeque;
     
 };
 

@@ -26,6 +26,9 @@ class Rei : public Peca {
 	private:
 
 		bool primeiroMovimento = true;
+		
+		
+		void adicionarRoques();
 };
 
 #endif
