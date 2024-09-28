@@ -1,62 +1,50 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 28/09/2024
+
+*/
+
 #include<vector>
 
-class Torre {
+#include"Conjunto.h"
+#include"Peca.h"
+#include"Torre.h"
 
-	public:
-		Peca(Posicao posicao, int cor){
-			this.cor = cor;
-			this.posicao = posicao;
-		}
+Torre::Torre(Posicao posicao, int cor) : Peca(posicao, cor) {}
 
-		virtual bool mover(){
-			vector<Posicao> movimentos;
-			Posicao mover_para = this.posicao;
-			
-			/* Gerar coluna no sentido crescente das linhas */
-			
-			mover_para.linha++;
-			
-			while(posicao.linha < 7){
-				movimentos.insert(mover_para);
-				mover_para.linha++;
-			}
-			
-			/* Gerar coluna no sentido decrescente das linhas */
-			
-			mover_para = this.posicao;
-			
-			mover_para.linha--;
-			
-			while(posicao.linha > 0){
-				movimentos.insert(mover_para);
-				mover_para.linha--;
-			}
-			
-			/* Gerar linha no sentido crescente das colunas */
-			
-			mover_para = this.posicao;
-			
-			mover_para.coluna++;
-			
-			while(posicao.coluna < 7){
-				movimentos.insert(mover_para);
-				mover_para.coluna++;
-			}
-			
-			/* Gerar linha no sentido decrescente das colunas */
-			
-			mover_para = this.posicao;
-			
-			mover_para.coluna--;
-			
-			while(posicao.coluna < 0){
-				movimentos.insert(mover_para);
-				mover_para.coluna--;
-			}
-		};
-		
-	private:
+/********************************************************************************************************************
+*********************************************************************************************************************
+********************************************************************************************************************/
+
+void Torre::gerarMovimentos(vector<Movimento *> *movimentos){
+
+	this -> Peca::gerarMovimentosCardeais(movimentos, 0);
+}
+
+/********************************************************************************************************************
+*********************************************************************************************************************
+********************************************************************************************************************/
 	
-	int cor;
-	array posicao;
-};
+int Torre::mover(){
+
+	int natureza = this -> Peca::mover();
+	
+	if(natureza != -1){
+	
+		this -> primeiroMovimento = false;
+		
+		Conjunto::definirStatusEnPassant(true);
+	}
+	
+	return natureza;
+}
+
+/********************************************************************************************************************
+*********************************************************************************************************************
+********************************************************************************************************************/
+		
+string Torre::obterClasse(){
+
+	return "Torre";
+}

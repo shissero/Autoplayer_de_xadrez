@@ -1,3 +1,10 @@
+/*
+
+	Autor: Cícero Augusto Alcântara de Sousa
+	Última edição: 28/09/2024
+
+*/
+
 #ifndef ALEATORIA_H_
 #define ALEATORIA_H_
 
@@ -5,7 +12,10 @@
 #include<ctime>
 
 class Aleatoria {
-	static int aleatoria(int range);
-}
+
+	public:
+
+		static int aleatoria(int);
+};
 
 #endif
