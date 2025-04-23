@@ -1,45 +1,59 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
+	Última edição: 23/04/2024
 
 */
 
-#include<array>
-#include<string>
+#include "PosicaoInvalida.h"
 
 #include"Posicao.h"
 
 
+Posicao::Posicao(int coluna, int linha) {
 
-Posicao::Posicao(int coluna, int linha)
-	: coluna (coluna), linha (linha)
-{}
+	coordinates[COLUNA] = coluna;
+	coordinates[LINHA] = linha;
+}
 
-/***********************************************************************************************************************
-************************************************************************************************************************
-***********************************************************************************************************************/
+int Posicao::coluna() const {
 
-Posicao *Posicao::copiar(){
+	return coordinates[COLUNA];
+}
 
-	return new Posicao(this -> coluna, this -> linha);
+int Posicao::linha() const {
+
+	return coordinates[LINHA];
+}
+
+void Posicao::coluna(int valor) {
+
+	coordinates[COLUNA] = valor;
+}
+
+void Posicao::linha(int valor) {
+
+	coordinates[LINHA] = valor;
 }
 
 /***********************************************************************************************************************
 ************************************************************************************************************************
 ***********************************************************************************************************************/
 
-bool Posicao::operator==(const Posicao& posicao){
-	return this->coluna == posicao.coluna && this->linha == posicao.linha ? true : false;
+bool Posicao::operator==(const Posicao &posicao) const {
+
+	return this->coluna() == posicao.coluna() &&
+		(this->linha() == posicao.linha());
 }
 
-/***********************************************************************************************************************
-************************************************************************************************************************
-***********************************************************************************************************************/
+Posicao Posicao::operator+(const Posicao &pos) const {
 
-string Posicao::emString(){
-	string str = "";
-	str.push_back(static_cast<char>(this->coluna + 96));
-	
-	return str + ", " + to_string(this->linha);
+	int aux_coluna = this->coluna() + pos.coluna();
+	int aux_linha = this->linha() + pos.linha();
+
+	if (aux_coluna < 0 || aux_coluna > 7 || aux_linha < 0 || aux_linha > 7) { // não é necessário testar se o valor é menor que zero. Se isso acontecer, a variável estoura e seu valor vai ficar acima de 8
+
+		throw PosicaoInvalida(aux_coluna, aux_linha);
+	}
+	else return {aux_coluna, aux_linha};
 }

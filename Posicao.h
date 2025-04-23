@@ -8,26 +8,30 @@
 #ifndef POSICAO_H_
 #define POSICAO_H_
 
-
-#include<array>
-#include<string>
-
-using namespace std;
-
 class Posicao {
 
-	public:
-		
-		int coluna;
-		int linha;
+public:
 
-		Posicao(int, int);
-		
-		Posicao *copiar();
+	Posicao() = default;
 
-		bool operator==(const Posicao&);
-	
-		string emString();
+	Posicao(int, int);
+
+	int coluna() const; // Esse métdodo é um getter
+	int linha() const; // Esse métdodo é um getter
+
+	void coluna(int); // Esse métdodo é um setter
+	void linha(int); // Esse métdodo é um setter
+
+	bool operator==(const Posicao&) const;
+
+	Posicao operator+(const Posicao&) const;
+
+private:
+
+	int coordinates[2]{};
+
+	static constexpr int COLUNA = 0;
+	static constexpr int LINHA = 1;
 };
 
 #endif
