@@ -12,7 +12,7 @@
 class IExcecao : public std::exception {
 
 public:
-    explicit IExcecao(const std::string &);
+    explicit IExcecao(const std::string&);
 
     ~IExcecao() noexcept override = default;
 

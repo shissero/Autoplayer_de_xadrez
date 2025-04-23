@@ -6,8 +6,12 @@
 */
 
 
+#include "Bispo.h"
+#include "Conjunto.h"
+#include "ExcecaoPecaIntrusa.h"
 #include "Posicao.h"
 #include "PosicaoInvalida.h"
+#include "Time.h"
 
 #include <iostream>
 
@@ -15,17 +19,7 @@ int main(){
 
 	Posicao posicao = Posicao(1, 2);
 
-	Posicao posicao2 = Posicao(0, 0);
-
-	try{
-
-		Posicao posicao3 = posicao + posicao2;
-
-	}
-	catch (PosicaoInvalida &e) {
-
-		std::cerr << e.what() << std::endl;
-	}
+	auto conjunto = Conjunto::criarConjuntoCompleto();
 
 	return 0;
 }

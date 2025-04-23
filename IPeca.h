@@ -11,28 +11,31 @@
 #include"Movimento.h"
 #include"Posicao.h"
 
+#include<vector>
+
 class Conjunto;
 
 class IPeca {
 public:
+    IPeca(int cor, Posicao *);
 
-    IPeca(int cor, Posicao&, Conjunto&);
+    IPeca(int cor, Posicao*, Conjunto*);
 
     virtual ~IPeca() = default;
 
-    const int BRANCO = 1;
-    const int PRETO = -1;
+    static constexpr int BRANCO = 1;
+    static constexpr int PRETO = -1;
 
     virtual void gerarMovimentos(std::vector<Movimento> &) = 0;
 
     int obterCor() const;
 
-    const Posicao &obterPosicao() const;
+    const Posicao *obterPosicao() const;
 
 protected:
     const int cor;
-    Posicao posicao;
-    Conjunto &conjunto;
+    Posicao *posicao;
+    Conjunto *conjunto;
 
     static void gerarMovimentosCardeais(std::vector<Movimento> &, bool);
 

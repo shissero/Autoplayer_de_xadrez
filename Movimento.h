@@ -10,6 +10,8 @@
 
 #include"Posicao.h"
 
+#include <string>
+
 #define NEUTRO 0
 #define CAPTURA 1
 #define EN_PASSANT_PASSIVA 2
@@ -22,14 +24,14 @@ class Movimento{
 	public:
 	
 		Movimento(Posicao, int);
-		
-		string emString();
+
+		std::string emString();
 		
 		Posicao obterDestino();
 		
 		int obterNatureza();
-		
-		string obterNaturezaComoString();
+
+		std::string obterNaturezaComoString();
 
 	private:
 	

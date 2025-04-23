@@ -10,17 +10,13 @@
 
 #include"IPeca.h"
 
-class Bispo : public IPeca{
+class Bispo : public IPeca {
+public:
+	Bispo(int, Posicao*);
 
-	public:
-	
-		Bispo(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
+	~Bispo() override = default;
+
+	void gerarMovimentos(std::vector<Movimento> &) override;
 };
 
 #endif

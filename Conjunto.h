@@ -13,60 +13,60 @@
 #include"IPeca.h"
 #include"Peao.h"
 #include"Rei.h"
+#include "Time.h"
 
 using namespace std;
 
 class Conjunto {
+public:
 
-	public:
-	
-	static vector<IPeca *> Brancas, Pretas;
-    		
-    		Conjunto();
-    		
-    		static bool atacadaPor(Posicao, int);
-    	
-    		static void capturar(Posicao, int);
-    	
-    		static void definirEnPassant(Peao *);
-    	
-    		static void definirStatusEnPassant(bool);
-    	
-    		static void destruir(IPeca *);
-    		
-    		static void destruir(Posicao, int);
-    	
-    		static void destruirEnPassant();
-    	
-    		static bool estaVazia(Posicao);
-    	
-    		static bool inimigaOcupa(int, Posicao);
-    	
-    		void jogar(int);
-    	
-    		static void limparEnPassant();
-    	
-    		static void listarTodasAsPecas();
-    	
-    		static IPeca *promover(Peao *);
-    	
-    		static IPeca *obterEnPassant();
-    		
-    		static Rei obterRei(int);
-    	
-    		static bool obterStatusEnPassant();
-    	
-    		static bool valeEnPassant(Posicao, int);
-    		
-    		static bool xeque(IPeca *);
-	
-	private:
-	
-		
-		static IPeca *enPassant;
-		static bool statusEnPassant;
-		static bool emXeque;
-    
+    Conjunto() = default;
+
+    static Conjunto *criarConjuntoCompleto();
+
+    static bool atacadaPor(Posicao, int);
+
+    static void capturar(Posicao, int);
+
+    static void definirEnPassant(Peao *);
+
+    static void definirStatusEnPassant(bool);
+
+    static void destruir(IPeca *);
+
+    static void destruir(Posicao, int);
+
+    static void destruirEnPassant();
+
+    static bool estaVazia(Posicao);
+
+    static bool inimigaOcupa(int, Posicao);
+
+    void jogar(int);
+
+    static void limparEnPassant();
+
+    static void listarTodasAsPecas();
+
+    static IPeca *promover(Peao *);
+
+    static IPeca *obterEnPassant();
+
+    static Rei obterRei(int);
+
+    static bool obterStatusEnPassant();
+
+    static bool valeEnPassant(Posicao, int);
+
+    static bool xeque(IPeca *);
+
+private:
+    static IPeca *enPassant;
+    static bool statusEnPassant;
+    static bool emXeque;
+
+    Time *aliadas;
+    Time *adversarias;
 };
 
 #endif
