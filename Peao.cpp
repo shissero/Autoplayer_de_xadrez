@@ -14,12 +14,12 @@
 #include"Conjunto.h"
 #include"Movimento.h"
 #include"Peao.h"
-#include"Peca.h"
+#include"IPeca.h"
 
 using namespace std;
 
 
-Peao::Peao(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Peao::Peao(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
@@ -80,7 +80,7 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 		
 int Peao::mover(){
 
-	int natureza = this -> Peca::mover();
+	int natureza = this -> IPeca::mover();
 
 
 	if(natureza != -1){

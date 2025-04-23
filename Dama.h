@@ -8,9 +8,9 @@
 #define DAMA_H_
 
 
-#include"Peca.h"
+#include"IPeca.h"
 
-class Dama : public Peca {
+class Dama : public IPeca {
 
 	public:
 

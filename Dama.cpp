@@ -7,9 +7,9 @@
 
 #include"Conjunto.h"
 #include"Dama.h"
-#include"Peca.h"
+#include"IPeca.h"
 
-Dama::Dama(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Dama::Dama(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 /*******************************************************************************************************
 ********************************************************************************************************
@@ -17,9 +17,9 @@ Dama::Dama(Posicao posicao, int cor) : Peca(posicao, cor) {}
 		
 void Dama::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosCardeais(movimentos, 0);
+	this -> IPeca::gerarMovimentosCardeais(movimentos, 0);
 
-	this -> Peca::gerarMovimentosColaterais(movimentos, 0);
+	this -> IPeca::gerarMovimentosColaterais(movimentos, 0);
 }
 
 /*******************************************************************************************************
@@ -28,7 +28,7 @@ void Dama::gerarMovimentos(vector<Movimento *> *movimentos){
 		
 int Dama::mover(){
 
-	int natureza = this -> Peca::mover();
+	int natureza = this -> IPeca::mover();
 	
 	if(natureza != -1){
 		

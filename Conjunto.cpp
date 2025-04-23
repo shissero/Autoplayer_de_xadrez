@@ -17,7 +17,7 @@
 #include"Dama.h"
 #include"Log.h"
 #include"Peao.h"
-#include"Peca.h"
+#include"IPeca.h"
 #include"Rei.h"
 #include"Torre.h"
 
@@ -25,9 +25,9 @@
 
 using namespace std;
 
-vector<Peca *> Conjunto::Brancas, Conjunto::Pretas;
+vector<IPeca *> Conjunto::Brancas, Conjunto::Pretas;
 
-Peca *Conjunto::enPassant = 0;
+IPeca *Conjunto::enPassant = 0;
 
 bool Conjunto::statusEnPassant = true;
 
@@ -82,9 +82,9 @@ Conjunto::Conjunto(){
 
 bool Conjunto::atacadaPor(Posicao pos, int cor){
 
-	vector<Peca *> aux = cor == PRETO ? Conjunto::Pretas : Conjunto::Brancas;
+	vector<IPeca *> aux = cor == PRETO ? Conjunto::Pretas : Conjunto::Brancas;
 	
-	for(Peca *p : aux) if(p -> movimentoEPossivel(pos)) return true;
+	for(IPeca *p : aux) if(p -> movimentoEPossivel(pos)) return true;
 	
 	return false;
 }
@@ -95,9 +95,9 @@ bool Conjunto::atacadaPor(Posicao pos, int cor){
 
 void Conjunto::capturar(Posicao posicao, int cor){
 	
-	vector<Peca *> *aux = cor==BRANCO ? &Pretas : &Brancas;
+	vector<IPeca *> *aux = cor==BRANCO ? &Pretas : &Brancas;
 	
-	for(Peca *a : *aux){
+	for(IPeca *a : *aux){
 		if(a -> obterPosicao() == posicao) destruir(a);
 	}
 	
@@ -123,9 +123,9 @@ void Conjunto::definirStatusEnPassant(bool status){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::destruir(Peca *peca){
+void Conjunto::destruir(IPeca *peca){
 
-	vector<Peca *> *aux = peca -> obterCor() == BRANCO ? &Brancas : &Pretas;
+	vector<IPeca *> *aux = peca -> obterCor() == BRANCO ? &Brancas : &Pretas;
 	
 	for(int i = 0; i < aux -> size(); i++){
 	
@@ -146,7 +146,7 @@ void Conjunto::destruir(Peca *peca){
 
 void Conjunto::destruir(Posicao pos, int cor){
 
-	vector<Peca *> *aux = cor == PRETO ? &Pretas : &Brancas;
+	vector<IPeca *> *aux = cor == PRETO ? &Pretas : &Brancas;
 	
 	for(int i = 0; i < aux -> size(); i++){
 	
@@ -178,8 +178,8 @@ void Conjunto::destruirEnPassant(){
 *********************************************************************************************/
 
 bool Conjunto::estaVazia(Posicao casa){
-	for(Peca *a : Conjunto::Brancas) if(a->obterPosicao() == casa) return false;
-	for(Peca *a : Conjunto::Pretas) if(a->obterPosicao() == casa) return false;
+	for(IPeca *a : Conjunto::Brancas) if(a->obterPosicao() == casa) return false;
+	for(IPeca *a : Conjunto::Pretas) if(a->obterPosicao() == casa) return false;
 	
 	return true;
 }
@@ -190,9 +190,9 @@ bool Conjunto::estaVazia(Posicao casa){
 
 bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 
-	vector<Peca *> *aux = cor == BRANCO ? &Conjunto::Pretas : &Conjunto::Brancas;
+	vector<IPeca *> *aux = cor == BRANCO ? &Conjunto::Pretas : &Conjunto::Brancas;
 	
-	for(Peca* a : *aux) if(a->obterPosicao() == posicao) return true;
+	for(IPeca* a : *aux) if(a->obterPosicao() == posicao) return true;
 	
 	return false;
 }
@@ -228,7 +228,7 @@ void Conjunto::jogar(int cor){
 	
 	
 
-	vector<Peca *> pecasJogaveis = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
+	vector<IPeca *> pecasJogaveis = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
 
 	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
 
@@ -241,7 +241,7 @@ void Conjunto::jogar(int cor){
 		if(natureza == -1) pecasJogaveis.erase(pecasJogaveis.begin() + i);
 		else{
 		
-			Peca *aux = pecasJogaveis[i];
+			IPeca *aux = pecasJogaveis[i];
 		
 			if(aux -> obterClasse() == "Peao" && dynamic_cast<Peao *>(aux) -> valePromocao()){
 			
@@ -274,8 +274,8 @@ void Conjunto::limparEnPassant(){ Conjunto::enPassant == 0;}
 *********************************************************************************************/
 
 void Conjunto::listarTodasAsPecas(){
-	for(Peca *a : Brancas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
-	for(Peca *a : Pretas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
+	for(IPeca *a : Brancas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
+	for(IPeca *a : Pretas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
 	
 	exit(356);
 }
@@ -284,9 +284,9 @@ void Conjunto::listarTodasAsPecas(){
 **********************************************************************************************
 *********************************************************************************************/
 
-Peca *Conjunto::promover(Peao *peao){
+IPeca *Conjunto::promover(Peao *peao){
 
-	vector<Peca *> *aux = peao -> obterCor() == BRANCO ? &Brancas : &Pretas;
+	vector<IPeca *> *aux = peao -> obterCor() == BRANCO ? &Brancas : &Pretas;
 	
 	switch(Aleatoria::aleatoria(4)){
 	
@@ -317,7 +317,7 @@ Peca *Conjunto::promover(Peao *peao){
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-Peca *Conjunto::obterEnPassant(){ return Conjunto::enPassant; }
+IPeca *Conjunto::obterEnPassant(){ return Conjunto::enPassant; }
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
@@ -325,9 +325,9 @@ Peca *Conjunto::obterEnPassant(){ return Conjunto::enPassant; }
 
 Rei Conjunto::obterRei(int cor){
 
-	vector<Peca *> aux = cor == PRETO ? Pretas : Brancas;
+	vector<IPeca *> aux = cor == PRETO ? Pretas : Brancas;
 	
-	for(Peca *p : aux) if(p -> obterClasse() == "Rei") return *(dynamic_cast<Rei *>(p));
+	for(IPeca *p : aux) if(p -> obterClasse() == "Rei") return *(dynamic_cast<Rei *>(p));
 }
 
 /**********************************************************************************************************************
@@ -359,7 +359,7 @@ bool Conjunto::valeEnPassant(Posicao posicao, int cor){
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-bool Conjunto::xeque(Peca *peca){
+bool Conjunto::xeque(IPeca *peca){
 
 	Log::escrever("Xeque peca recebeu ");
 	Log::escrever(peca -> emString() + "\n\n");

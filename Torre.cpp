@@ -8,10 +8,10 @@
 #include<vector>
 
 #include"Conjunto.h"
-#include"Peca.h"
+#include"IPeca.h"
 #include"Torre.h"
 
-Torre::Torre(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Torre::Torre(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 /********************************************************************************************************************
 *********************************************************************************************************************
@@ -19,7 +19,7 @@ Torre::Torre(Posicao posicao, int cor) : Peca(posicao, cor) {}
 
 void Torre::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosCardeais(movimentos, 0);
+	this -> IPeca::gerarMovimentosCardeais(movimentos, 0);
 }
 
 /********************************************************************************************************************
@@ -28,7 +28,7 @@ void Torre::gerarMovimentos(vector<Movimento *> *movimentos){
 	
 int Torre::mover(){
 
-	int natureza = this -> Peca::mover();
+	int natureza = this -> IPeca::mover();
 	
 	if(natureza != -1){
 	

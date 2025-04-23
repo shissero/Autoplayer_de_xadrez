@@ -5,21 +5,27 @@
 
 */
 
-#include<iostream>
 
-#include"Conjunto.h"
-#include"Log.h"
+#include "Posicao.h"
+#include "PosicaoInvalida.h"
+
+#include <iostream>
 
 int main(){
 
-    Conjunto conjunto = Conjunto();
-    
-    int p = 1;
-    
-   for(int i = 0; i < 200; i++){
-    
-    	conjunto.jogar(p);
-    	
-    	p *= -1;
-    }
+	Posicao posicao = Posicao(1, 2);
+
+	Posicao posicao2 = Posicao(0, 0);
+
+	try{
+
+		Posicao posicao3 = posicao + posicao2;
+
+	}
+	catch (PosicaoInvalida &e) {
+
+		std::cerr << e.what() << std::endl;
+	}
+
+	return 0;
 }

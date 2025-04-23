@@ -8,10 +8,10 @@
 #ifndef TORRE_H_
 #define TORRE_H_
 
-#include"Peca.h"
+#include"IPeca.h"
 #include"Posicao.h"
 
-class Torre : public Peca {
+class Torre : public IPeca {
 
 	public:
 

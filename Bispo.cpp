@@ -7,9 +7,9 @@
 
 #include"Bispo.h"
 #include"Conjunto.h"
-#include"Peca.h"
+#include"IPeca.h"
 
-Bispo::Bispo(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Bispo::Bispo(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 /*******************************************************************************************************
 ********************************************************************************************************
@@ -17,7 +17,7 @@ Bispo::Bispo(Posicao posicao, int cor) : Peca(posicao, cor) {}
 		
 void Bispo::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosColaterais(movimentos, 0);
+	this -> IPeca::gerarMovimentosColaterais(movimentos, 0);
 }
 
 /*******************************************************************************************************
@@ -26,7 +26,7 @@ void Bispo::gerarMovimentos(vector<Movimento *> *movimentos){
 		
 int Bispo::mover(){
 
-	int natureza = this -> Peca::mover();
+	int natureza = this -> IPeca::mover();
 	
 	if(natureza != -1){
 		

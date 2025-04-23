@@ -10,12 +10,12 @@
 #include"Aleatoria.h"
 #include"Conjunto.h"
 #include"Log.h"
-#include"Peca.h"
+#include"IPeca.h"
 #include"Rei.h"
 
 using namespace std;
 
-Rei::Rei(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Rei::Rei(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 
@@ -46,8 +46,8 @@ void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 		
 void Rei::gerarMovimentos(vector<Movimento *> *movimentos){
 
-	this -> Peca::gerarMovimentosCardeais(movimentos, 1);
-	this -> Peca::gerarMovimentosColaterais(movimentos, 1);
+	this -> IPeca::gerarMovimentosCardeais(movimentos, 1);
+	this -> IPeca::gerarMovimentosColaterais(movimentos, 1);
 }
 		
 int Rei::mover(){

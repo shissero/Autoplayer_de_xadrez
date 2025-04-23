@@ -7,10 +7,10 @@
 
 #include"Cavalo.h"
 #include"Conjunto.h"
-#include"Peca.h"
+#include"IPeca.h"
 #include"Posicao.h"
 
-Cavalo::Cavalo(Posicao posicao, int cor) : Peca(posicao, cor) {}
+Cavalo::Cavalo(Posicao posicao, int cor) : IPeca(posicao, cor) {}
 
 /*******************************************************************************************************
 ********************************************************************************************************
@@ -105,7 +105,7 @@ void Cavalo::gerarMovimentos(vector<Movimento *> *movimentos){
 
 int Cavalo::mover(){
 
-	int natureza = this -> Peca::mover();
+	int natureza = this -> IPeca::mover();
 	
 	if(natureza != -1){
 		

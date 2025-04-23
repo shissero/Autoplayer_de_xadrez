@@ -12,11 +12,11 @@
 #include<string>
 
 #include"Movimento.h"
-#include"Peca.h"
+#include"IPeca.h"
 
 using namespace std;
 
-class Peao : public Peca {
+class Peao : public IPeca {
 
 	public:
 	

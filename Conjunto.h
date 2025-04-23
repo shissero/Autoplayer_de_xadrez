@@ -10,7 +10,7 @@
 
 #include<vector>
 
-#include"Peca.h"
+#include"IPeca.h"
 #include"Peao.h"
 #include"Rei.h"
 
@@ -20,7 +20,7 @@ class Conjunto {
 
 	public:
 	
-	static vector<Peca *> Brancas, Pretas;
+	static vector<IPeca *> Brancas, Pretas;
     		
     		Conjunto();
     		
@@ -32,7 +32,7 @@ class Conjunto {
     	
     		static void definirStatusEnPassant(bool);
     	
-    		static void destruir(Peca *);
+    		static void destruir(IPeca *);
     		
     		static void destruir(Posicao, int);
     	
@@ -48,9 +48,9 @@ class Conjunto {
     	
     		static void listarTodasAsPecas();
     	
-    		static Peca *promover(Peao *);
+    		static IPeca *promover(Peao *);
     	
-    		static Peca *obterEnPassant();
+    		static IPeca *obterEnPassant();
     		
     		static Rei obterRei(int);
     	
@@ -58,12 +58,12 @@ class Conjunto {
     	
     		static bool valeEnPassant(Posicao, int);
     		
-    		static bool xeque(Peca *);
+    		static bool xeque(IPeca *);
 	
 	private:
 	
 		
-		static Peca *enPassant;
+		static IPeca *enPassant;
 		static bool statusEnPassant;
 		static bool emXeque;
     

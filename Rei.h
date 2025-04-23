@@ -9,9 +9,9 @@
 #define REI_H_
 
 
-#include"Peca.h"
+#include"IPeca.h"
 
-class Rei : public Peca {
+class Rei : public IPeca {
 
 	public:
 

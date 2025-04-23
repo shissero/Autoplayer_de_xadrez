@@ -8,9 +8,9 @@
 #define BISPO_H_
 
 
-#include"Peca.h"
+#include"IPeca.h"
 
-class Bispo : public Peca{
+class Bispo : public IPeca{
 
 	public:
 	

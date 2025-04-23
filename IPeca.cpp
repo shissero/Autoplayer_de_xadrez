@@ -5,41 +5,24 @@
 
 */
 
-#include<iostream>
-#include<vector>
-#include<string>
-
-#include"Aleatoria.h"
 #include"Conjunto.h"
-#include"Log.h"
-#include"Peca.h"
 
-using namespace std;
+#include"IPeca.h"
 
-Peca::Peca(Posicao pos, int color)
-	: posicao (pos), cor (color)
-	{}
-	
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
+#include<vector>
 
-string Peca::emString(){
-
-	string str = this -> obterClasse();
-	
-	return str + " " + this -> obterCorComoString()+ " " + this -> obterPosicao().emString();
+IPeca::IPeca(int cor, Posicao &posicao, Conjunto &conjunto): cor(cor),
+                                                                   posicao(posicao),
+                                                                   conjunto(conjunto){
 }
 
-void Peca::gerarMovimentos(vector<Movimento *> *movimentos){}
-
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos, int reiChamou){
-
-	Posicao *aux;
+void IPeca::gerarMovimentosCardeais(std::vector<Movimento> &movimentos, bool reiChamou){
+/*
+	Posicao aux;
 
 	// Gerar movimentos no sentido decrescente das linhas
 	if(this -> posicao.linha > 1){
@@ -170,15 +153,15 @@ void Peca::gerarMovimentosCardeais(vector<Movimento *> *movimentos, int reiChamo
 			
 		}
 		
-	}
+	}*/
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiChamou){
-
+void IPeca::gerarMovimentosColaterais(std::vector<Movimento> &movimentos, bool reiChamou){
+/*
 	// Gerar movimentos na direção Nordeste
 	if(this -> posicao.coluna < 8 && this -> posicao.linha < 8){
 	
@@ -261,110 +244,23 @@ void Peca::gerarMovimentosColaterais(vector<Movimento *> *movimentos, int reiCha
 				break;
 			}
 		}
-	}
+	}*/
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-int Peca::mover(){
-	
-	vector<Movimento *> movimentos;
-	
-	this -> gerarMovimentos( &movimentos );
-	
-	if(!movimentos.size()) return -1;
-	else{
-	
-		
-		
-		Log::escrever("\tMovimentos possíveis:\n");
-		
-		for(int i = 0; i < movimentos.size(); i++) Log::escrever("\t\t" + movimentos[i] -> emString() + "\n");
-		
-		Log::escrever("\n");
-	
-		Posicao origem = this -> posicao;
-		
-		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
-		
-		Log::escrever("\t\t\t" + mov.emString() + "\n");
-		
-		this -> mudarPosicao(mov.obterDestino());
-		
-		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
-		
-		return mov.obterNatureza();
-	}
+int IPeca::obterCor() const {
+
+	return cor;
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void Peca::mostrarMovimentos(){
+const Posicao &IPeca::obterPosicao() const {
 
-	vector<Movimento *> movimentos;
-	
-	this -> gerarMovimentos(&movimentos);
-	
-	for(Movimento *mov : movimentos) cout << mov -> obterDestino().emString() << " " << mov -> obterNaturezaComoString() << endl;
+	return posicao;
 }
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-bool Peca::movimentoEPossivel(Posicao posicao){
-
-	vector<Movimento *> movimentos;
-	
-	this -> gerarMovimentos(&movimentos);
-	
-	for(Movimento *mov : movimentos) if(mov -> obterDestino() == posicao) return true;
-	
-	return false;
-}
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-void Peca::mudarPosicao(Posicao destino){
-	
-	this->posicao = destino;
-}
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-string Peca::obterClasse(){ return ""; }
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-int Peca::obterCor(){
-	return this->cor;
-}
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-string Peca::obterCorComoString(){
-	return this->cor == BRANCO ? "branco" : "preto";
-}
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-		
-Posicao Peca::obterPosicao(){
-	return this->posicao;
-}
-
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/

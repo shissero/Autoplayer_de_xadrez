@@ -10,9 +10,9 @@
 
 #include<string>
 
-#include"Peca.h"
+#include"IPeca.h"
 
-class Cavalo : Peca {
+class Cavalo : IPeca {
 
 	public:
 
