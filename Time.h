@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "Peao.h"
+#include "Torre.h"
 
 
 class Time {
@@ -35,7 +36,7 @@ private:
     const int cor;
     int linhaPeca;
     std::vector<Peao*> peoes;
-    //std::vector<Torre*> torres;
+    std::vector<Torre*> torres;
     //std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
     //Dama *dama;
@@ -44,6 +45,8 @@ private:
     void adicionarBisposPadrao();
 
     void adicionarPeoesPadrao();
+
+    void adicionarTorresPadrao();
 };
 
 

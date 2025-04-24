@@ -12,20 +12,15 @@
 #include"Posicao.h"
 
 class Torre : public IPeca {
+public:
+    Torre(int cor, Posicao *posicao);
 
-	public:
+    ~Torre() override = default;
 
-		Torre(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
-	
-	private:
+    void gerarMovimentos(std::vector<Movimento> &) override;
 
-		bool primeiroMovimento = true;
+private:
+    bool primeiroMovimento = true;
 };
 
 #endif

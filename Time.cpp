@@ -16,8 +16,9 @@ Time *Time::criarTimeCompleto(int cor) {
 
     Time *novo = new Time(cor);
 
-    novo -> adicionarBisposPadrao();
-    novo -> adicionarPeoesPadrao();
+    //novo -> adicionarBisposPadrao();
+    //novo -> adicionarPeoesPadrao();
+    //novo -> adicionarTorresPadrao();
 
     return novo;
 }
@@ -40,4 +41,10 @@ void Time::adicionarBisposPadrao() {
 void Time::adicionarPeoesPadrao() {
 
     for(int i = 0; i < 8; i++) peoes.emplace_back(new Peao(cor, new Posicao(i, linhaPeca + cor)));
+}
+
+void Time::adicionarTorresPadrao() {
+
+    torres.emplace_back(new Torre(cor, new Posicao(0, linhaPeca)));
+    torres.emplace_back(new Torre(cor, new Posicao(7, linhaPeca)));
 }
