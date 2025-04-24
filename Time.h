@@ -9,6 +9,7 @@
 
 #include <vector>
 
+#include "Cavalo.h"
 #include "Peao.h"
 #include "Torre.h"
 
@@ -37,7 +38,7 @@ private:
     int linhaPeca;
     std::vector<Peao*> peoes;
     std::vector<Torre*> torres;
-    //std::vector<Cavalo*> cavalos;
+    std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
     //Dama *dama;
     //Rei *rei;
@@ -47,6 +48,8 @@ private:
     void adicionarPeoesPadrao();
 
     void adicionarTorresPadrao();
+
+    void adicionarCavalosPadrao();
 };
 
 

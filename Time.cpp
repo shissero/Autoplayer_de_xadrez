@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include "Cavalo.h"
+
 Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor*(3.5f)) {
 }
 
@@ -19,6 +21,7 @@ Time *Time::criarTimeCompleto(int cor) {
     //novo -> adicionarBisposPadrao();
     //novo -> adicionarPeoesPadrao();
     //novo -> adicionarTorresPadrao();
+    novo -> adicionarCavalosPadrao();
 
     return novo;
 }
@@ -47,4 +50,10 @@ void Time::adicionarTorresPadrao() {
 
     torres.emplace_back(new Torre(cor, new Posicao(0, linhaPeca)));
     torres.emplace_back(new Torre(cor, new Posicao(7, linhaPeca)));
+}
+
+void Time::adicionarCavalosPadrao() {
+
+    cavalos.emplace_back(new Cavalo(cor, new Posicao(1, linhaPeca)));
+    cavalos.emplace_back(new Cavalo(cor, new Posicao(6, linhaPeca)));
 }

@@ -10,14 +10,12 @@
 #include"IPeca.h"
 #include"Posicao.h"
 
-Cavalo::Cavalo(Posicao posicao, int cor) : IPeca(posicao, cor) {}
-
 /*******************************************************************************************************
 ********************************************************************************************************
 *******************************************************************************************************/
 
-void Cavalo::gerarMovimentos(vector<Movimento *> *movimentos){
-	
+void Cavalo::gerarMovimentos(std::vector<Movimento>&){
+	/*
 	// Movimentos na direção crescente das linhas
 	if(this -> posicao.linha < 7){
 	
@@ -96,30 +94,8 @@ void Cavalo::gerarMovimentos(vector<Movimento *> *movimentos){
 			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
 			else if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
 		}
-	}
+	}*/
 }
 
-/*******************************************************************************************************
-********************************************************************************************************
-*******************************************************************************************************/
-
-int Cavalo::mover(){
-
-	int natureza = this -> IPeca::mover();
-	
-	if(natureza != -1){
-		
-		Conjunto::definirStatusEnPassant(true);
-	}
-	
-	return natureza;
-}
-
-/*******************************************************************************************************
-********************************************************************************************************
-*******************************************************************************************************/
-
-string Cavalo::obterClasse(){
-
-	return "Cavalo";
+Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }

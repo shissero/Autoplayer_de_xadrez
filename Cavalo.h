@@ -12,18 +12,14 @@
 
 #include"IPeca.h"
 
-class Cavalo : IPeca {
+class Cavalo : public IPeca {
 
-	public:
+public:
+	Cavalo(int cor, Posicao *posicao);
 
-		Cavalo(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
+	~Cavalo() override = default;
 
+	void gerarMovimentos(std::vector<Movimento> &) override;
 };
 
 #endif
