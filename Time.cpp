@@ -23,6 +23,7 @@ Time *Time::criarTimeCompleto(int cor) {
     novo -> adicionarTorresPadrao();
     novo -> adicionarCavalosPadrao();
     novo -> dama = new Dama(cor, new Posicao(3, novo -> linhaPeca));
+    novo -> rei = new Rei(cor, new Posicao(4, novo -> linhaPeca));
 
     return novo;
 }

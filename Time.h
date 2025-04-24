@@ -12,6 +12,7 @@
 #include "Cavalo.h"
 #include "Dama.h"
 #include "Peao.h"
+#include "Rei.h"
 #include "Torre.h"
 
 
@@ -42,7 +43,7 @@ private:
     std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
     Dama *dama;
-    //Rei *rei;
+    Rei *rei;
 
     void adicionarBisposPadrao();
 

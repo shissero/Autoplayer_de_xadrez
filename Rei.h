@@ -12,23 +12,18 @@
 #include"IPeca.h"
 
 class Rei : public IPeca {
+public:
+	Rei(int cor, Posicao *posicao);
 
-	public:
+	~Rei() override = default;
 
-		Rei(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
-	
-	private:
+	void gerarMovimentos(std::vector<Movimento> &) override;
 
-		bool primeiroMovimento = true;
-		
-		
-		void adicionarRoques();
+private:
+    bool primeiroMovimento = true;
+
+
+    //void adicionarRoques();
 };
 
 #endif
