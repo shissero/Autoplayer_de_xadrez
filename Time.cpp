@@ -18,10 +18,11 @@ Time *Time::criarTimeCompleto(int cor) {
 
     Time *novo = new Time(cor);
 
-    //novo -> adicionarBisposPadrao();
-    //novo -> adicionarPeoesPadrao();
-    //novo -> adicionarTorresPadrao();
+    novo -> adicionarBisposPadrao();
+    novo -> adicionarPeoesPadrao();
+    novo -> adicionarTorresPadrao();
     novo -> adicionarCavalosPadrao();
+    novo -> dama = new Dama(cor, new Posicao(3, novo -> linhaPeca));
 
     return novo;
 }

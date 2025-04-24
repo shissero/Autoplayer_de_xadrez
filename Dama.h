@@ -11,16 +11,12 @@
 #include"IPeca.h"
 
 class Dama : public IPeca {
+public:
+    Dama(int cor, Posicao *posicao);
 
-	public:
+    ~Dama() override = default;
 
-		Dama(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
+    void gerarMovimentos(std::vector<Movimento> &) override;
 };
 
 #endif
