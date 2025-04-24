@@ -17,23 +17,19 @@
 using namespace std;
 
 class Peao : public IPeca {
+public:
+    Peao(int cor, Posicao *posicao);
 
-	public:
-	
-		Peao(Posicao, int);
-		
-		void gerarMovimentos(vector<Movimento *> *);
-		
-		int mover();
-		
-		string obterClasse();
-		
-		bool valePromocao();
-		
-	private:
-	
-		bool primeiroMovimento = true;	
+    ~Peao() override = default;
 
+    void gerarMovimentos(std::vector<Movimento> &) override;
+
+    bool obterPrimeiroMovimento() const;
+
+    void definirPrimeiroMovimento(bool valor);
+
+private:
+    bool primeiroMovimento = true;
 };
 
 #endif

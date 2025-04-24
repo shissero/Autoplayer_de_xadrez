@@ -11,6 +11,10 @@
 
 #include<vector>
 
+
+
+//IPeca::IPeca() : cor(0), posicao(nullptr), conjunto(nullptr) {}
+
 IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
                                                                    posicao(posicao),
                                                                    conjunto(conjunto){
@@ -252,8 +256,8 @@ void IPeca::gerarMovimentosColaterais(std::vector<Movimento> &movimentos, bool r
 **********************************************************************************************************/
 
 IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
-                                               posicao(posicao),
-												conjunto(nullptr){
+                                         posicao(posicao),
+                                         conjunto(nullptr){
 }
 
 int IPeca::obterCor() const {

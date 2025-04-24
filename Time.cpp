@@ -9,17 +9,15 @@
 
 #include <iostream>
 
-Time::Time(int cor) : cor(cor) {
+Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor*(3.5f)) {
 }
 
 Time *Time::criarTimeCompleto(int cor) {
 
     Time *novo = new Time(cor);
 
-    int linha_pecas = 4.5f - cor*(3.5f);
-
-    novo -> adicionarBispo(IPeca::criarPeca<Bispo>(cor, new Posicao(2, linha_pecas)));
-    novo -> adicionarBispo(IPeca::criarPeca<Bispo>(cor, new Posicao(5, linha_pecas)));
+    novo -> adicionarBisposPadrao();
+    novo -> adicionarPeoesPadrao();
 
     return novo;
 }
@@ -31,4 +29,15 @@ void Time::adicionarBispo(Bispo *bispo) {
     if (bispos.size() >= 2) throw ExcecaoPecaExcedente();
 
     bispos.emplace_back(bispo);
+}
+
+void Time::adicionarBisposPadrao() {
+
+    bispos.emplace_back(new Bispo(cor, new Posicao(2, linhaPeca)));
+    bispos.emplace_back(new Bispo(cor, new Posicao(5, linhaPeca)));
+}
+
+void Time::adicionarPeoesPadrao() {
+
+    for(int i = 0; i < 8; i++) peoes.emplace_back(new Peao(cor, new Posicao(i, linhaPeca + cor)));
 }

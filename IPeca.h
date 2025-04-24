@@ -18,7 +18,7 @@ class Conjunto;
 
 class IPeca {
 public:
-    IPeca();
+    IPeca() = default;
 
     IPeca(int cor, Posicao *);
 
@@ -52,9 +52,9 @@ public:
     static bool eIgual(const T &peca1, const B &peca2);
 
 protected:
-    int cor;
-    Posicao *posicao;
-    Conjunto *conjunto;
+    int cor = 0;
+    Posicao *posicao = nullptr;
+    Conjunto *conjunto = nullptr;
 
     static void gerarMovimentosCardeais(std::vector<Movimento> &, bool);
 

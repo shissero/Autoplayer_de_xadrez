@@ -9,6 +9,8 @@
 
 #include <vector>
 
+#include "Peao.h"
+
 
 class Time {
 
@@ -29,14 +31,19 @@ public:
 
     //void definirDama(Dama*);
 
-protected:
+private:
     const int cor;
-    //std::vector<Peao*> peoes;
+    int linhaPeca;
+    std::vector<Peao*> peoes;
     //std::vector<Torre*> torres;
     //std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
     //Dama *dama;
     //Rei *rei;
+
+    void adicionarBisposPadrao();
+
+    void adicionarPeoesPadrao();
 };
 
 

@@ -5,28 +5,21 @@
 
 */
 
-#include<cmath>
-#include<iostream>
-#include<string>
-#include<vector>
-
-#include"Aleatoria.h"
-#include"Conjunto.h"
-#include"Movimento.h"
 #include"Peao.h"
 #include"IPeca.h"
+#include"Movimento.h"
 
-using namespace std;
+#include<vector>
 
 
-Peao::Peao(Posicao posicao, int cor) : IPeca(posicao, cor) {}
+Peao::Peao(int cor, Posicao *posicao) : IPeca(cor, posicao) {}
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-void Peao::gerarMovimentos(vector<Movimento *> *vetor){
-
+void Peao::gerarMovimentos(std::vector<Movimento> &movimentos){
+/*
 	Posicao pos = Posicao(this -> posicao.coluna, this -> posicao.linha + this -> cor);
 
 	if( (1 < this->posicao.linha && this->posicao.linha < 8) && Conjunto::estaVazia(pos)){
@@ -70,54 +63,15 @@ void Peao::gerarMovimentos(vector<Movimento *> *vetor){
 			
 			vetor -> push_back(new Movimento(pos, EN_PASSANT_ATIVA));
 		}
-	}
+	}*/
 }
 
-/*********************************************************************************************************
-**********************************************************************************************************
-*********************************************************************************************************/
+bool Peao::obterPrimeiroMovimento() const {
 
-		
-int Peao::mover(){
-
-	int natureza = this -> IPeca::mover();
-
-
-	if(natureza != -1){
-		
-		this -> primeiroMovimento = false;
-		
-		Conjunto::definirStatusEnPassant(true);
-		
-		switch(natureza){
-		
-			case EN_PASSANT_PASSIVA:
-				Conjunto::definirEnPassant(this);
-				Conjunto::definirStatusEnPassant(false);
-				break;
-				
-			case EN_PASSANT_ATIVA:
-				Conjunto::destruirEnPassant();
-				
-		}
-	}
-	
-	return natureza;
+	return primeiroMovimento;
 }
 
-/*********************************************************************************************************
-**********************************************************************************************************
-*********************************************************************************************************/
+void Peao::definirPrimeiroMovimento(bool valor) {
 
-string Peao::obterClasse(){
-	return "Peao";
-}
-
-/*********************************************************************************************************
-**********************************************************************************************************
-*********************************************************************************************************/
-
-bool Peao::valePromocao(){
-
-	return this -> posicao.linha == 1 || this -> posicao.linha == 8;
+	primeiroMovimento = valor;
 }
