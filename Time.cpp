@@ -18,8 +18,8 @@ Time *Time::criarTimeCompleto(int cor) {
 
     int linha_pecas = 4.5f - cor*(3.5f);
 
-    novo -> adicionarBispo(new Bispo(cor, new Posicao(3, linha_pecas)));
-    novo -> adicionarBispo(new Bispo(cor, new Posicao(6, linha_pecas)));
+    novo -> adicionarBispo(IPeca::criarPeca<Bispo>(cor, new Posicao(2, linha_pecas)));
+    novo -> adicionarBispo(IPeca::criarPeca<Bispo>(cor, new Posicao(5, linha_pecas)));
 
     return novo;
 }
