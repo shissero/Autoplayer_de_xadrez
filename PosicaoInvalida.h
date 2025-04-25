@@ -6,23 +6,23 @@
 #define INVALIDPOSITION_H
 
 #include "IExcecao.h"
+#include "Posicao.h"
 
-#include <exception>
 #include <string>
 
 
-class PosicaoInvalida : public IExcecao {
-
+class PosicaoInvalida : public IExcecao
+{
 public:
+        PosicaoInvalida(int, int);
 
-    PosicaoInvalida(int, int);
+        explicit PosicaoInvalida(Posicao &);
 
-    ~PosicaoInvalida() noexcept override = default;
+        ~PosicaoInvalida() noexcept override = default;
 
 private:
-    std::string message;
+        std::string message;
 };
-
 
 
 #endif //INVALIDPOSITION_H
