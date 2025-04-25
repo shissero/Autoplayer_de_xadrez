@@ -27,8 +27,8 @@ public:
         static constexpr int ROQUE = 4;
 
 private:
-        int natureza;
-        Posicao *destino;
+        int natureza = -1; // Inicializado com valor negativo para garantir que será diferente dos valores de natureza definidos pela classe
+        Posicao *destino = nullptr;
 };
 
 #endif
