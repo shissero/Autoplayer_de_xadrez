@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 25/01/2021
 
 */
 
@@ -9,20 +8,20 @@
 #define CONJUNTO_H_
 
 #include"IPeca.h"
+#include "Mock.h"
 #include"Peao.h"
 #include"Rei.h"
 #include "Time.h"
 
-#include<vector>
-
-using namespace std;
-
 class Conjunto
 {
+        friend Mock;
 public:
         Conjunto() = default;
 
         static Conjunto *criarConjuntoCompleto();
+
+        void definirAliadas(Time*);
 
         bool atacadaPor(Posicao, int);
 
