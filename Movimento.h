@@ -10,33 +10,25 @@
 
 #include"Posicao.h"
 
-#include <string>
 
-#define NEUTRO 0
-#define CAPTURA 1
-#define EN_PASSANT_PASSIVA 2
-#define EN_PASSANT_ATIVA 3
-#define ROQUE 4
+class Movimento
+{
+public:
+        Movimento(int, Posicao *);
 
+        Posicao &obterDestino() const;
 
-class Movimento{
-		
-	public:
-	
-		Movimento(Posicao, int);
+        int obterNatureza() const;
 
-		std::string emString();
-		
-		Posicao obterDestino();
-		
-		int obterNatureza();
+        static constexpr int NEUTRO = 0;
+        static constexpr int CAPTURA = 1;
+        static constexpr int EN_PASSANT_PASSIVA = 2;
+        static constexpr int EN_PASSANT_ATIVA = 3;
+        static constexpr int ROQUE = 4;
 
-		std::string obterNaturezaComoString();
-
-	private:
-	
-		Posicao destino;
-		int natureza;
+private:
+        int natureza;
+        Posicao *destino;
 };
 
 #endif
