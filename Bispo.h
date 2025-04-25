@@ -9,10 +9,13 @@
 
 
 #include"IPeca.h"
+#include "Bispo.h"
 
 class Bispo : public IPeca {
 public:
 	Bispo(int, Posicao*);
+
+	Bispo(int cor, Posicao * posicao, Conjunto * conjunto);
 
 	~Bispo() override = default;
 

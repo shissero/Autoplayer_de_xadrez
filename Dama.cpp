@@ -22,3 +22,6 @@ void Dama::gerarMovimentos(std::vector<Movimento>&){
 
 Dama::Dama(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
+
+Dama::Dama(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+}

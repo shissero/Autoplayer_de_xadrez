@@ -6,14 +6,13 @@
 #define TIME_H
 
 #include "Bispo.h"
-
-#include <vector>
-
 #include "Cavalo.h"
 #include "Dama.h"
 #include "Peao.h"
 #include "Rei.h"
 #include "Torre.h"
+
+#include <vector>
 
 
 class Time {
@@ -21,7 +20,7 @@ class Time {
 public:
     explicit Time(int);
 
-    static Time *criarTimeCompleto(int);
+    static Time *criarTimeCompleto(int, Conjunto *conjunto);
 
     void adicionarBispo(Bispo*);
 
@@ -45,13 +44,13 @@ private:
     Dama *dama;
     Rei *rei;
 
-    void adicionarBisposPadrao();
+    void adicionarBisposPadrao(Conjunto *conjunto);
 
-    void adicionarPeoesPadrao();
+    void adicionarPeoesPadrao(Conjunto *conjunto);
 
-    void adicionarTorresPadrao();
+    void adicionarTorresPadrao(Conjunto *conjunto);
 
-    void adicionarCavalosPadrao();
+    void adicionarCavalosPadrao(Conjunto *conjunto);
 };
 
 

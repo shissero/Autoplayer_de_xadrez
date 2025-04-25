@@ -15,6 +15,8 @@ class Rei : public IPeca {
 public:
 	Rei(int cor, Posicao *posicao);
 
+	Rei(int cor, Posicao *posicao, Conjunto *conjunto);
+
 	~Rei() override = default;
 
 	void gerarMovimentos(std::vector<Movimento> &) override;

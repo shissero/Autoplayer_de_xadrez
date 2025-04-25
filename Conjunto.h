@@ -8,65 +8,65 @@
 #ifndef CONJUNTO_H_
 #define CONJUNTO_H_
 
-#include<vector>
-
 #include"IPeca.h"
 #include"Peao.h"
 #include"Rei.h"
 #include "Time.h"
 
+#include<vector>
+
 using namespace std;
 
-class Conjunto {
+class Conjunto
+{
 public:
+        Conjunto() = default;
 
-    Conjunto() = default;
+        static Conjunto *criarConjuntoCompleto();
 
-    static Conjunto *criarConjuntoCompleto();
+        bool atacadaPor(Posicao, int);
 
-    static bool atacadaPor(Posicao, int);
+        void capturar(Posicao, int);
 
-    static void capturar(Posicao, int);
+        void definirEnPassant(Peao *);
 
-    static void definirEnPassant(Peao *);
+        void definirStatusEnPassant(bool);
 
-    static void definirStatusEnPassant(bool);
+        void destruir(IPeca *);
 
-    static void destruir(IPeca *);
+        void destruir(Posicao, int);
 
-    static void destruir(Posicao, int);
+        void destruirEnPassant();
 
-    static void destruirEnPassant();
+        bool estaVazia(Posicao);
 
-    static bool estaVazia(Posicao);
+        bool inimigaOcupa(int, Posicao);
 
-    static bool inimigaOcupa(int, Posicao);
+        void jogar(int);
 
-    void jogar(int);
+        void limparEnPassant() const;
 
-    static void limparEnPassant();
+        void listarTodasAsPecas();
 
-    static void listarTodasAsPecas();
+        IPeca *promover(Peao *);
 
-    static IPeca *promover(Peao *);
+        Peao *obterEnPassant() const;
 
-    static IPeca *obterEnPassant();
+        Rei obterRei(int);
 
-    static Rei obterRei(int);
+        bool obterStatusEnPassant() const;
 
-    static bool obterStatusEnPassant();
+        bool valeEnPassant(Posicao, int);
 
-    static bool valeEnPassant(Posicao, int);
-
-    static bool xeque(IPeca *);
+        bool xeque(IPeca *);
 
 private:
-    static IPeca *enPassant;
-    static bool statusEnPassant;
-    static bool emXeque;
+        Peao *enPassant = nullptr;
+        bool statusEnPassant = false;
+        bool emXeque = false;
 
-    Time *aliadas;
-    Time *adversarias;
+        Time *aliadas = nullptr;
+        Time *adversarias = nullptr;
 };
 
 #endif

@@ -15,6 +15,8 @@ class Torre : public IPeca {
 public:
     Torre(int cor, Posicao *posicao);
 
+    Torre(int cor, Posicao *posicao, Conjunto *conjunto);
+
     ~Torre() override = default;
 
     void gerarMovimentos(std::vector<Movimento> &) override;
