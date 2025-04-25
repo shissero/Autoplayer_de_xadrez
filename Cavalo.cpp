@@ -99,3 +99,6 @@ void Cavalo::gerarMovimentos(std::vector<Movimento>&){
 
 Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
+
+Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+}

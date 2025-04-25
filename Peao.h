@@ -20,6 +20,8 @@ class Peao : public IPeca {
 public:
     Peao(int cor, Posicao *posicao);
 
+    Peao(int cor, Posicao *posicao, Conjunto *conjunto);
+
     ~Peao() override = default;
 
     void gerarMovimentos(std::vector<Movimento> &) override;

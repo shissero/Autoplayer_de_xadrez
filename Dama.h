@@ -14,6 +14,8 @@ class Dama : public IPeca {
 public:
     Dama(int cor, Posicao *posicao);
 
+    Dama(int cor, Posicao *posicao, Conjunto *conjunto);
+
     ~Dama() override = default;
 
     void gerarMovimentos(std::vector<Movimento> &) override;

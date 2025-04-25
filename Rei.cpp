@@ -13,10 +13,7 @@
 #include"IPeca.h"
 #include"Rei.h"
 
-using namespace std;
-
-Rei::Rei(Posicao posicao, int cor) : IPeca(posicao, cor) {}
-
+/*
 void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 
 	for(int i = 0; i < movimentos -> size(); i++){
@@ -34,62 +31,24 @@ void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 /************************************************************************************************************
 /************************************************************************************************************
 /***********************************************************************************************************/
-
-//void Rei::adicionarRoques(vector<Movimento *> *movimentos){
+/*
+void Rei::adicionarRoques(){
 
 	
-//}
-
+}
+*/
 /************************************************************************************************************
 /************************************************************************************************************
 /***********************************************************************************************************/
 		
-void Rei::gerarMovimentos(vector<Movimento *> *movimentos){
+void Rei::gerarMovimentos(std::vector<Movimento>&){
 
-	this -> IPeca::gerarMovimentosCardeais(movimentos, 1);
-	this -> IPeca::gerarMovimentosColaterais(movimentos, 1);
+	//this -> IPeca::gerarMovimentosCardeais(movimentos, 1);
+	//this -> IPeca::gerarMovimentosColaterais(movimentos, 1);
 }
-		
-int Rei::mover(){
 
-	Log::escrever("\t" + this -> emString() + "\n\n");
-	
-	vector<Movimento *> movimentos;
-	
-	this -> gerarMovimentos( &movimentos );
-	
-	filtrarMovimentos(&movimentos, -this -> cor);
-	
-	//this -> adicionarRoques();
-	
-	if(!movimentos.size()) return -1;
-	else{
-	
-		
-		
-		Log::escrever("\tMovimentos possíveis:\n");
-		
-		for(int i = 0; i < movimentos.size(); i++) Log::escrever("\t\t" + movimentos[i] -> emString() + "\n");
-		
-		Log::escrever("\n");
-	
-		Posicao origem = this -> posicao;
-		
-		Movimento mov = *movimentos[Aleatoria::aleatoria(movimentos.size())];
-		
-		Log::escrever("\t\t\t" + mov.emString() + "\n");
-		
-		this -> mudarPosicao(mov.obterDestino());
-		
-		this -> primeiroMovimento = false;
-		
-		if(mov.obterNatureza() == CAPTURA) Conjunto::destruir(this -> posicao, -(this -> cor));
-		
-		return mov.obterNatureza();
-	}
+Rei::Rei(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
-		
-string Rei::obterClasse(){
 
-	return "Rei";
+Rei::Rei(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
 }

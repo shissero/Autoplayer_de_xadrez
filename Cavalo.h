@@ -17,6 +17,8 @@ class Cavalo : public IPeca {
 public:
 	Cavalo(int cor, Posicao *posicao);
 
+	Cavalo(int cor, Posicao *posicao, Conjunto *conjunto);
+
 	~Cavalo() override = default;
 
 	void gerarMovimentos(std::vector<Movimento> &) override;
