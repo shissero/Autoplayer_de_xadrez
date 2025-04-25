@@ -11,63 +11,114 @@
 
 #include"Log.h"
 
-using namespace std;
+#include"Log.h"
+#include "TimeUtils.h"
 
-Log *Log::log = 0;
+#include <algorithm>
+#include <filesystem>
+#include<fstream>
+#include<iostream>
 
-fstream Log::arquivoLog;
 
-string obterTimeStamp();
+
+std::fstream Log::logFile;
+
+
+std::string Log::logsHome = "logs";
+
+
+/**
+ *
+ * @return uma string de log construída a partir das strings recebidas
+ */
+std::string buildMessage(const std::string &, const std::string &);
 
 /*********************************************************************************************************
 **********************************************************************************************************
 *********************************************************************************************************/
 
-Log::Log(){
+void Log::initLog() {
 
-	string nomeLog = obterTimeStamp() + ".log";
-	
-	Log::arquivoLog.open(nomeLog, ios::out);
+	std::filesystem::create_directory("logs");
+
+	logFile.open(getLogFileName(), std::ios::out);
+
+	if (logFile.is_open()) info("Logfile was created successfully");
+	else {
+
+		throw std::runtime_error("Failed to open log file");
+	}
+}
+
+void Log::info(const std::string &str) {
+
+	write(buildMessage("INFO", str) + "\n");
+}
+
+void Log::debug(const std::string &str) {
+
+	write(buildMessage("DEBUG", str) + "\n");
+}
+
+void Log::warning(const std::string &str) {
+
+	write(buildMessage("WARNING", str) + "\n");
+}
+
+void Log::error(const std::string &str) {
+
+	write(buildMessage("ERROR", str) + "\n");
+}
+
+void Log::fatal(const std::string &str) {
+
+	write(buildMessage("FATAL", str) + "\n");
 }
 
 /*********************************************************************************************************
 **********************************************************************************************************
 *********************************************************************************************************/
 
-void Log::escrever(string str){
+Log::Log()= default;
 
-	Log::obterInstancia() -> arquivoLog << str;
-	Log::obterInstancia() -> arquivoLog.flush();
+/*********************************************************************************************************
+**********************************************************************************************************
+*********************************************************************************************************/
+
+void Log::write(const std::string &str){
+
+	logFile << str;
+	logFile.flush();
 }
 
 /*********************************************************************************************************
 **********************************************************************************************************
 *********************************************************************************************************/
 
-void Log::fechar(){
+void Log::finishLog(){
 
-	if(Log::arquivoLog) Log::arquivoLog.close();
+	if(logFile) logFile.close();
 }
 
 /*********************************************************************************************************
 **********************************************************************************************************
 *********************************************************************************************************/
 
-Log *Log::obterInstancia(){
+std::string buildMessage(const std::string &token, const std::string &message) {
 
-	if(!Log::log) Log::log = new Log;
-	
-	return Log::log;
+	return TimeUtils::getTimeStamp() + "  " + token + ": " + message;
 }
 
-/*********************************************************************************************************
-**********************************************************************************************************
-*********************************************************************************************************/
 
+/**
+ * A timestamp usada no nome do arquivo é obtida a partir da função TimeUtils::getTimeStamp
+ * @return um nome de arquivo de log na forma logs/timestamp.log
+ */
+std::string Log::getLogFileName() {
 
-string obterTimeStamp(){
+	std::string stamp = TimeUtils::getTimeStamp();
 
-	time_t now = time(0);
-	
-	return ctime(&now);
+	std::ranges::replace(stamp, ' ', '_'); // Replaces spaces in the filename with underscores
+
+	return logsHome + "/" + stamp + ".log";
 }
