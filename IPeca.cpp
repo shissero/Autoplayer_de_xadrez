@@ -13,12 +13,12 @@
 #include<vector>
 
 
+
 //IPeca::IPeca() : cor(0), posicao(nullptr), conjunto(nullptr) {}
 
 IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
-                                                             posicao(posicao),
-                                                             conjunto(conjunto)
-{
+                                                                   posicao(posicao),
+                                                                   conjunto(conjunto){
 }
 
 /**********************************************************************************************************

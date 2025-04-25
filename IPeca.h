@@ -37,23 +37,23 @@ public:
 
         const Posicao *obterPosicao() const;
 
-        /*
-         * Checa se as duas tem o mesmo tipo
-         */
-        //virtual bool eIgual(const IPeca&) const;
+    /*
+     * Checa se as duas tem o mesmo tipo
+     */
+	//virtual bool eIgual(const IPeca&) const;
 
-        template<typename T, typename B> /* requires requires
+    template<typename T, typename B>/* requires requires
     {
         std::same_as<T, B> &&
             std::derived_from<T, IPeca> &&
                 std::derived_from<B, IPeca>;
     }*/
-        static bool eIgual(const T &peca1, const B &peca2);
+    static bool eIgual(const T &peca1, const B &peca2);
 
 protected:
-        int cor = 0;
-        Posicao *posicao = nullptr;
-        Conjunto *conjunto = nullptr;
+    int cor = 0;
+    Posicao *posicao = nullptr;
+    Conjunto *conjunto = nullptr;
 
         void gerarMovimentosCardeais(std::vector<Movimento *> &, bool);
 
@@ -61,9 +61,9 @@ protected:
 };
 
 template<typename T> requires std::derived_from<T, IPeca>
-T *IPeca::criarPeca(int cor, Posicao *pos)
-{
-        return new T(cor, pos);
+T * IPeca::criarPeca(int cor, Posicao *pos) {
+
+    return new T(cor, pos);
 }
 
 #endif
