@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 
@@ -19,7 +18,7 @@ public:
 
     ~Torre() override = default;
 
-    void gerarMovimentos(std::vector<Movimento> &) override;
+    void gerarMovimentos(std::vector<Movimento *> &) override;
 
 private:
     bool primeiroMovimento = true;

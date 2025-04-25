@@ -1,11 +1,11 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 08/01/2021
 
 */
 
 #include"Cavalo.h"
+
 #include"Conjunto.h"
 #include"IPeca.h"
 #include"Posicao.h"
@@ -14,7 +14,7 @@
 ********************************************************************************************************
 *******************************************************************************************************/
 
-void Cavalo::gerarMovimentos(std::vector<Movimento>&){
+void Cavalo::gerarMovimentos(std::vector<Movimento *> &){
 	/*
 	// Movimentos na direção crescente das linhas
 	if(this -> posicao.linha < 7){

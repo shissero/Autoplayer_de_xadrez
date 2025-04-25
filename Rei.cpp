@@ -1,17 +1,13 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 25/01/2021
 
 */
-#include<iostream>
-#include <stdexcept>
 
-#include"Aleatoria.h"
-#include"Conjunto.h"
-#include"Log.h"
-#include"IPeca.h"
 #include"Rei.h"
+
+#include"Conjunto.h"
+#include"IPeca.h"
 
 /*
 void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
@@ -41,7 +37,7 @@ void Rei::adicionarRoques(){
 /************************************************************************************************************
 /***********************************************************************************************************/
 		
-void Rei::gerarMovimentos(std::vector<Movimento>&){
+void Rei::gerarMovimentos(std::vector<Movimento *> &){
 
 	//this -> IPeca::gerarMovimentosCardeais(movimentos, 1);
 	//this -> IPeca::gerarMovimentosColaterais(movimentos, 1);
