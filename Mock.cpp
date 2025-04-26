@@ -4,13 +4,12 @@
 
 #include "Mock.h"
 
-#include "AssistenteLogging.h"
 #include "Conjunto.h"
-#include "Log.h"
 #include "Time.h"
 
 Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(2, 0));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
+Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
 Time* Mock::BRANCAS = nullptr;
 Conjunto* Mock::CONJ = nullptr;
 
@@ -52,7 +51,7 @@ void Mock::initMock()
         obterConjunto();
 }
 
-void Mock::testarMovimentosBispoInicial()
+void Mock::testarMovimentosBispo()
 {
         std::vector<Movimento*> movimentos;
 
@@ -61,8 +60,13 @@ void Mock::testarMovimentosBispoInicial()
         movimentos.clear();
 
         BB2.gerarMovimentos(movimentos);
+}
 
-        Log::info(AssistenteLogging::comoString(iBB1));
+void Mock::testarMovimentosTorre()
+{
+        std::vector<Movimento*> movimentos;
 
-        Log::info(AssistenteLogging::comoString(movimentos));
+        TP1.gerarMovimentos(movimentos);
+
+        movimentos.clear();
 }

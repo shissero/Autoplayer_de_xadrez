@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2028
 
 */
 
@@ -25,141 +24,9 @@ IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou)
+void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou) const
 {
-        /*
-                Posicao aux;
-
-                // Gerar movimentos no sentido decrescente das linhas
-                if(this -> posicao.linha > 1){
-
-                        for(int i = this -> posicao.linha - 1; i > 0; i--) {
-
-                                aux = new Posicao(this -> posicao.coluna, i);
-
-                                if(Conjunto::estaVazia(*aux)){
-
-                                        Movimento *mov = new Movimento(*aux, NEUTRO);
-
-                                        movimentos -> push_back(mov);
-                                }
-                                else{
-                                        if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-
-                                                Movimento *mov = new Movimento(*aux, CAPTURA);
-
-                                                movimentos -> push_back(mov);
-                                        }
-
-                                        break;
-                                }
-
-                                if(reiChamou){
-
-                                        break;
-                                }
-
-                        }
-
-                }
-
-                // Gerar movimentos no sentido crescente das linhas
-                if(this -> posicao.linha < 8 ){
-
-                        for(int i = this -> posicao.linha + 1; i < 9; i++){
-
-                                aux = new Posicao(this -> posicao.coluna, i);
-
-                                if(Conjunto::estaVazia(*aux)){
-
-                                        Movimento *mov = new Movimento(*aux, NEUTRO);
-
-                                        movimentos -> push_back(mov);
-                                }
-                                else{
-                                        if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-
-                                                Movimento *mov = new Movimento(*aux, CAPTURA);
-
-                                                movimentos -> push_back(mov);
-                                        }
-
-                                        break;
-                                }
-
-                                if(reiChamou){
-
-                                        break;
-                                }
-
-                        }
-
-                }
-
-                // Gerar movimentos no sentido decrescente das colunas
-                if(this -> posicao.coluna > 1){
-
-                        for(int i = this -> posicao.coluna - 1; i > 0; i--){
-
-                                aux = new Posicao(i, this -> posicao.linha);
-
-                                if(Conjunto::estaVazia(*aux)){
-
-                                        Movimento *mov = new Movimento(*aux, NEUTRO);
-
-                                        movimentos -> push_back(mov);
-                                }
-                                else{
-                                        if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-
-                                                Movimento *mov = new Movimento(*aux, CAPTURA);
-
-                                                movimentos -> push_back(mov);
-                                        }
-
-                                        break;
-                                }
-
-                                if(reiChamou){
-
-                                        break;
-                                }
-
-                        }
-
-                }
-
-                // Gerar movimentos no sentido crescente das colunas
-                if(this -> posicao.coluna < 8){
-
-                        for(int i = this -> posicao.coluna + 1; i < 9; i++){
-
-                                aux = new Posicao(i, this -> posicao.linha);
-
-                                if(Conjunto::estaVazia(*aux)){
-
-                                        Movimento *mov = new Movimento(*aux, NEUTRO);
-
-                                        movimentos -> push_back(mov);
-                                }
-                                else{
-                                        if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-
-                                                Movimento *mov = new Movimento(*aux, CAPTURA);
-                                                movimentos -> push_back(mov);
-                                        }
-
-                                        break;
-                                }
-
-                                if(reiChamou){
-
-                                        break;
-                                }
-
-                        }
-
-                }*/
+        this -> gerarMovs(movimentos, reiChamou, false);
 }
 
 /**********************************************************************************************************
@@ -168,7 +35,12 @@ void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool r
 
 void IPeca::gerarMovimentosColaterais(std::vector<Movimento*> &movimentos, bool reiChamou) const
 {
-        Posicao incr_auxiliar = Posicao(1, 1);
+        this -> gerarMovs(movimentos, reiChamou, true);
+}
+
+void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool discriminante) const
+{
+        Posicao incr_auxiliar = discriminante ? Posicao(1, 1) : Posicao(1, 0);
 
 
         for(int i = 0; i < 4; ++i)

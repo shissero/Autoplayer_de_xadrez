@@ -55,9 +55,11 @@ protected:
     Posicao *posicao = nullptr;
     Conjunto *conjunto = nullptr;
 
-        void gerarMovimentosCardeais(std::vector<Movimento *> &, bool);
+        void gerarMovimentosCardeais(std::vector<Movimento *> &, bool) const;
 
         void gerarMovimentosColaterais(std::vector<Movimento *> &, bool) const;
+
+        void gerarMovs(std::vector<Movimento *> &, bool, bool) const; // TODO: essa função precisa de um nome melhor
 };
 
 template<typename T> requires std::derived_from<T, IPeca>

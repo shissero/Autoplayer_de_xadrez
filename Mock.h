@@ -18,6 +18,7 @@ public:
         // Pecas prefixadas com i- estão em alguma das suas possíveis posições iniciais no tabuleiro
         static Bispo iBB1;
         static Bispo BB2;
+        static Torre TP1;
         static Time *BRANCAS;
         static Conjunto *CONJ;
 
@@ -26,7 +27,9 @@ public:
 
         static void initMock();
 
-        static void testarMovimentosBispoInicial();
+        static void testarMovimentosBispo();
+
+        static void testarMovimentosTorre();
 };
 
 
