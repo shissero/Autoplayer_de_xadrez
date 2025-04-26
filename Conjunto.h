@@ -63,6 +63,8 @@ public:
 
         bool xeque(IPeca *);
 
+        static constexpr int VAZIA = 0;
+
 private:
         Peao *enPassant = nullptr;
         bool statusEnPassant = false;
