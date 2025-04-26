@@ -10,8 +10,8 @@
 
 Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 4));
 Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(6, 5));
-Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(4, 3));
-Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
+Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(1, 2));
+Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 2));
 
 Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(2, 3));
 Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 3));
