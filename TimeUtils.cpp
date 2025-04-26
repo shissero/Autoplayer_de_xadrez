@@ -16,7 +16,7 @@ using date::operator<<;
 
 std::string TimeUtils::getTimeStamp(){
 
-    const std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+    const std::chrono::system_clock::time_point now = std::chrono::system_clock::now(); // TODO: a hora nos nomes dos arquivos de log está errada
 
     std::ostringstream oss;
 
