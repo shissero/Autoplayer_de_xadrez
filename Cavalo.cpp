@@ -35,7 +35,8 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
-                                        n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+                                        if(ocupada == Conjunto::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+                                        else n_mov->definirNatureza(Movimento::CAPTURA);
 
                                         movimentos.emplace_back(n_mov);
 
