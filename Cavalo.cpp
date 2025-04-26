@@ -26,7 +26,7 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
                 {
                         Posicao *n_pos = *posicao + incremento;
 
-                        if(n_pos->validarPosicao())
+                        if(n_pos->validarPosicao()) // TODO: é necessário fazer o gerenciamento de memória dessa função
                         {
                                 auto n_mov = new Movimento(n_pos);
 
@@ -57,7 +57,4 @@ Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao)
 
 Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto)
 {
-}
-
-Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
 }

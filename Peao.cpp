@@ -20,9 +20,6 @@ Peao::Peao(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, c
 {
 }
 
-Peao::Peao(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
-}
-
 /**********************************************************************************************************************
 ***********************************************************************************************************************
 **********************************************************************************************************************/
@@ -34,7 +31,7 @@ void Peao::gerarMovimentos(std::vector<Movimento *> &movimentos)
 
         Posicao *n_pos = *posicao + incremento_front;
 
-        if(n_pos -> validarPosicao())
+        if(n_pos -> validarPosicao()) // TODO: é preciso fazer o gerenciamento de memória desta função
         {
                 movimentos.emplace_back(new Movimento(Movimento::NEUTRO, n_pos));
 
