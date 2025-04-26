@@ -12,12 +12,12 @@
 #include<vector>
 
 
-
 //IPeca::IPeca() : cor(0), posicao(nullptr), conjunto(nullptr) {}
 
 IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
-                                                                   posicao(posicao),
-                                                                   conjunto(conjunto){
+                                                             posicao(posicao),
+                                                             conjunto(conjunto)
+{
 }
 
 /**********************************************************************************************************
@@ -26,16 +26,16 @@ IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
 
 void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou) const
 {
-        this -> gerarMovs(movimentos, reiChamou, false);
+        this->gerarMovs(movimentos, reiChamou, false);
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void IPeca::gerarMovimentosColaterais(std::vector<Movimento*> &movimentos, bool reiChamou) const
+void IPeca::gerarMovimentosColaterais(std::vector<Movimento *> &movimentos, bool reiChamou) const
 {
-        this -> gerarMovs(movimentos, reiChamou, true);
+        this->gerarMovs(movimentos, reiChamou, true);
 }
 
 void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool discriminante) const
@@ -49,32 +49,33 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
 
                 while(true)
                 {
-                        try
-                        {
-                                Posicao *n_pos = *posicao + incremento;
+                        Posicao *n_pos = *posicao + incremento;
+                        bool destruir_n_pos = true;
 
-                                if( !(n_pos -> validarPosicao()) ) // TODO: Esse if com essa negação não tá bem legível. É bom trocar
+                        if(n_pos->validarPosicao())
+                        {
+                                int n_nat = conjunto->ocupadaPor(n_pos);
+
+                                if(n_nat != cor) // Se há uma peça da mesma cor nesta posição, o movimento não deve ser gerado
                                 {
-                                        delete n_pos;
-                                        throw PosicaoInvalida();
+                                        auto n_mov = new Movimento(n_pos);
+
+                                        if(n_nat == cor) n_mov->definirNatureza(Movimento::NEUTRO);
+                                        movimentos.emplace_back(n_mov);
+
+                                        destruir_n_pos = false; // se o movimento é gerado, ele não deve ser destruído
                                 }
-
-                                auto n_mov = new Movimento(n_pos);
-
-                                /*if(this -> estaVazia(n_pos))*/ n_mov ->definirNatureza(Movimento::NEUTRO); movimentos.emplace_back(n_mov);
-                                /*else
-                                {
-                                        if(Conjunto::inimigaOcupa(this->cor, n_pos)) movimentos->push_back(new Movimento(n_pos, CAPTURA));
-                                        break;
-                                }*/
-                                incremento += incr_auxiliar;
                         }
-                        catch(PosicaoInvalida &e)
+
+                        if(destruir_n_pos)
                         {
-                                break;
+                                delete n_pos;
+                                break; // se o último movimento deve ser destruído, quer dizer que não há mais movimentos possíveis nessa direção
                         }
 
                         if(reiChamou) break;
+
+                        incremento += incr_auxiliar;
                 }
 
                 incr_auxiliar.rotacionarEm90();
@@ -102,4 +103,9 @@ int IPeca::obterCor() const
 const Posicao *IPeca::obterPosicao() const
 {
         return posicao;
+}
+
+void IPeca::definirConjunto(Conjunto *con)
+{
+        conjunto = con;
 }

@@ -19,7 +19,7 @@ Time *Time::criarTimeCompleto(int cor, Conjunto *conjunto)
         novo->adicionarPeoesPadrao(conjunto);
         novo->adicionarTorresPadrao(conjunto);
         novo->adicionarCavalosPadrao(conjunto);
-        novo->dama = new Dama(cor, new Posicao(3, novo->linhaPeca), conjunto);
+        novo->damas.emplace_back(new Dama(cor, new Posicao(3, novo->linhaPeca), conjunto));
         novo->rei = new Rei(cor, new Posicao(4, novo->linhaPeca), conjunto);
 
         return novo;
@@ -55,19 +55,28 @@ void Time::adicionarCavalo(Cavalo *cavalo)
         todasPecas.emplace_back(cavalo);
 }
 
+void Time::adicionarDama(Dama *dama)
+{
+        damas.emplace_back(dama);
+        todasPecas.emplace_back(dama);
+}
+
 int Time::obterCor() const
 {
         return cor;
 }
 
-bool Time::ocupada(Posicao &pos) const
+void Time::definirConjunto(Conjunto *conjunto)
+{
+        for(IPeca *p : todasPecas) p->definirConjunto(conjunto);
+}
+
+bool Time::ocupada(Posicao *pos) const
 {
 
         for(IPeca *p : todasPecas)
         {
-
-                // TODO: usei &pos porque o CLion reclamou. Sem isso ele diz que o parâmetro é do tipo Posicao e que tem que ser Posicao*
-                if( (p -> obterPosicao()) == pos ) return true;
+                if( *(p -> obterPosicao()) == pos ) return true;
         }
 
         return false;

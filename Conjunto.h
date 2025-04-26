@@ -25,7 +25,7 @@ public:
 
         void definirAdversarias(Time*);
 
-        int ocupadaPor(Posicao&) const;
+        int ocupadaPor(Posicao *) const;
 
         bool atacadaPor(Posicao, int);
 

@@ -18,10 +18,12 @@ public:
         // Pecas prefixadas com i- estão em alguma das suas possíveis posições iniciais no tabuleiro
         static Bispo iBB1;
         static Bispo BB2;
+        static Bispo BB3;
         static Torre TP1;
-        static Dama DP1;
         static Cavalo CB1;
         static Cavalo CB2;
+
+        static Dama DP1;
         static Peao PP1;
         static Rei RP1;
         static Time *BRANCAS;

@@ -31,7 +31,7 @@ public:
 
     void adicionarCavalo(Cavalo*);
 
-    //void adicionarDama(Dama*);
+    void adicionarDama(Dama*);
 
     //void definirRei(Rei*);
 
@@ -39,7 +39,9 @@ public:
 
     int obterCor() const;
 
-    bool ocupada(Posicao&) const;
+    void definirConjunto(Conjunto*);
+
+    bool ocupada(Posicao *) const;
 
 private:
     int cor = 0;
@@ -48,7 +50,7 @@ private:
     std::vector<Torre*> torres;
     std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
-    Dama *dama = nullptr;
+    std::vector<Dama*> damas;
     Rei *rei = nullptr;
     std::vector<IPeca*> todasPecas;
 

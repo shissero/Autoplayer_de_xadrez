@@ -8,15 +8,15 @@
 #include "Time.h"
 
 
-Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 4));
+Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 2));
 Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(7, 4));
-Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(2, 0));
+Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(4, 4));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 
 Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(5, 0));
-Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
+Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 3));
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
-Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(5, 5));
+Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(0, 6));
 
 Time *Mock::BRANCAS = nullptr;
 Time *Mock::PRETAS = nullptr;
@@ -62,6 +62,7 @@ Time * Mock::obterPretas()
         PRETAS = new Time(IPeca::PRETO);
 
         PRETAS->adicionarPeao(&PP1);
+        PRETAS->adicionarDama(&DP1);
 
         return PRETAS;
 }
@@ -75,11 +76,9 @@ void Mock::testarMovimentosBispo()
 {
         std::vector<Movimento *> movimentos;
 
-        iBB1.gerarMovimentos(movimentos);
-
-        movimentos.clear();
-
         BB2.gerarMovimentos(movimentos);
+
+        return;
 }
 
 void Mock::testarMovimentosTorre()
@@ -97,7 +96,11 @@ void Mock::testarMovimentosDama()
 
         DP1.gerarMovimentos(movimentos);
 
-        movimentos.clear();
+        bool result = false;
+
+        for(Movimento *m : movimentos) if(m->obterNatureza() != Movimento::NEUTRO) result = true;
+
+        return;;
 }
 
 void Mock::testarMovimentosCavalo()
@@ -139,9 +142,9 @@ void Mock::testarTimeOcupada()
 
         Conjunto *con = CONJ;
 
-        int resultado1 = CONJ->ocupadaPor(pos_vazia);
-        int resultado2 = CONJ->ocupadaPor(pos_ali);
-        int resultado3 = CONJ->ocupadaPor(pos_adv);
+        int resultado1 = CONJ->ocupadaPor(&pos_vazia);
+        int resultado2 = CONJ->ocupadaPor(&pos_ali);
+        int resultado3 = CONJ->ocupadaPor(&pos_adv);
 
         return;
 }

@@ -23,15 +23,19 @@ Conjunto *Conjunto::criarConjuntoCompleto(){
 
 void Conjunto::definirAliadas(Time *ali)
 {
+	ali->definirConjunto(this);
+
 	aliadas = ali;
 }
 
 void Conjunto::definirAdversarias(Time *adv)
 {
+	adv->definirConjunto(this);
+
 	adversarias = adv;
 }
 
-int Conjunto::ocupadaPor(Posicao &posicao) const
+int Conjunto::ocupadaPor(Posicao *posicao) const
 {
 	if(aliadas -> ocupada(posicao)) return aliadas->obterCor();
 	if(adversarias -> ocupada(posicao)) return adversarias->obterCor();

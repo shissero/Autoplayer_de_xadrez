@@ -37,6 +37,8 @@ public:
 
         const Posicao *obterPosicao() const;
 
+        void definirConjunto(Conjunto *);
+
     /*
      * Checa se as duas tem o mesmo tipo
      */
