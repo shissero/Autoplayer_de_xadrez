@@ -8,9 +8,9 @@
 #include "Time.h"
 
 
-Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 2));
-Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(7, 4));
-Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(4, 4));
+Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 4));
+Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(6, 5));
+Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(4, 3));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 
 Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(5, 0));
@@ -51,6 +51,7 @@ Time *Mock::obterBrancas()
         BRANCAS->adicionarBispo(&BB2);
 
         BRANCAS->adicionarCavalo(&CB1);
+        BRANCAS->adicionarCavalo(&CB2);
 
         return BRANCAS;
 }
@@ -109,11 +110,7 @@ void Mock::testarMovimentosCavalo()
 
         CB1.gerarMovimentos(movimentos);
 
-        movimentos.clear();
-
-        CB2.gerarMovimentos(movimentos);
-
-        movimentos.clear();
+        return;
 }
 
 void Mock::testarMovimentosPeao()

@@ -25,25 +25,26 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
                 for(int j = 0; j < 4; ++j)
                 {
                         Posicao *n_pos = *posicao + incremento;
+                        bool destruir_n_pos = true;
 
                         if(n_pos->validarPosicao()) // TODO: é necessário fazer o gerenciamento de memória dessa função
                         {
-                                auto n_mov = new Movimento(n_pos);
+                                int ocupada = conjunto->ocupadaPor(n_pos);
 
-                                /*if(this -> estaVazia(n_pos))*/
-                                n_mov->definirNatureza(Movimento::NEUTRO);
-                                movimentos.emplace_back(n_mov);
-                                /*else
+                                if(ocupada != cor)
                                 {
-                                        if(Conjunto::inimigaOcupa(this->cor, n_pos)) movimentos->push_back(new Movimento(n_pos, CAPTURA));
-                                        break;
+                                        auto n_mov = new Movimento(n_pos);
+
+                                        n_mov->definirNatureza(Movimento::NEUTRO);
+
+                                        movimentos.emplace_back(n_mov);
+
+                                        destruir_n_pos = false;
                                 }
-
-                                /*if(reiChamou)
-                                {
-                                        break;
-                                }*/
                         }
+
+                        if(destruir_n_pos) delete n_pos;
+
                         incremento.rotacionarEm90();
                 }
 
