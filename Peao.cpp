@@ -38,7 +38,7 @@ void Peao::gerarMovimentos(std::vector<Movimento *> &movimentos)
         if(ocupada == Conjunto::VAZIA)
         {
 
-                movimentos.emplace_back(new Movimento(Movimento::NEUTRO, n_pos)); // Gera-se o movimento onde o peão anda apenas uma casa
+                movimentos.emplace_back(new Movimento(Movimento::DESLOCAMENTO, n_pos)); // Gera-se o movimento onde o peão anda apenas uma casa
 
 
                 if(primeiroMovimento) // Agora, tenta-se gerar o movimento onde se anda duas
@@ -49,7 +49,7 @@ void Peao::gerarMovimentos(std::vector<Movimento *> &movimentos)
 
                         if(ocupada == Conjunto::VAZIA)
                         {
-                                movimentos.emplace_back(new Movimento(Movimento::NEUTRO, n_pos));
+                                movimentos.emplace_back(new Movimento(Movimento::DESLOCAMENTO, n_pos));
 
                                 destruir_n_pos = false;
                         }

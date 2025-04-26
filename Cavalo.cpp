@@ -35,7 +35,7 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
-                                        n_mov->definirNatureza(Movimento::NEUTRO);
+                                        n_mov->definirNatureza(Movimento::DESLOCAMENTO);
 
                                         movimentos.emplace_back(n_mov);
 

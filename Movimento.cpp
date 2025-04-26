@@ -34,7 +34,7 @@ int Movimento::obterNatureza() const
 
 bool Movimento::validarNatureza(int nat)
 {
-        return !(nat < NEUTRO || nat > ROQUE);
+        return !(nat < DESLOCAMENTO || nat > ROQUE);
 }
 
 void Movimento::definirNatureza(int nat)

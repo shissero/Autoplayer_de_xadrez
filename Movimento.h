@@ -30,7 +30,7 @@ public:
         // valor 6, todos os inteiros de 0 a 6 devem ser atribuídos
         // a alguma natureza. Se essa regra for mudade, é preciso
         // reimplementar a função validarNatureza
-        static constexpr int NEUTRO = 0;
+        static constexpr int DESLOCAMENTO = 0;
         static constexpr int CAPTURA = 1;
         static constexpr int EN_PASSANT_PASSIVA = 2;
         static constexpr int EN_PASSANT_ATIVA = 3;
