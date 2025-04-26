@@ -11,6 +11,8 @@ Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(2, 0));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
+Cavalo Mock::CB1 = Cavalo(IPeca::PRETO, new Posicao(4, 4));
+Cavalo Mock::CB2 = Cavalo(IPeca::PRETO, new Posicao(7, 4));
 Time *Mock::BRANCAS = nullptr;
 Conjunto *Mock::CONJ = nullptr;
 
@@ -76,6 +78,19 @@ void Mock::testarMovimentosDama()
         std::vector<Movimento *> movimentos;
 
         DP1.gerarMovimentos(movimentos);
+
+        movimentos.clear();
+}
+
+void Mock::testarMovimentosCavalo()
+{
+        std::vector<Movimento *> movimentos;
+
+        CB1.gerarMovimentos(movimentos);
+
+        movimentos.clear();
+
+        CB2.gerarMovimentos(movimentos);
 
         movimentos.clear();
 }
