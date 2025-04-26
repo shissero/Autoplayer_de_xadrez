@@ -21,7 +21,7 @@ public:
 	void coluna(int); // Esse métdodo é um setter
 	void linha(int); // Esse métdodo é um setter
 
-	bool operator==(const Posicao&) const;
+	bool operator==(const Posicao*) const;
 
 	Posicao *operator+(const Posicao&) const;
 

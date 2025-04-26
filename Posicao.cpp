@@ -37,10 +37,12 @@ void Posicao::linha(int valor) {
 ************************************************************************************************************************
 ***********************************************************************************************************************/
 
-bool Posicao::operator==(const Posicao &posicao) const {
+// Essa função deve receber um ponteiro.
+// Passar uma referência vai fazer o compilador implicar com ela
+bool Posicao::operator==(const Posicao *posicao) const { // Esse operador só aceita um argumento
 
-	return this->coluna() == posicao.coluna() &&
-		(this->linha() == posicao.linha());
+	return (coordinates[COLUNA] == posicao->coordinates[COLUNA]) &&
+		(coordinates[LINHA] == posicao->coordinates[LINHA]);
 }
 
 Posicao *Posicao::operator+(const Posicao &pos) const {
