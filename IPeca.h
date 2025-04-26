@@ -33,6 +33,8 @@ public:
 
         virtual void gerarMovimentos(std::vector<Movimento *> &) = 0;
 
+        virtual void gerarMovimentosDeAtaque(std::vector<Movimento *> &);
+
         int obterCor() const;
 
         const Posicao *obterPosicao() const;

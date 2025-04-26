@@ -21,12 +21,16 @@ public:
 
         void gerarMovimentos(std::vector<Movimento *> &) override;
 
+        void gerarMovimentosDeAtaque(std::vector<Movimento *> &) override;
+
         bool obterPrimeiroMovimento() const;
 
         void definirPrimeiroMovimento(bool valor);
 
 private:
         bool primeiroMovimento = true;
+
+        void gerarMovimentosCentralizada(std::vector<Movimento *> &, bool);
 };
 
 #endif

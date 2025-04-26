@@ -106,6 +106,11 @@ IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
 {
 }
 
+void IPeca::gerarMovimentosDeAtaque(std::vector<Movimento *> &movimentos) {
+
+        this -> gerarMovimentos(movimentos);
+}
+
 int IPeca::obterCor() const
 {
         return cor;
