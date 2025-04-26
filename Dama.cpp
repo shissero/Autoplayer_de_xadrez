@@ -1,23 +1,23 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 11/01/2021
 
 */
 
-#include"Conjunto.h"
 #include"Dama.h"
+
+#include"Conjunto.h"
 #include"IPeca.h"
 
 /*******************************************************************************************************
 ********************************************************************************************************
 *******************************************************************************************************/
 		
-void Dama::gerarMovimentos(std::vector<Movimento>&){
-/*
-	this -> IPeca::gerarMovimentosCardeais(movimentos, 0);
+void Dama::gerarMovimentos(std::vector<Movimento *> &movimentos){
 
-	this -> IPeca::gerarMovimentosColaterais(movimentos, 0);*/
+	this -> IPeca::gerarMovimentosCardeais(movimentos, false);
+
+	this -> IPeca::gerarMovimentosColaterais(movimentos, false);
 }
 
 Dama::Dama(int cor, Posicao *posicao): IPeca(cor, posicao) {

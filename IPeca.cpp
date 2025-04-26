@@ -1,13 +1,13 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2028
 
 */
 
-#include"Conjunto.h"
-
 #include"IPeca.h"
+
+#include"Conjunto.h"
+#include "PosicaoInvalida.h"
 
 #include<vector>
 
@@ -24,231 +24,61 @@ IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void IPeca::gerarMovimentosCardeais(std::vector<Movimento> &movimentos, bool reiChamou){
-/*
-	Posicao aux;
-
-	// Gerar movimentos no sentido decrescente das linhas
-	if(this -> posicao.linha > 1){
-	
-		for(int i = this -> posicao.linha - 1; i > 0; i--) {
-		
-			aux = new Posicao(this -> posicao.coluna, i);
-			
-			if(Conjunto::estaVazia(*aux)){
-			
-				Movimento *mov = new Movimento(*aux, NEUTRO);
-				
-				movimentos -> push_back(mov);
-			}
-			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-				
-					Movimento *mov = new Movimento(*aux, CAPTURA);
-				
-					movimentos -> push_back(mov);
-				}
-				
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-			
-		}
-		
-	}
-	
-	// Gerar movimentos no sentido crescente das linhas
-	if(this -> posicao.linha < 8 ){
-	
-		for(int i = this -> posicao.linha + 1; i < 9; i++){
-		
-			aux = new Posicao(this -> posicao.coluna, i);
-			
-			if(Conjunto::estaVazia(*aux)){
-			
-				Movimento *mov = new Movimento(*aux, NEUTRO);
-				
-				movimentos -> push_back(mov);
-			}
-			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-				
-					Movimento *mov = new Movimento(*aux, CAPTURA);
-				
-					movimentos -> push_back(mov);
-				}
-				
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-			
-		}
-		
-	}
-	
-	// Gerar movimentos no sentido decrescente das colunas
-	if(this -> posicao.coluna > 1){
-	
-		for(int i = this -> posicao.coluna - 1; i > 0; i--){
-
-			aux = new Posicao(i, this -> posicao.linha);
-			
-			if(Conjunto::estaVazia(*aux)){
-			
-				Movimento *mov = new Movimento(*aux, NEUTRO);
-				
-				movimentos -> push_back(mov);
-			}
-			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-				
-					Movimento *mov = new Movimento(*aux, CAPTURA);
-				
-					movimentos -> push_back(mov);
-				}
-				
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-			
-		}
-		
-	}
-	
-	// Gerar movimentos no sentido crescente das colunas
-	if(this -> posicao.coluna < 8){
-	
-		for(int i = this -> posicao.coluna + 1; i < 9; i++){
-		
-			aux = new Posicao(i, this -> posicao.linha);
-			
-			if(Conjunto::estaVazia(*aux)){
-			
-				Movimento *mov = new Movimento(*aux, NEUTRO);
-				
-				movimentos -> push_back(mov);
-			}
-			else{
-				if(Conjunto::inimigaOcupa(this -> cor, *aux)){
-				
-					Movimento *mov = new Movimento(*aux, CAPTURA);
-					movimentos -> push_back(mov);
-				}
-				
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-			
-		}
-		
-	}*/
+void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou) const
+{
+        this -> gerarMovs(movimentos, reiChamou, false);
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void IPeca::gerarMovimentosColaterais(std::vector<Movimento> &movimentos, bool reiChamou){
-/*
-	// Gerar movimentos na direção Nordeste
-	if(this -> posicao.coluna < 8 && this -> posicao.linha < 8){
-	
-		for(int i = this -> posicao.coluna + 1, j = this -> posicao.linha + 1; i < 9 && j < 9; i++, j++){
-		
-			Posicao pos = Posicao(i, j);
-			
-			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
-			else{
-			
-				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-		}
-	}
-	
-	// Gerar movimentos na direção Noroeste
-	if(this -> posicao.coluna > 1 && this -> posicao.linha < 8){
-	
-		for(int i = this -> posicao.coluna - 1, j = this -> posicao.linha + 1; i > 0 && j < 9; i--, j++){
-		
-			Posicao pos = Posicao(i, j);
-			
-			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
-			else{
-			
-				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-		}
-	}
-	
-	// Gerar movimentos na direção Sudoeste
-	if(this -> posicao.coluna > 1 && this -> posicao.linha > 1){
-	
-		for(int i = this -> posicao.coluna - 1, j = this -> posicao.linha - 1; i > 0 && j > 0; i--, j--){
-		
-			Posicao pos = Posicao(i, j);
-			
-			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
-			else{
-			
-				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-		}
-	}
-	
-	// Gerar movimentos na direção Sudeste
-	if(this -> posicao.coluna < 8 && this -> posicao.linha > 1){
-	
-		for(int i = this -> posicao.coluna + 1, j = this -> posicao.linha - 1; i < 9 && j > 0; i++, j--){
-		
-			Posicao pos = Posicao(i, j);
-			
-			if(Conjunto::estaVazia(pos)) movimentos -> push_back(new Movimento(pos, NEUTRO));
-			else{
-			
-				if(Conjunto::inimigaOcupa(this -> cor, pos)) movimentos -> push_back(new Movimento(pos, CAPTURA));
-				break;
-			}
-			
-			if(reiChamou){
-			
-				break;
-			}
-		}
-	}*/
+void IPeca::gerarMovimentosColaterais(std::vector<Movimento*> &movimentos, bool reiChamou) const
+{
+        this -> gerarMovs(movimentos, reiChamou, true);
+}
+
+void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool discriminante) const
+{
+        Posicao incr_auxiliar = discriminante ? Posicao(1, 1) : Posicao(1, 0);
+
+
+        for(int i = 0; i < 4; ++i)
+        {
+                Posicao incremento = incr_auxiliar;
+
+                while(true)
+                {
+                        try
+                        {
+                                Posicao *n_pos = *posicao + incremento;
+
+                                if( !(n_pos -> validarPosicao()) ) // TODO: Esse if com essa negação não tá bem legível. É bom trocar
+                                {
+                                        delete n_pos;
+                                        throw PosicaoInvalida();
+                                }
+
+                                auto n_mov = new Movimento(n_pos);
+
+                                /*if(this -> estaVazia(n_pos))*/ n_mov ->definirNatureza(Movimento::NEUTRO); movimentos.emplace_back(n_mov);
+                                /*else
+                                {
+                                        if(Conjunto::inimigaOcupa(this->cor, n_pos)) movimentos->push_back(new Movimento(n_pos, CAPTURA));
+                                        break;
+                                }*/
+                                incremento += incr_auxiliar;
+                        }
+                        catch(PosicaoInvalida &e)
+                        {
+                                break;
+                        }
+
+                        if(reiChamou) break;
+                }
+
+                incr_auxiliar.rotacionarEm90();
+        }
 }
 
 /**********************************************************************************************************
@@ -256,20 +86,20 @@ void IPeca::gerarMovimentosColaterais(std::vector<Movimento> &movimentos, bool r
 **********************************************************************************************************/
 
 IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
-                                         posicao(posicao),
-                                         conjunto(nullptr){
+                                         posicao(posicao)
+{
 }
 
-int IPeca::obterCor() const {
-
-	return cor;
+int IPeca::obterCor() const
+{
+        return cor;
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-const Posicao *IPeca::obterPosicao() const {
-
-	return posicao;
+const Posicao *IPeca::obterPosicao() const
+{
+        return posicao;
 }

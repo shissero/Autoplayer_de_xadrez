@@ -1,13 +1,11 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 
 #ifndef REI_H_
 #define REI_H_
-
 
 #include"IPeca.h"
 
@@ -19,7 +17,7 @@ public:
 
 	~Rei() override = default;
 
-	void gerarMovimentos(std::vector<Movimento> &) override;
+	void gerarMovimentos(std::vector<Movimento *> &) override;
 
 private:
     bool primeiroMovimento = true;

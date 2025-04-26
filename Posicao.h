@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 
@@ -24,7 +23,15 @@ public:
 
 	bool operator==(const Posicao&) const;
 
-	Posicao operator+(const Posicao&) const;
+	Posicao *operator+(const Posicao&) const;
+
+	void operator+=(const Posicao&);
+
+	static bool validarPosicao(int, int);
+
+	bool validarPosicao() const;
+
+	void rotacionarEm90();
 
 private:
 

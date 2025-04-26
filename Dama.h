@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 #ifndef DAMA_H_
@@ -18,7 +17,7 @@ public:
 
     ~Dama() override = default;
 
-    void gerarMovimentos(std::vector<Movimento> &) override;
+    void gerarMovimentos(std::vector<Movimento *> &) override;
 };
 
 #endif

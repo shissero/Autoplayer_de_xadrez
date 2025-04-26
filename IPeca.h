@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 
@@ -12,31 +11,31 @@
 #include"Posicao.h"
 
 #include<vector>
-#include <type_traits>
 
 class Conjunto;
 
-class IPeca {
+class IPeca
+{
 public:
-    IPeca() = default;
+        IPeca() = default;
 
-    IPeca(int cor, Posicao *);
+        IPeca(int cor, Posicao *);
 
-    IPeca(int cor, Posicao*, Conjunto*);
+        IPeca(int cor, Posicao *, Conjunto *);
 
-    virtual ~IPeca() = default;
+        virtual ~IPeca() = default;
 
-    static constexpr int BRANCO = 1;
-    static constexpr int PRETO = -1;
+        static constexpr int BRANCO = 1;
+        static constexpr int PRETO = -1;
 
-    template<typename T> requires std::derived_from<T, IPeca>
-    static T *criarPeca(int, Posicao*);
+        template<typename T> requires std::derived_from<T, IPeca>
+        static T *criarPeca(int, Posicao *);
 
-    virtual void gerarMovimentos(std::vector<Movimento> &) = 0;
+        virtual void gerarMovimentos(std::vector<Movimento *> &) = 0;
 
-    int obterCor() const;
+        int obterCor() const;
 
-    const Posicao *obterPosicao() const;
+        const Posicao *obterPosicao() const;
 
     /*
      * Checa se as duas tem o mesmo tipo
@@ -56,9 +55,11 @@ protected:
     Posicao *posicao = nullptr;
     Conjunto *conjunto = nullptr;
 
-    static void gerarMovimentosCardeais(std::vector<Movimento> &, bool);
+        void gerarMovimentosCardeais(std::vector<Movimento *> &, bool) const;
 
-    static void gerarMovimentosColaterais(std::vector<Movimento> &, bool);
+        void gerarMovimentosColaterais(std::vector<Movimento *> &, bool) const;
+
+        void gerarMovs(std::vector<Movimento *> &, bool, bool) const; // TODO: essa função precisa de um nome melhor
 };
 
 template<typename T> requires std::derived_from<T, IPeca>

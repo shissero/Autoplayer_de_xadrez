@@ -1,74 +1,43 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 05/01/2021
 
 */
 
 #include"Movimento.h"
-#include"Posicao.h"
 
-Movimento::Movimento(Posicao destino, int natureza)
-	: destino(destino), natureza(natureza) {}
-	
 /***********************************************************************************************************************
 ************************************************************************************************************************
 ***********************************************************************************************************************/
 
-string Movimento::emString(){
+Movimento::Movimento(int nat, Posicao *des) : natureza(nat), destino(des)
+{
+}
 
-	string str = "";
-	
-	return str + this -> destino.emString() + " " + this -> obterNaturezaComoString();
+Movimento::Movimento(Posicao *destino): destino(destino)
+{
+}
+
+Posicao &Movimento::obterDestino() const
+{
+        return *destino;
 }
 
 /***********************************************************************************************************************
 ************************************************************************************************************************
 ***********************************************************************************************************************/
 
-Posicao Movimento::obterDestino(){
-	
-	return this -> destino;
+int Movimento::obterNatureza() const
+{
+        return natureza;
 }
 
-/***********************************************************************************************************************
-************************************************************************************************************************
-***********************************************************************************************************************/
-
-int Movimento::obterNatureza(){
-
-	return this -> natureza;
+bool Movimento::validarNatureza(int nat)
+{
+        return !(nat < NEUTRO || nat > ROQUE);
 }
 
-/***********************************************************************************************************************
-************************************************************************************************************************
-***********************************************************************************************************************/
-
-string Movimento::obterNaturezaComoString(){
-
-	string natureza = "";
-	
-	switch(this -> natureza){
-	
-		case 0:
-			natureza = "NEUTRO";
-			break;
-			
-		case 1:
-			natureza = "CAPTURA";
-			break;
-			
-		case 2:
-			natureza = "EN_PASSANT_PASSIVA";
-			break;
-			
-		case 3:
-			natureza = "EN_PASSANT_ATIVA";
-			break;
-			
-		case 4:
-			natureza = "ROQUE";
-	}
-	
-	return natureza;
+void Movimento::definirNatureza(int nat)
+{
+        natureza = nat;
 }

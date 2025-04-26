@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 28/09/2024
 
 */
 #ifndef BISPO_H_
@@ -19,7 +18,7 @@ public:
 
 	~Bispo() override = default;
 
-	void gerarMovimentos(std::vector<Movimento> &) override;
+	void gerarMovimentos(std::vector<Movimento *> &) override;
 };
 
 #endif

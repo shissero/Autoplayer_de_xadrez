@@ -1,7 +1,6 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 05/01/2021
 
 */
 
@@ -10,33 +9,38 @@
 
 #include"Posicao.h"
 
-#include <string>
 
-#define NEUTRO 0
-#define CAPTURA 1
-#define EN_PASSANT_PASSIVA 2
-#define EN_PASSANT_ATIVA 3
-#define ROQUE 4
+class Movimento
+{
+public:
+        Movimento() = default;
 
+        Movimento(int, Posicao *);
 
-class Movimento{
-		
-	public:
-	
-		Movimento(Posicao, int);
+        explicit Movimento(Posicao *destino);
 
-		std::string emString();
-		
-		Posicao obterDestino();
-		
-		int obterNatureza();
+        Posicao &obterDestino() const; // TODO: conferir se os getters e setters em outras classes estão seguindo o padrão
 
-		std::string obterNaturezaComoString();
+        int obterNatureza() const;
 
-	private:
-	
-		Posicao destino;
-		int natureza;
+        void definirNatureza(int nat);
+
+        // Constantes de natureza devem ser inteiros positivos.
+        // Não se deve pular inteiros, i.e., se uma naturez tiver
+        // valor 6, todos os inteiros de 0 a 6 devem ser atribuídos
+        // a alguma natureza. Se essa regra for mudade, é preciso
+        // reimplementar a função validarNatureza
+        static constexpr int NEUTRO = 0;
+        static constexpr int CAPTURA = 1;
+        static constexpr int EN_PASSANT_PASSIVA = 2;
+        static constexpr int EN_PASSANT_ATIVA = 3;
+        static constexpr int ROQUE = 4;
+
+private:
+        int natureza = -1; // Inicializado com valor negativo para garantir que será diferente dos valores de natureza definidos pela classe
+        Posicao *destino = nullptr;
+
+        static bool validarNatureza(int);
 };
 
 #endif

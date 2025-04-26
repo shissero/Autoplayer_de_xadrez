@@ -1,11 +1,8 @@
 /*
 
 	Autor: Cícero Augusto Alcântara de Sousa
-	Última edição: 23/04/2024
 
 */
-
-#include "PosicaoInvalida.h"
 
 #include"Posicao.h"
 
@@ -46,14 +43,37 @@ bool Posicao::operator==(const Posicao &posicao) const {
 		(this->linha() == posicao.linha());
 }
 
-Posicao Posicao::operator+(const Posicao &pos) const {
+Posicao *Posicao::operator+(const Posicao &pos) const {
 
-	int aux_coluna = this->coluna() + pos.coluna();
-	int aux_linha = this->linha() + pos.linha();
+		auto copia = new Posicao(*this);
 
-	if (aux_coluna < 0 || aux_coluna > 7 || aux_linha < 0 || aux_linha > 7) { // não é necessário testar se o valor é menor que zero. Se isso acontecer, a variável estoura e seu valor vai ficar acima de 8
+		*copia += pos;
 
-		throw PosicaoInvalida(aux_coluna, aux_linha);
-	}
-	else return {aux_coluna, aux_linha};
+		return copia;
+}
+
+void Posicao::operator+=(const Posicao &pos)
+{
+
+	coordinates[COLUNA] += pos.coordinates[COLUNA];
+	coordinates[LINHA] += pos.coordinates[LINHA];
+}
+
+bool Posicao::validarPosicao(int col, int lin)
+{
+
+	return !(col < 0 || col > 7 || lin < 0 || lin > 7);
+}
+
+bool Posicao::validarPosicao() const
+{
+
+	return !(coordinates[COLUNA] < 0 || coordinates[COLUNA] > 7 || coordinates[LINHA] < 0 || coordinates[LINHA] > 7);
+}
+
+void Posicao::rotacionarEm90()
+{
+	int aux = coordinates[COLUNA];
+	coordinates[COLUNA] = -coordinates[LINHA];
+	coordinates[LINHA] = aux;
 }
