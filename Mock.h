@@ -25,10 +25,13 @@ public:
         static Peao PP1;
         static Rei RP1;
         static Time *BRANCAS;
+        static Time *PRETAS;
         static Conjunto *CONJ;
 
         static Conjunto *obterConjunto();
         static Time *obterBrancas();
+
+        static Time *obterPretas();
 
         static void initMock();
 

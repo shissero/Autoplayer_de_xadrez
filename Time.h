@@ -25,7 +25,7 @@ public:
 
     void adicionarBispo(Bispo*);
 
-    //void adicionarCavalo(Cavalo*);
+    void adicionarCavalo(Cavalo*);
 
     //void adicionarDama(Dama*);
 

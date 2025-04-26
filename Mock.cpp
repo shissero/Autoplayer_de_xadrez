@@ -11,11 +11,12 @@ Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(2, 0));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
-Cavalo Mock::CB1 = Cavalo(IPeca::PRETO, new Posicao(4, 4));
-Cavalo Mock::CB2 = Cavalo(IPeca::PRETO, new Posicao(7, 4));
+Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 4));
+Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(7, 4));
 Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(5, 0));
 Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(5, 5));
 Time *Mock::BRANCAS = nullptr;
+Time *Mock::PRETAS = nullptr;
 Conjunto *Mock::CONJ = nullptr;
 
 Mock::~Mock()
@@ -44,7 +45,18 @@ Time *Mock::obterBrancas()
         BRANCAS->adicionarBispo(&iBB1);
         BRANCAS->adicionarBispo(&BB2);
 
+        BRANCAS->adicionarCavalo(&CB1);
+
         return BRANCAS;
+}
+
+Time * Mock::obterPretas()
+{
+        if(PRETAS != nullptr) return PRETAS;
+
+        PRETAS = new Time(IPeca::PRETO);
+
+        return PRETAS;
 }
 
 void Mock::initMock()
@@ -114,7 +126,7 @@ void Mock::testarMovimentosRei()
 
 void Mock::testarTimeOcupada()
 {
-        Posicao aux_posicao1 = Posicao(2, 0);
+        Posicao aux_posicao1 = Posicao(4, 4);
         Posicao aux_posicao2 = Posicao(0, 4);
 
         bool resultado1 = BRANCAS->ocupada(aux_posicao1);

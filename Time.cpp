@@ -35,6 +35,16 @@ void Time::adicionarBispo(Bispo *bispo)
         todasPecas.emplace_back(bispo);
 }
 
+void Time::adicionarCavalo(Cavalo *cavalo)
+{
+        if(cavalo->obterCor() != cor) throw ExcecaoPecaIntrusa(*cavalo);
+
+        if(cavalos.size() >= 2) throw ExcecaoPecaExcedente();
+
+        cavalos.emplace_back(cavalo);
+        todasPecas.emplace_back(cavalo);
+}
+
 bool Time::ocupada(Posicao &pos) const
 {
 
