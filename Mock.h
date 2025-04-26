@@ -22,6 +22,7 @@ public:
         static Dama DP1;
         static Cavalo CB1;
         static Cavalo CB2;
+        static Peao PP1;
         static Time *BRANCAS;
         static Conjunto *CONJ;
 
@@ -37,6 +38,8 @@ public:
         static void testarMovimentosDama();
 
         static void testarMovimentosCavalo();
+
+        static void testarMovimentosPeao();
 };
 
 

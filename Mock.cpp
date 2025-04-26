@@ -13,6 +13,7 @@ Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
 Cavalo Mock::CB1 = Cavalo(IPeca::PRETO, new Posicao(4, 4));
 Cavalo Mock::CB2 = Cavalo(IPeca::PRETO, new Posicao(7, 4));
+Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(5, 0));
 Time *Mock::BRANCAS = nullptr;
 Conjunto *Mock::CONJ = nullptr;
 
@@ -91,6 +92,15 @@ void Mock::testarMovimentosCavalo()
         movimentos.clear();
 
         CB2.gerarMovimentos(movimentos);
+
+        movimentos.clear();
+}
+
+void Mock::testarMovimentosPeao()
+{
+        std::vector<Movimento *> movimentos;
+
+        PP1.gerarMovimentos(movimentos);
 
         movimentos.clear();
 }
