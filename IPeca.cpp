@@ -53,7 +53,11 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                         {
                                 Posicao *n_pos = *posicao + incremento;
 
-                                if( !(n_pos -> validarPosicao()) ) throw PosicaoInvalida(*n_pos);
+                                if( !(n_pos -> validarPosicao()) ) // TODO: Esse if com essa negação não tá bem legível. É bom trocar
+                                {
+                                        delete n_pos;
+                                        throw PosicaoInvalida();
+                                }
 
                                 auto n_mov = new Movimento(n_pos);
 
@@ -62,11 +66,6 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                                 {
                                         if(Conjunto::inimigaOcupa(this->cor, n_pos)) movimentos->push_back(new Movimento(n_pos, CAPTURA));
                                         break;
-                                }
-
-                                /*if(reiChamou)
-                                {
-                                        break;
                                 }*/
                                 incremento += incr_auxiliar;
                         }
@@ -74,6 +73,8 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                         {
                                 break;
                         }
+
+                        if(reiChamou) break;
                 }
 
                 incr_auxiliar.rotacionarEm90();
@@ -85,8 +86,7 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
 **********************************************************************************************************/
 
 IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
-                                         posicao(posicao),
-                                         conjunto(nullptr)
+                                         posicao(posicao)
 {
 }
 

@@ -14,6 +14,8 @@
 class PosicaoInvalida : public IExcecao
 {
 public:
+        PosicaoInvalida() = default;
+
         PosicaoInvalida(int, int);
 
         explicit PosicaoInvalida(Posicao &);
