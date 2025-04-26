@@ -54,13 +54,13 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
 
                         if(n_pos->validarPosicao())
                         {
-                                int n_nat = conjunto->ocupadaPor(n_pos);
+                                int ocupada = conjunto->ocupadaPor(n_pos);
 
-                                if(n_nat != cor) // Se há uma peça da mesma cor nesta posição, o movimento não deve ser gerado
+                                if(ocupada != cor) // Se há uma peça da mesma cor nesta posição, o movimento não deve ser gerado
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
-                                        if(n_nat == cor) n_mov->definirNatureza(Movimento::NEUTRO);
+                                        if(ocupada == cor) n_mov->definirNatureza(Movimento::NEUTRO);
                                         movimentos.emplace_back(n_mov);
 
                                         destruir_n_pos = false; // se o movimento é gerado, ele não deve ser destruído
