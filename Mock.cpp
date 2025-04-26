@@ -10,12 +10,12 @@
 Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(2, 0));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 4));
-Time* Mock::BRANCAS = nullptr;
-Conjunto* Mock::CONJ = nullptr;
+Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
+Time *Mock::BRANCAS = nullptr;
+Conjunto *Mock::CONJ = nullptr;
 
 Mock::~Mock()
 {
-
 }
 
 Conjunto *Mock::obterConjunto()
@@ -27,20 +27,20 @@ Conjunto *Mock::obterConjunto()
 
                 auto *novo = new Conjunto();
 
-                novo -> definirAliadas(ali);
+                novo->definirAliadas(ali);
 
                 return novo;
         }
 }
 
-Time * Mock::obterBrancas()
+Time *Mock::obterBrancas()
 {
         if(BRANCAS != nullptr) return BRANCAS;
         else
         {
                 Time *bra = new Time(IPeca::BRANCO);
-                bra ->adicionarBispo(&iBB1);
-                bra ->adicionarBispo(&BB2);
+                bra->adicionarBispo(&iBB1);
+                bra->adicionarBispo(&BB2);
 
                 return bra;
         }
@@ -53,7 +53,7 @@ void Mock::initMock()
 
 void Mock::testarMovimentosBispo()
 {
-        std::vector<Movimento*> movimentos;
+        std::vector<Movimento *> movimentos;
 
         iBB1.gerarMovimentos(movimentos);
 
@@ -64,9 +64,18 @@ void Mock::testarMovimentosBispo()
 
 void Mock::testarMovimentosTorre()
 {
-        std::vector<Movimento*> movimentos;
+        std::vector<Movimento *> movimentos;
 
         TP1.gerarMovimentos(movimentos);
+
+        movimentos.clear();
+}
+
+void Mock::testarMovimentosDama()
+{
+        std::vector<Movimento *> movimentos;
+
+        DP1.gerarMovimentos(movimentos);
 
         movimentos.clear();
 }

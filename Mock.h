@@ -19,6 +19,7 @@ public:
         static Bispo iBB1;
         static Bispo BB2;
         static Torre TP1;
+        static Dama DP1;
         static Time *BRANCAS;
         static Conjunto *CONJ;
 
@@ -30,6 +31,8 @@ public:
         static void testarMovimentosBispo();
 
         static void testarMovimentosTorre();
+
+        static void testarMovimentosDama();
 };
 
 
