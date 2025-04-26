@@ -58,3 +58,6 @@ Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao)
 Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto)
 {
 }
+
+Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+}

@@ -8,6 +8,7 @@
 
 
 #include"IPeca.h"
+#include "Bispo.h"
 
 class Bispo : public IPeca {
 public:
