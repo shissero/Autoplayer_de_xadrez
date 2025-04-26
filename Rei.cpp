@@ -37,10 +37,10 @@ void Rei::adicionarRoques(){
 /************************************************************************************************************
 /***********************************************************************************************************/
 		
-void Rei::gerarMovimentos(std::vector<Movimento *> &){
+void Rei::gerarMovimentos(std::vector<Movimento *> &movimentos){
 
-	//this -> IPeca::gerarMovimentosCardeais(movimentos, 1);
-	//this -> IPeca::gerarMovimentosColaterais(movimentos, 1);
+	this -> IPeca::gerarMovimentosCardeais(movimentos, true);
+	this -> IPeca::gerarMovimentosColaterais(movimentos, true);
 }
 
 Rei::Rei(int cor, Posicao *posicao): IPeca(cor, posicao) {
