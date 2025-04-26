@@ -46,21 +46,30 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
         for(int i = 0; i < 4; ++i)
         {
                 Posicao incremento = incr_auxiliar;
+                bool continuar = true;
 
-                while(true)
+                while(continuar)
                 {
                         Posicao *n_pos = *posicao + incremento;
                         bool destruir_n_pos = true;
+
 
                         if(n_pos->validarPosicao())
                         {
                                 int ocupada = conjunto->ocupadaPor(n_pos);
 
-                                if(ocupada != cor) // Se há uma peça da mesma cor nesta posição, o movimento não deve ser gerado
+                                if(ocupada != cor) // O movimento só é gerado se não houver uma peça de mesma naquela posição
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
-                                        if(ocupada == cor) n_mov->definirNatureza(Movimento::NEUTRO);
+                                        // Decide se o movimento é de deslocamento ou captura
+                                        if(ocupada == Conjunto::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+                                        else
+                                        {
+                                                n_mov->definirNatureza(Movimento::CAPTURA);
+                                                continuar = false; // um movimento de captura é o último numa determinada direção
+                                        }
+
                                         movimentos.emplace_back(n_mov);
 
                                         destruir_n_pos = false; // se o movimento é gerado, ele não deve ser destruído
@@ -70,7 +79,10 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                         if(destruir_n_pos)
                         {
                                 delete n_pos;
-                                break; // se o último movimento deve ser destruído, quer dizer que não há mais movimentos possíveis nessa direção
+                                // se a última posição deve ser destruída, quer dizer que,
+                                // ou é inválida, ou tem uma aliada naquela posicao. Nos dois
+                                // casos, não há mais movimentos possíveis nessa direção
+                                break;
                         }
 
                         if(reiChamou) break;
@@ -78,6 +90,9 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                         incremento += incr_auxiliar;
                 }
 
+                // Após gerar todos os movimentos possíveis numa direção,
+                // giramos o incremento em 90º para gerar os movimentos
+                // na próxima direção.
                 incr_auxiliar.rotacionarEm90();
         }
 }

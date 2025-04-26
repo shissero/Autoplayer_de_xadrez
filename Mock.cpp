@@ -13,7 +13,7 @@ Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(6, 5));
 Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(4, 3));
 Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 3));
 
-Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(6, 4));
+Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(2, 2));
 Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 3));
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
 Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(0, 6));
@@ -99,7 +99,7 @@ void Mock::testarMovimentosDama()
 
         bool result = false;
 
-        for(Movimento *m : movimentos) if(m->obterNatureza() != Movimento::NEUTRO) result = true;
+        for(Movimento *m : movimentos) if(m->obterNatureza() != Movimento::DESLOCAMENTO) result = true;
 
         return;;
 }
