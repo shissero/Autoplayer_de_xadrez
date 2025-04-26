@@ -9,6 +9,7 @@
 #include "Cavalo.h"
 #include "Dama.h"
 #include "Peao.h"
+#include "Posicao.h"
 #include "Rei.h"
 #include "Torre.h"
 
@@ -34,15 +35,18 @@ public:
 
     //void definirDama(Dama*);
 
+    bool ocupada(Posicao&) const;
+
 private:
     const int cor;
-    int linhaPeca;
+    int linhaPeca = 0;
     std::vector<Peao*> peoes;
     std::vector<Torre*> torres;
     std::vector<Cavalo*> cavalos;
     std::vector<Bispo*> bispos;
-    Dama *dama;
-    Rei *rei;
+    Dama *dama = nullptr;
+    Rei *rei = nullptr;
+    std::vector<IPeca*> todasPecas;
 
     void adicionarBisposPadrao(Conjunto *conjunto);
 

@@ -25,29 +25,26 @@ Mock::~Mock()
 Conjunto *Mock::obterConjunto()
 {
         if(CONJ != nullptr) return CONJ;
-        else
-        {
-                Time *ali = obterBrancas();
 
-                auto *novo = new Conjunto();
+        obterBrancas();
 
-                novo->definirAliadas(ali);
+        CONJ = new Conjunto();
 
-                return novo;
-        }
+        CONJ->definirAliadas(BRANCAS);
+
+        return CONJ;
 }
 
 Time *Mock::obterBrancas()
 {
         if(BRANCAS != nullptr) return BRANCAS;
-        else
-        {
-                Time *bra = new Time(IPeca::BRANCO);
-                bra->adicionarBispo(&iBB1);
-                bra->adicionarBispo(&BB2);
 
-                return bra;
-        }
+        BRANCAS = new Time(IPeca::BRANCO);
+
+        BRANCAS->adicionarBispo(&iBB1);
+        BRANCAS->adicionarBispo(&BB2);
+
+        return BRANCAS;
 }
 
 void Mock::initMock()
@@ -113,4 +110,15 @@ void Mock::testarMovimentosRei()
         RP1.gerarMovimentos(movimentos);
 
         movimentos.clear();
+}
+
+void Mock::testarTimeOcupada()
+{
+        Posicao aux_posicao1 = Posicao(2, 0);
+        Posicao aux_posicao2 = Posicao(0, 4);
+
+        bool resultado1 = BRANCAS->ocupada(aux_posicao1);
+        bool resultado2 = BRANCAS->ocupada(aux_posicao2);
+
+        return;
 }

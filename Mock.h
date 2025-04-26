@@ -43,6 +43,8 @@ public:
         static void testarMovimentosPeao();
 
         static void testarMovimentosRei();
+
+        static void testarTimeOcupada();
 };
 
 

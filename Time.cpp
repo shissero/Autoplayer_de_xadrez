@@ -2,14 +2,10 @@
 // Created by cicero on 23/04/25.
 //
 
-#include "ExcecaoPecaExcedente.h"
-#include "ExcecaoPecaIntrusa.h"
-
 #include "Time.h"
 
-#include <iostream>
-
-#include "Cavalo.h"
+#include "ExcecaoPecaExcedente.h"
+#include "ExcecaoPecaIntrusa.h"
 
 Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor * (3.5f))
 {
@@ -36,6 +32,20 @@ void Time::adicionarBispo(Bispo *bispo)
         if(bispos.size() >= 2) throw ExcecaoPecaExcedente();
 
         bispos.emplace_back(bispo);
+        todasPecas.emplace_back(bispo);
+}
+
+bool Time::ocupada(Posicao &pos) const
+{
+
+        for(IPeca *p : todasPecas)
+        {
+
+                // TODO: usei &pos porque o CLion reclamou. Sem isso ele diz que o parâmetro é do tipo Posicao e que tem que ser Posicao*
+                if( (p -> obterPosicao()) == pos ) return true;
+        }
+
+        return false;
 }
 
 void Time::adicionarBisposPadrao(Conjunto *conjunto)
