@@ -25,6 +25,16 @@ Time *Time::criarTimeCompleto(int cor, Conjunto *conjunto)
         return novo;
 }
 
+void Time::adicionarPeao(Peao *peao)
+{
+        if(peao->obterCor() != cor) throw ExcecaoPecaIntrusa(*peao);
+
+        if(peoes.size() >= 2) throw ExcecaoPecaExcedente();
+
+        peoes.emplace_back(peao);
+        todasPecas.emplace_back(peao);
+}
+
 void Time::adicionarBispo(Bispo *bispo)
 {
         if(bispo->obterCor() != cor) throw ExcecaoPecaIntrusa(*bispo);
@@ -43,6 +53,11 @@ void Time::adicionarCavalo(Cavalo *cavalo)
 
         cavalos.emplace_back(cavalo);
         todasPecas.emplace_back(cavalo);
+}
+
+int Time::obterCor() const
+{
+        return cor;
 }
 
 bool Time::ocupada(Posicao &pos) const

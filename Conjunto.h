@@ -23,6 +23,10 @@ public:
 
         void definirAliadas(Time*);
 
+        void definirAdversarias(Time*);
+
+        int ocupadaPor(Posicao&) const;
+
         bool atacadaPor(Posicao, int);
 
         void capturar(Posicao, int);

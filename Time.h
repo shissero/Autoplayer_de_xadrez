@@ -23,22 +23,26 @@ public:
 
     static Time *criarTimeCompleto(int, Conjunto *conjunto);
 
+    void adicionarPeao(Peao*);
+
+    void adicionarTorre(Torre*);
+
     void adicionarBispo(Bispo*);
 
     void adicionarCavalo(Cavalo*);
 
     //void adicionarDama(Dama*);
 
-    //void adicionarPeao(Peao*);
-
     //void definirRei(Rei*);
 
     //void definirDama(Dama*);
 
+    int obterCor() const;
+
     bool ocupada(Posicao&) const;
 
 private:
-    const int cor;
+    int cor = 0;
     int linhaPeca = 0;
     std::vector<Peao*> peoes;
     std::vector<Torre*> torres;

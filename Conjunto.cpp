@@ -26,6 +26,19 @@ void Conjunto::definirAliadas(Time *ali)
 	aliadas = ali;
 }
 
+void Conjunto::definirAdversarias(Time *adv)
+{
+	adversarias = adv;
+}
+
+int Conjunto::ocupadaPor(Posicao &posicao) const
+{
+	if(aliadas -> ocupada(posicao)) return aliadas->obterCor();
+	if(adversarias -> ocupada(posicao)) return adversarias->obterCor();
+
+	return 0;
+}
+
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************
