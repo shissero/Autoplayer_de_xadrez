@@ -6,20 +6,13 @@
 */
 
 
-#include "Bispo.h"
-#include "Conjunto.h"
-#include "ExcecaoPecaIntrusa.h"
-#include "Posicao.h"
-#include "PosicaoInvalida.h"
-#include "Time.h"
-
-#include <iostream>
+#include "Aplicacao.h"
 
 int main(){
 
-	Posicao posicao = Posicao(1, 2);
+	Aplicacao::iniciar();
 
-	auto conjunto = Conjunto::criarConjuntoCompleto();
+	Aplicacao::finalizar();
 
 	return 0;
 }
