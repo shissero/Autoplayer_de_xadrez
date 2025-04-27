@@ -19,6 +19,12 @@ public:
 	~Cavalo() override = default;
 
 	void gerarMovimentos(std::vector<Movimento *> &) override;
+
+	void gerarCasasAtacadas(std::vector<Movimento *> &) override;
+
+private:
+
+	void gerarMovimentosCavalo(std::vector<Movimento *> &movimentos, bool);
 };
 
 #endif

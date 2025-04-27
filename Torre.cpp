@@ -19,5 +19,10 @@ Torre::Torre(int cor, Posicao *posicao, Tabuleiro *tabuleiro): IPeca(cor, posica
 
 void Torre::gerarMovimentos(std::vector<Movimento *> &movimentos){
 
-	this -> IPeca::gerarMovimentosCardeais(movimentos, false);
+	this -> IPeca::gerarMovimentosCardeais(movimentos, false, false);
+}
+
+void Torre::gerarCasasAtacadas(std::vector<Movimento *> &movimentos)
+{
+	this -> IPeca::gerarMovimentosCardeais(movimentos, false, true);
 }

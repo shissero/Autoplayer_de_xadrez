@@ -7,12 +7,10 @@
 #include"IPeca.h"
 
 #include"Tabuleiro.h"
-#include "PosicaoInvalida.h"
 
 #include<vector>
 
 
-//IPeca::IPeca() : cor(0), posicao(nullptr), tabuleiro(nullptr) {}
 
 IPeca::IPeca(int cor, Posicao *posicao, Tabuleiro *tabuleiro): cor(cor),
                                                              posicao(posicao),
@@ -20,25 +18,30 @@ IPeca::IPeca(int cor, Posicao *posicao, Tabuleiro *tabuleiro): cor(cor),
 {
 }
 
-/**********************************************************************************************************
-***********************************************************************************************************
-**********************************************************************************************************/
-
-void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou) const
+IPeca::~IPeca()
 {
-        this->gerarMovs(movimentos, reiChamou, false);
+        delete posicao;
 }
 
 /**********************************************************************************************************
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-void IPeca::gerarMovimentosColaterais(std::vector<Movimento *> &movimentos, bool reiChamou) const
+void IPeca::gerarMovimentosCardeais(std::vector<Movimento *> &movimentos, bool reiChamou, bool ataque) const
 {
-        this->gerarMovs(movimentos, reiChamou, true);
+        this->gerarMovs(movimentos, reiChamou, false, ataque);
 }
 
-void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool discriminante) const
+/**********************************************************************************************************
+***********************************************************************************************************
+**********************************************************************************************************/
+
+void IPeca::gerarMovimentosColaterais(std::vector<Movimento *> &movimentos, bool reiChamou, bool ataque) const
+{
+        this->gerarMovs(movimentos, reiChamou, true, ataque);
+}
+
+void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool discriminante, bool ataque) const
 {
         Posicao incr_auxiliar = discriminante ? Posicao(1, 1) : Posicao(1, 0);
 
@@ -58,7 +61,22 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
                         {
                                 int ocupada = tabuleiro->ocupadaPor(n_pos);
 
-                                if(ocupada != cor) // O movimento só é gerado se não houver uma peça de mesma naquela posição
+                                // Se a casa está ocupada por uma aliada
+                                // e a funçnção está gerando movimentos
+                                // de ataque, a posição é incluída.
+                                if(ocupada == cor && ataque)
+                                {
+                                        auto n_mov = new Movimento(n_pos);
+
+                                        n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+
+                                        continuar = false; // não há mais movimentos possíveis nessa direção
+
+                                        movimentos.emplace_back(n_mov);
+
+                                        destruir_n_pos = false;
+                                }
+                                else if(ocupada != cor) // O movimento só é gerado se não houver uma peça de mesma naquela posição
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
@@ -106,11 +124,6 @@ IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
 {
 }
 
-void IPeca::gerarCasasAtacadas(std::vector<Movimento *> &movimentos) {
-
-        this -> gerarMovimentos(movimentos);
-}
-
 int IPeca::obterCor() const
 {
         return cor;
@@ -123,6 +136,13 @@ int IPeca::obterCor() const
 const Posicao *IPeca::obterPosicao() const
 {
         return posicao;
+}
+
+void IPeca::definirPosicao(Posicao *pos, bool destruir)
+{
+        if(destruir) delete posicao;
+
+        posicao = pos;
 }
 
 void IPeca::definirTabuleiro(Tabuleiro *con)

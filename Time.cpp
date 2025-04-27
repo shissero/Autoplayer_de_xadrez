@@ -11,6 +11,11 @@ Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor * (3.5f))
 {
 }
 
+Time::~Time()
+{
+    for(IPeca *p : todasPecas) delete p;
+}
+
 Time *Time::criarTimeCompleto(int cor, Tabuleiro *tabuleiro)
 {
         Time *novo = new Time(cor);
@@ -74,7 +79,7 @@ void Time::definirTabuleiro(Tabuleiro *tabuleiro)
 bool Time::ocupada(Posicao *pos) const
 {
 
-        for(IPeca *p : todasPecas)
+        for(IPeca *p : todasPecas) // TODO: quando tiver mais tempo, veja como implementar essa e outras funçoes usando any_fo
         {
                 if( *(p -> obterPosicao()) == pos ) return true;
         }

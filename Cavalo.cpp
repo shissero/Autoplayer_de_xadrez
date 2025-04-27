@@ -9,13 +9,12 @@
 #include"Tabuleiro.h"
 #include"IPeca.h"
 #include"Posicao.h"
-#include "PosicaoInvalida.h"
 
 /*******************************************************************************************************
 ********************************************************************************************************
 *******************************************************************************************************/
 
-void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
+void Cavalo::gerarMovimentosCavalo(std::vector<Movimento *> &movimentos, bool ataque)
 {
         Posicao incremento = Posicao(2, 1);
 
@@ -27,11 +26,24 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
                         Posicao *n_pos = *posicao + incremento;
                         bool destruir_n_pos = true;
 
-                        if(n_pos->validarPosicao()) // TODO: é necessário fazer o gerenciamento de memória dessa função
+                        if(n_pos->validarPosicao())
                         {
                                 int ocupada = tabuleiro->ocupadaPor(n_pos);
 
-                                if(ocupada != cor)
+                                // Se a casa está ocupada por uma aliada
+                                // e a funçnção está gerando movimentos
+                                // de ataque, a posição é incluída.
+                                if(ocupada == cor && ataque)
+                                {
+                                        auto n_mov = new Movimento(n_pos);
+
+                                        n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+
+                                        movimentos.emplace_back(n_mov);
+
+                                        destruir_n_pos = false;
+                                }
+                                else if(ocupada != cor)
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
@@ -51,6 +63,16 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
 
                 incremento = Posicao(2, -1);
         }
+}
+
+void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
+{
+        this->gerarMovimentosCavalo(movimentos, false);
+}
+
+void Cavalo::gerarCasasAtacadas(std::vector<Movimento *> &movimentos)
+{
+        this->gerarMovimentosCavalo(movimentos, true);
 }
 
 Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao)

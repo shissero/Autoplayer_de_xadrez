@@ -20,6 +20,8 @@ public:
 
     void gerarMovimentos(std::vector<Movimento *> &) override;
 
+    void gerarCasasAtacadas(std::vector<Movimento *> &) override;
+
 private:
     bool primeiroMovimento = true;
 };

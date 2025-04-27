@@ -22,5 +22,11 @@ Bispo::Bispo(int cor, Posicao *posicao, Tabuleiro *tabuleiro) : IPeca(cor, posic
 
 void Bispo::gerarMovimentos(std::vector<Movimento *> &movimentos) {
 
-	this -> gerarMovimentosColaterais(movimentos, false);
+	this -> gerarMovimentosColaterais(movimentos, false, false);
+}
+
+void Bispo::gerarCasasAtacadas(std::vector<Movimento *> &movimentos)
+{
+
+	this -> gerarMovimentosColaterais(movimentos, false, true);
 }

@@ -23,7 +23,7 @@ public:
 
         IPeca(int cor, Posicao *, Tabuleiro *);
 
-        virtual ~IPeca() = default;
+        virtual ~IPeca();
 
         static constexpr int BRANCO = 1;
         static constexpr int PRETO = -1;
@@ -33,11 +33,13 @@ public:
 
         virtual void gerarMovimentos(std::vector<Movimento *> &) = 0;
 
-        virtual void gerarCasasAtacadas(std::vector<Movimento *> &);
+        virtual void gerarCasasAtacadas(std::vector<Movimento *> &) = 0;
 
         int obterCor() const;
 
         const Posicao *obterPosicao() const;
+
+    void definirPosicao(Posicao*, bool);
 
         void definirTabuleiro(Tabuleiro *);
 
@@ -59,11 +61,11 @@ protected:
     Posicao *posicao = nullptr;
     Tabuleiro *tabuleiro = nullptr;
 
-        void gerarMovimentosCardeais(std::vector<Movimento *> &, bool) const;
+        void gerarMovimentosCardeais(std::vector<Movimento *> &, bool, bool ataque) const;
 
-        void gerarMovimentosColaterais(std::vector<Movimento *> &, bool) const;
+        void gerarMovimentosColaterais(std::vector<Movimento *> &, bool, bool ataque) const;
 
-        void gerarMovs(std::vector<Movimento *> &, bool, bool) const; // TODO: essa função precisa de um nome melhor
+        void gerarMovs(std::vector<Movimento *> &, bool, bool, bool ataque) const; // TODO: essa função precisa de um nome melhor
 };
 
 template<typename T> requires std::derived_from<T, IPeca>

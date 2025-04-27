@@ -18,6 +18,8 @@ public:
     ~Dama() override = default;
 
     void gerarMovimentos(std::vector<Movimento *> &) override;
+
+    void gerarCasasAtacadas(std::vector<Movimento *> &) override;
 };
 
 #endif
