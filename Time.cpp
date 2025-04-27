@@ -11,16 +11,16 @@ Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor * (3.5f))
 {
 }
 
-Time *Time::criarTimeCompleto(int cor, Conjunto *conjunto)
+Time *Time::criarTimeCompleto(int cor, Tabuleiro *tabuleiro)
 {
         Time *novo = new Time(cor);
 
-        novo->adicionarBisposPadrao(conjunto);
-        novo->adicionarPeoesPadrao(conjunto);
-        novo->adicionarTorresPadrao(conjunto);
-        novo->adicionarCavalosPadrao(conjunto);
-        novo->damas.emplace_back(new Dama(cor, new Posicao(3, novo->linhaPeca), conjunto));
-        novo->rei = new Rei(cor, new Posicao(4, novo->linhaPeca), conjunto);
+        novo->adicionarBisposPadrao(tabuleiro);
+        novo->adicionarPeoesPadrao(tabuleiro);
+        novo->adicionarTorresPadrao(tabuleiro);
+        novo->adicionarCavalosPadrao(tabuleiro);
+        novo->damas.emplace_back(new Dama(cor, new Posicao(3, novo->linhaPeca), tabuleiro));
+        novo->rei = new Rei(cor, new Posicao(4, novo->linhaPeca), tabuleiro);
 
         return novo;
 }
@@ -66,9 +66,9 @@ int Time::obterCor() const
         return cor;
 }
 
-void Time::definirConjunto(Conjunto *conjunto)
+void Time::definirTabuleiro(Tabuleiro *tabuleiro)
 {
-        for(IPeca *p : todasPecas) p->definirConjunto(conjunto);
+        for(IPeca *p : todasPecas) p->definirTabuleiro(tabuleiro);
 }
 
 bool Time::ocupada(Posicao *pos) const
@@ -82,25 +82,25 @@ bool Time::ocupada(Posicao *pos) const
         return false;
 }
 
-void Time::adicionarBisposPadrao(Conjunto *conjunto)
+void Time::adicionarBisposPadrao(Tabuleiro *tabuleiro)
 {
-        bispos.emplace_back(new Bispo(cor, new Posicao(2, linhaPeca), conjunto));
-        bispos.emplace_back(new Bispo(cor, new Posicao(5, linhaPeca), conjunto));
+        bispos.emplace_back(new Bispo(cor, new Posicao(2, linhaPeca), tabuleiro));
+        bispos.emplace_back(new Bispo(cor, new Posicao(5, linhaPeca), tabuleiro));
 }
 
-void Time::adicionarPeoesPadrao(Conjunto *conjunto)
+void Time::adicionarPeoesPadrao(Tabuleiro *tabuleiro)
 {
-        for(int i = 0; i < 8; i++) peoes.emplace_back(new Peao(cor, new Posicao(i, linhaPeca + cor), conjunto));
+        for(int i = 0; i < 8; i++) peoes.emplace_back(new Peao(cor, new Posicao(i, linhaPeca + cor), tabuleiro));
 }
 
-void Time::adicionarTorresPadrao(Conjunto *conjunto)
+void Time::adicionarTorresPadrao(Tabuleiro *tabuleiro)
 {
-        torres.emplace_back(new Torre(cor, new Posicao(0, linhaPeca), conjunto));
-        torres.emplace_back(new Torre(cor, new Posicao(7, linhaPeca), conjunto));
+        torres.emplace_back(new Torre(cor, new Posicao(0, linhaPeca), tabuleiro));
+        torres.emplace_back(new Torre(cor, new Posicao(7, linhaPeca), tabuleiro));
 }
 
-void Time::adicionarCavalosPadrao(Conjunto *conjunto)
+void Time::adicionarCavalosPadrao(Tabuleiro *tabuleiro)
 {
-        cavalos.emplace_back(new Cavalo(cor, new Posicao(1, linhaPeca), conjunto));
-        cavalos.emplace_back(new Cavalo(cor, new Posicao(6, linhaPeca), conjunto));
+        cavalos.emplace_back(new Cavalo(cor, new Posicao(1, linhaPeca), tabuleiro));
+        cavalos.emplace_back(new Cavalo(cor, new Posicao(6, linhaPeca), tabuleiro));
 }

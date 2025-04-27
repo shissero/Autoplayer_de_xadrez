@@ -13,7 +13,7 @@ class Rei : public IPeca {
 public:
 	Rei(int cor, Posicao *posicao);
 
-	Rei(int cor, Posicao *posicao, Conjunto *conjunto);
+	Rei(int cor, Posicao *posicao, Tabuleiro *tabuleiro);
 
 	~Rei() override = default;
 

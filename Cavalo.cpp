@@ -6,7 +6,7 @@
 
 #include"Cavalo.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include"IPeca.h"
 #include"Posicao.h"
 #include "PosicaoInvalida.h"
@@ -29,13 +29,13 @@ void Cavalo::gerarMovimentos(std::vector<Movimento *> &movimentos)
 
                         if(n_pos->validarPosicao()) // TODO: é necessário fazer o gerenciamento de memória dessa função
                         {
-                                int ocupada = conjunto->ocupadaPor(n_pos);
+                                int ocupada = tabuleiro->ocupadaPor(n_pos);
 
                                 if(ocupada != cor)
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
-                                        if(ocupada == Conjunto::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+                                        if(ocupada == Tabuleiro::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
                                         else n_mov->definirNatureza(Movimento::CAPTURA);
 
                                         movimentos.emplace_back(n_mov);
@@ -57,6 +57,6 @@ Cavalo::Cavalo(int cor, Posicao *posicao): IPeca(cor, posicao)
 {
 }
 
-Cavalo::Cavalo(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto)
+Cavalo::Cavalo(int cor, Posicao *posicao, Tabuleiro *tabuleiro): IPeca(cor, posicao, tabuleiro)
 {
 }

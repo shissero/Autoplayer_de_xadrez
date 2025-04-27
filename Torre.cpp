@@ -6,7 +6,7 @@
 
 #include"Torre.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include"IPeca.h"
 
 #include<vector>
@@ -14,7 +14,7 @@
 Torre::Torre(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
 
-Torre::Torre(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+Torre::Torre(int cor, Posicao *posicao, Tabuleiro *tabuleiro): IPeca(cor, posicao, tabuleiro) {
 }
 
 void Torre::gerarMovimentos(std::vector<Movimento *> &movimentos){

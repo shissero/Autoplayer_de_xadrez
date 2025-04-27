@@ -12,7 +12,7 @@
 
 #include<vector>
 
-class Conjunto;
+class Tabuleiro;
 
 class IPeca
 {
@@ -21,7 +21,7 @@ public:
 
         IPeca(int cor, Posicao *);
 
-        IPeca(int cor, Posicao *, Conjunto *);
+        IPeca(int cor, Posicao *, Tabuleiro *);
 
         virtual ~IPeca() = default;
 
@@ -33,13 +33,13 @@ public:
 
         virtual void gerarMovimentos(std::vector<Movimento *> &) = 0;
 
-        virtual void gerarMovimentosDeAtaque(std::vector<Movimento *> &);
+        virtual void gerarCasasAtacadas(std::vector<Movimento *> &);
 
         int obterCor() const;
 
         const Posicao *obterPosicao() const;
 
-        void definirConjunto(Conjunto *);
+        void definirTabuleiro(Tabuleiro *);
 
     /*
      * Checa se as duas tem o mesmo tipo
@@ -57,7 +57,7 @@ public:
 protected:
     int cor = 0;
     Posicao *posicao = nullptr;
-    Conjunto *conjunto = nullptr;
+    Tabuleiro *tabuleiro = nullptr;
 
         void gerarMovimentosCardeais(std::vector<Movimento *> &, bool) const;
 

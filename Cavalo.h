@@ -14,7 +14,7 @@ class Cavalo : public IPeca {
 public:
 	Cavalo(int cor, Posicao *posicao);
 
-	Cavalo(int cor, Posicao *posicao, Conjunto *conjunto);
+	Cavalo(int cor, Posicao *posicao, Tabuleiro *tabuleiro);
 
 	~Cavalo() override = default;
 

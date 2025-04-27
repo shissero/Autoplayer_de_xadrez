@@ -6,7 +6,7 @@
 
 #include"Peao.h"
 
-#include "Conjunto.h"
+#include "Tabuleiro.h"
 #include"IPeca.h"
 #include"Movimento.h"
 
@@ -16,7 +16,7 @@
 Peao::Peao(int cor, Posicao *posicao) : IPeca(cor, posicao) {
 }
 
-Peao::Peao(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+Peao::Peao(int cor, Posicao *posicao, Tabuleiro *tabuleiro): IPeca(cor, posicao, tabuleiro) {
 }
 
 /**********************************************************************************************************************
@@ -35,9 +35,9 @@ void Peao::gerarMovimentosCentralizada(std::vector<Movimento *> &movimentos, boo
         // Não é feita validação da posição dos movimentos de deslocamento.
         // Esse tipo de movimento é impossível de ser inválido, pois quando
         // o peão chega na borda, é promovido.
-        int ocupada = conjunto->ocupadaPor(n_pos);
+        int ocupada = tabuleiro->ocupadaPor(n_pos);
 
-        if (ocupada == Conjunto::VAZIA) {
+        if (ocupada == Tabuleiro::VAZIA) {
             movimentos.emplace_back(new Movimento(Movimento::DESLOCAMENTO, n_pos));
             // Gera-se o movimento onde o peão anda apenas uma casa
 
@@ -46,9 +46,9 @@ void Peao::gerarMovimentosCentralizada(std::vector<Movimento *> &movimentos, boo
             {
                 n_pos = *n_pos + incremento_front;
 
-                ocupada = conjunto->ocupadaPor(n_pos);
+                ocupada = tabuleiro->ocupadaPor(n_pos);
 
-                if (ocupada == Conjunto::VAZIA) {
+                if (ocupada == Tabuleiro::VAZIA) {
                     movimentos.emplace_back(new Movimento(Movimento::DESLOCAMENTO, n_pos));
 
                     destruir_n_pos = false; // Se o movimento é possível, a posição não é destruída
@@ -66,9 +66,9 @@ void Peao::gerarMovimentosCentralizada(std::vector<Movimento *> &movimentos, boo
         n_pos = *posicao + incremento_ataque;
 
         if (n_pos->validarPosicao()) {
-            int ocupada = conjunto->ocupadaPor(n_pos);
+            int ocupada = tabuleiro->ocupadaPor(n_pos);
 
-            if (ocupada != cor && ocupada != Conjunto::VAZIA) {
+            if (ocupada != cor && ocupada != Tabuleiro::VAZIA) {
                 movimentos.emplace_back(new Movimento(Movimento::CAPTURA, n_pos));
 
                 destruir_n_pos = false;
@@ -85,7 +85,7 @@ void Peao::gerarMovimentos(std::vector<Movimento *> &movimentos) {
     this->gerarMovimentosCentralizada(movimentos, false);
 }
 
-void Peao::gerarMovimentosDeAtaque(std::vector<Movimento *> &movimentos) {
+void Peao::gerarCasasAtacadas(std::vector<Movimento *> &movimentos) {
     this->gerarMovimentosCentralizada(movimentos, true);
 }
 

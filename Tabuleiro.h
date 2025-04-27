@@ -4,8 +4,8 @@
 
 */
 
-#ifndef CONJUNTO_H_
-#define CONJUNTO_H_
+#ifndef TABULEIRO_H_
+#define TABULEIRO_H_
 
 #include"IPeca.h"
 #include "Mock.h"
@@ -13,13 +13,13 @@
 #include"Rei.h"
 #include "Time.h"
 
-class Conjunto
+class Tabuleiro
 {
         friend Mock;
 public:
-        Conjunto() = default;
+        Tabuleiro() = default;
 
-        static Conjunto *criarConjuntoCompleto();
+        static Tabuleiro *criarTabuleiroCompleto();
 
         void definirAliadas(Time*);
 

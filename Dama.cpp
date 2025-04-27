@@ -6,7 +6,7 @@
 
 #include"Dama.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include"IPeca.h"
 
 /*******************************************************************************************************
@@ -23,5 +23,5 @@ void Dama::gerarMovimentos(std::vector<Movimento *> &movimentos){
 Dama::Dama(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
 
-Dama::Dama(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+Dama::Dama(int cor, Posicao *posicao, Tabuleiro *tabuleiro): IPeca(cor, posicao, tabuleiro) {
 }

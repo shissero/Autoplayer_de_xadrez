@@ -6,17 +6,17 @@
 
 #include"IPeca.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include "PosicaoInvalida.h"
 
 #include<vector>
 
 
-//IPeca::IPeca() : cor(0), posicao(nullptr), conjunto(nullptr) {}
+//IPeca::IPeca() : cor(0), posicao(nullptr), tabuleiro(nullptr) {}
 
-IPeca::IPeca(int cor, Posicao *posicao, Conjunto *conjunto): cor(cor),
+IPeca::IPeca(int cor, Posicao *posicao, Tabuleiro *tabuleiro): cor(cor),
                                                              posicao(posicao),
-                                                             conjunto(conjunto)
+                                                             tabuleiro(tabuleiro)
 {
 }
 
@@ -56,14 +56,14 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
 
                         if(n_pos->validarPosicao())
                         {
-                                int ocupada = conjunto->ocupadaPor(n_pos);
+                                int ocupada = tabuleiro->ocupadaPor(n_pos);
 
                                 if(ocupada != cor) // O movimento só é gerado se não houver uma peça de mesma naquela posição
                                 {
                                         auto n_mov = new Movimento(n_pos);
 
                                         // Decide se o movimento é de deslocamento ou captura
-                                        if(ocupada == Conjunto::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
+                                        if(ocupada == Tabuleiro::VAZIA) n_mov->definirNatureza(Movimento::DESLOCAMENTO);
                                         else
                                         {
                                                 n_mov->definirNatureza(Movimento::CAPTURA);
@@ -106,7 +106,7 @@ IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
 {
 }
 
-void IPeca::gerarMovimentosDeAtaque(std::vector<Movimento *> &movimentos) {
+void IPeca::gerarCasasAtacadas(std::vector<Movimento *> &movimentos) {
 
         this -> gerarMovimentos(movimentos);
 }
@@ -125,7 +125,7 @@ const Posicao *IPeca::obterPosicao() const
         return posicao;
 }
 
-void IPeca::definirConjunto(Conjunto *con)
+void IPeca::definirTabuleiro(Tabuleiro *con)
 {
-        conjunto = con;
+        tabuleiro = con;
 }

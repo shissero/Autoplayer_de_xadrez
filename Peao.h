@@ -15,13 +15,13 @@ class Peao : public IPeca
 public:
         Peao(int cor, Posicao *posicao);
 
-        Peao(int cor, Posicao *posicao, Conjunto *conjunto);
+        Peao(int cor, Posicao *posicao, Tabuleiro *tabuleiro);
 
         ~Peao() override = default;
 
         void gerarMovimentos(std::vector<Movimento *> &) override;
 
-        void gerarMovimentosDeAtaque(std::vector<Movimento *> &) override;
+        void gerarCasasAtacadas(std::vector<Movimento *> &) override;
 
         bool obterPrimeiroMovimento() const;
 

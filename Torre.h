@@ -14,7 +14,7 @@ class Torre : public IPeca {
 public:
     Torre(int cor, Posicao *posicao);
 
-    Torre(int cor, Posicao *posicao, Conjunto *conjunto);
+    Torre(int cor, Posicao *posicao, Tabuleiro *tabuleiro);
 
     ~Torre() override = default;
 

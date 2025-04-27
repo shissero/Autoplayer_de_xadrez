@@ -13,7 +13,7 @@ class Dama : public IPeca {
 public:
     Dama(int cor, Posicao *posicao);
 
-    Dama(int cor, Posicao *posicao, Conjunto *conjunto);
+    Dama(int cor, Posicao *posicao, Tabuleiro *tabuleiro);
 
     ~Dama() override = default;
 

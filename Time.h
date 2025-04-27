@@ -21,7 +21,7 @@ class Time {
 public:
     explicit Time(int);
 
-    static Time *criarTimeCompleto(int, Conjunto *conjunto);
+    static Time *criarTimeCompleto(int, Tabuleiro *tabuleiro);
 
     void adicionarPeao(Peao*);
 
@@ -39,7 +39,7 @@ public:
 
     int obterCor() const;
 
-    void definirConjunto(Conjunto*);
+    void definirTabuleiro(Tabuleiro*);
 
     bool ocupada(Posicao *) const;
 
@@ -54,13 +54,13 @@ private:
     Rei *rei = nullptr;
     std::vector<IPeca*> todasPecas;
 
-    void adicionarBisposPadrao(Conjunto *conjunto);
+    void adicionarBisposPadrao(Tabuleiro *tabuleiro);
 
-    void adicionarPeoesPadrao(Conjunto *conjunto);
+    void adicionarPeoesPadrao(Tabuleiro *tabuleiro);
 
-    void adicionarTorresPadrao(Conjunto *conjunto);
+    void adicionarTorresPadrao(Tabuleiro *tabuleiro);
 
-    void adicionarCavalosPadrao(Conjunto *conjunto);
+    void adicionarCavalosPadrao(Tabuleiro *tabuleiro);
 };
 
 

@@ -28,9 +28,9 @@ public:
         static Rei RP1;
         static Time *BRANCAS;
         static Time *PRETAS;
-        static Conjunto *CONJ;
+        static Tabuleiro *CONJ;
 
-        static Conjunto *obterConjunto();
+        static Tabuleiro *obterTabuleiro();
         static Time *obterBrancas();
 
         static Time *obterPretas();

@@ -6,14 +6,14 @@
 
 #include"Bispo.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include"IPeca.h"
 
 Bispo::Bispo(int cor, Posicao *posicao)
 		: IPeca(cor, posicao) {
 }
 
-Bispo::Bispo(int cor, Posicao *posicao, Conjunto *conjunto) : IPeca(cor, posicao, conjunto) {
+Bispo::Bispo(int cor, Posicao *posicao, Tabuleiro *tabuleiro) : IPeca(cor, posicao, tabuleiro) {
 }
 
 /*******************************************************************************************************

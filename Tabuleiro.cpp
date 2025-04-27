@@ -3,39 +3,39 @@
 	Autor: Cícero Augusto Alcântara de Sousa
 
 */
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 
 
 /*********************************************************************************************
 **********************************************************************************************
 **********************************************************************************************/
-	
-Conjunto *Conjunto::criarConjuntoCompleto(){
 
-	auto conjunto = new Conjunto();
+Tabuleiro *Tabuleiro::criarTabuleiroCompleto(){
 
-	conjunto -> aliadas = Time::criarTimeCompleto(IPeca::BRANCO, conjunto);
+	auto tabuleiro = new Tabuleiro();
 
-	conjunto -> adversarias = Time::criarTimeCompleto(IPeca::PRETO, conjunto);
+	tabuleiro -> aliadas = Time::criarTimeCompleto(IPeca::BRANCO, tabuleiro);
 
-	return conjunto;
+	tabuleiro -> adversarias = Time::criarTimeCompleto(IPeca::PRETO, tabuleiro);
+
+	return tabuleiro;
 }
 
-void Conjunto::definirAliadas(Time *ali)
+void Tabuleiro::definirAliadas(Time *ali)
 {
-	ali->definirConjunto(this);
+	ali->definirTabuleiro(this);
 
 	aliadas = ali;
 }
 
-void Conjunto::definirAdversarias(Time *adv)
+void Tabuleiro::definirAdversarias(Time *adv)
 {
-	adv->definirConjunto(this);
+	adv->definirTabuleiro(this);
 
 	adversarias = adv;
 }
 
-int Conjunto::ocupadaPor(Posicao *posicao) const
+int Tabuleiro::ocupadaPor(Posicao *posicao) const
 {
 	if(aliadas -> ocupada(posicao)) return aliadas->obterCor();
 	if(adversarias -> ocupada(posicao)) return adversarias->obterCor();
@@ -47,12 +47,12 @@ int Conjunto::ocupadaPor(Posicao *posicao) const
 **********************************************************************************************
 *********************************************************************************************
 
-bool Conjunto::atacadaPor(Posicao pos, int cor){
+bool Tabuleiro::atacadaPor(Posicao pos, int cor){
 
-	vector<IPeca *> aux = cor == PRETO ? Conjunto::Pretas : Conjunto::Brancas;
-	
+	vector<IPeca *> aux = cor == PRETO ? Tabuleiro::Pretas : Tabuleiro::Brancas;
+
 	for(IPeca *p : aux) if(p -> movimentoEPossivel(pos)) return true;
-	
+
 	return false;
 }
 
@@ -60,14 +60,14 @@ bool Conjunto::atacadaPor(Posicao pos, int cor){
 **********************************************************************************************
 **********************************************************************************************
 
-void Conjunto::capturar(Posicao posicao, int cor){
-	
+void Tabuleiro::capturar(Posicao posicao, int cor){
+
 	vector<IPeca *> *aux = cor==BRANCO ? &Pretas : &Brancas;
-	
+
 	for(IPeca *a : *aux){
 		if(a -> obterPosicao() == posicao) destruir(a);
 	}
-	
+
 	return;
 }
 
@@ -75,13 +75,13 @@ void Conjunto::capturar(Posicao posicao, int cor){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::definirEnPassant(Peao *peao){ enPassant = peao; }
+void Tabuleiro::definirEnPassant(Peao *peao){ enPassant = peao; }
 
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::definirStatusEnPassant(bool status){
+void Tabuleiro::definirStatusEnPassant(bool status){
 
 	statusEnPassant = status;
 }
@@ -90,7 +90,7 @@ void Conjunto::definirStatusEnPassant(bool status){
 **********************************************************************************************
 *********************************************************************************************
 
-void Conjunto::destruir(IPeca *peca){
+void Tabuleiro::destruir(IPeca *peca){
 
 	vector<IPeca *> *aux = peca -> obterCor() == BRANCO ? &Brancas : &Pretas;
 
@@ -111,7 +111,7 @@ void Conjunto::destruir(IPeca *peca){
 **********************************************************************************************
 *********************************************************************************************
 
-void Conjunto::destruir(Posicao pos, int cor){
+void Tabuleiro::destruir(Posicao pos, int cor){
 
 	vector<IPeca *> *aux = cor == PRETO ? &Pretas : &Brancas;
 
@@ -133,9 +133,9 @@ void Conjunto::destruir(Posicao pos, int cor){
 *********************************************************************************************
 
 
-void Conjunto::destruirEnPassant(){
+void Tabuleiro::destruirEnPassant(){
 
-	Conjunto::destruir(enPassant);
+	Tabuleiro::destruir(enPassant);
 
 	enPassant = 0;
 }
@@ -144,9 +144,9 @@ void Conjunto::destruirEnPassant(){
 **********************************************************************************************
 *********************************************************************************************
 
-bool Conjunto::estaVazia(Posicao casa){
-	for(IPeca *a : Conjunto::Brancas) if(a->obterPosicao() == casa) return false;
-	for(IPeca *a : Conjunto::Pretas) if(a->obterPosicao() == casa) return false;
+bool Tabuleiro::estaVazia(Posicao casa){
+	for(IPeca *a : Tabuleiro::Brancas) if(a->obterPosicao() == casa) return false;
+	for(IPeca *a : Tabuleiro::Pretas) if(a->obterPosicao() == casa) return false;
 
 	return true;
 }
@@ -155,9 +155,9 @@ bool Conjunto::estaVazia(Posicao casa){
 **********************************************************************************************
 *********************************************************************************************
 
-bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
+bool Tabuleiro::inimigaOcupa(int cor, Posicao posicao){
 
-	vector<IPeca *> *aux = cor == BRANCO ? &Conjunto::Pretas : &Conjunto::Brancas;
+	vector<IPeca *> *aux = cor == BRANCO ? &Tabuleiro::Pretas : &Tabuleiro::Brancas;
 
 	for(IPeca* a : *aux) if(a->obterPosicao() == posicao) return true;
 
@@ -168,7 +168,7 @@ bool Conjunto::inimigaOcupa(int cor, Posicao posicao){
 **********************************************************************************************
 *********************************************************************************************
 
-void Conjunto::jogar(int cor){
+void Tabuleiro::jogar(int cor){
 
 	if(cor == BRANCO){
 
@@ -181,23 +181,23 @@ void Conjunto::jogar(int cor){
 
 	Log::escrever("Tabuleiro:\n\n");
 
-	for(int i = 0; i < Conjunto::Brancas.size(); i++){
+	for(int i = 0; i < Tabuleiro::Brancas.size(); i++){
 
-		Log::escrever(Conjunto::Brancas[i] -> emString() + "\n");
+		Log::escrever(Tabuleiro::Brancas[i] -> emString() + "\n");
 	}
 
-	for(int i = 0; i < Conjunto::Pretas.size(); i++){
+	for(int i = 0; i < Tabuleiro::Pretas.size(); i++){
 
-		Log::escrever(Conjunto::Pretas[i] -> emString() + "\n");
+		Log::escrever(Tabuleiro::Pretas[i] -> emString() + "\n");
 	}
 
 	Log::escrever("\n");
 
 
 
-	vector<IPeca *> pecasJogaveis = cor == BRANCO ? Conjunto::Brancas : Conjunto::Pretas;
+	vector<IPeca *> pecasJogaveis = cor == BRANCO ? Tabuleiro::Brancas : Tabuleiro::Pretas;
 
-	if(Conjunto::obterStatusEnPassant()) Conjunto::limparEnPassant();
+	if(Tabuleiro::obterStatusEnPassant()) Tabuleiro::limparEnPassant();
 
 	while(pecasJogaveis.size()){
 
@@ -214,12 +214,12 @@ void Conjunto::jogar(int cor){
 
 				Log::escrever("Peao promovido ");
 
-				aux = Conjunto::promover(dynamic_cast<Peao *>(aux));
+				aux = Tabuleiro::promover(dynamic_cast<Peao *>(aux));
 
 				Log::escrever(aux -> emString() + "\n\n");
 			}
 
-			emXeque = Conjunto::xeque(aux);
+			emXeque = Tabuleiro::xeque(aux);
 
 			if(emXeque) Log::escrever("EM XEQUE\n\n");
 			else Log::escrever("NO XEQUE\n\n");
@@ -234,13 +234,13 @@ void Conjunto::jogar(int cor){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Conjunto::limparEnPassant() const { enPassant == nullptr;}
+void Tabuleiro::limparEnPassant() const { enPassant == nullptr;}
 
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************
 
-void Conjunto::listarTodasAsPecas(){
+void Tabuleiro::listarTodasAsPecas(){
 	for(IPeca *a : Brancas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
 	for(IPeca *a : Pretas) std::cout << a->obterClasse() << " " << a->obterCorComoString() << " " << a->obterPosicao().emString() << std::endl;
 
@@ -251,7 +251,7 @@ void Conjunto::listarTodasAsPecas(){
 **********************************************************************************************
 *********************************************************************************************
 
-IPeca *Conjunto::promover(Peao *peao){
+IPeca *Tabuleiro::promover(Peao *peao){
 
 	vector<IPeca *> *aux = peao -> obterCor() == BRANCO ? &Brancas : &Pretas;
 
@@ -275,7 +275,7 @@ IPeca *Conjunto::promover(Peao *peao){
 			break;
 	}
 
-	Conjunto::destruir(peao);
+	Tabuleiro::destruir(peao);
 
 	return (*aux)[aux -> size() - 1];
 }
@@ -284,13 +284,13 @@ IPeca *Conjunto::promover(Peao *peao){
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-Peao *Conjunto::obterEnPassant() const { return enPassant; }
+Peao *Tabuleiro::obterEnPassant() const { return enPassant; }
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
 **********************************************************************************************************************
 
-Rei Conjunto::obterRei(int cor){
+Rei Tabuleiro::obterRei(int cor){
 
 	vector<IPeca *> aux = cor == PRETO ? Pretas : Brancas;
 
@@ -301,7 +301,7 @@ Rei Conjunto::obterRei(int cor){
 ***********************************************************************************************************************
 **********************************************************************************************************************/
 
-bool Conjunto::obterStatusEnPassant() const {
+bool Tabuleiro::obterStatusEnPassant() const {
 
 	return statusEnPassant;
 }
@@ -310,7 +310,7 @@ bool Conjunto::obterStatusEnPassant() const {
 ***********************************************************************************************************************
 **********************************************************************************************************************
 
-bool Conjunto::valeEnPassant(Posicao posicao, int cor){
+bool Tabuleiro::valeEnPassant(Posicao posicao, int cor){
 
 	if(!enPassant) return false;
 	else{
@@ -326,7 +326,7 @@ bool Conjunto::valeEnPassant(Posicao posicao, int cor){
 ***********************************************************************************************************************
 **********************************************************************************************************************
 
-bool Conjunto::xeque(IPeca *peca){
+bool Tabuleiro::xeque(IPeca *peca){
 
 	Log::escrever("Xeque peca recebeu ");
 	Log::escrever(peca -> emString() + "\n\n");

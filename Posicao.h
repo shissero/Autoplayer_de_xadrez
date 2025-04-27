@@ -27,9 +27,9 @@ public:
 
 	void operator+=(const Posicao&);
 
-	static bool validarPosicao(int, int); // TODO: mover esta função para a classe Conjunto ou AdministradorDeJogo
+	static bool validarPosicao(int, int); // TODO: mover esta função para a classe Tabuleiro ou AdministradorDeJogo
 
-	bool validarPosicao() const; // TODO: mover esta função para a classe Conjunto ou AdministradorDeJogo
+	bool validarPosicao() const; // TODO: mover esta função para a classe Tabuleiro ou AdministradorDeJogo
 
 	void rotacionarEm90();
 

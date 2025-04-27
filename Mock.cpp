@@ -20,20 +20,20 @@ Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(0, 6));
 
 Time *Mock::BRANCAS = nullptr;
 Time *Mock::PRETAS = nullptr;
-Conjunto *Mock::CONJ = nullptr;
+Tabuleiro *Mock::CONJ = nullptr;
 
 Mock::~Mock()
 {
 }
 
-Conjunto *Mock::obterConjunto()
+Tabuleiro *Mock::obterTabuleiro()
 {
         if(CONJ != nullptr) return CONJ;
 
         obterBrancas();
         obterPretas();
 
-        CONJ = new Conjunto();
+        CONJ = new Tabuleiro();
 
         CONJ->definirAliadas(BRANCAS);
         CONJ->definirAdversarias(PRETAS);
@@ -70,14 +70,14 @@ Time * Mock::obterPretas()
 
 void Mock::initMock()
 {
-        obterConjunto();
+        obterTabuleiro();
 }
 
 void Mock::testarMovimentosBispo()
 {
         std::vector<Movimento *> movimentos;
 
-        BB2.gerarMovimentos(movimentos);
+        BB2.gerarCasasAtacadas(movimentos);
 
         return;
 }
@@ -143,7 +143,7 @@ void Mock::testarTimeOcupada()
         auto pos_ali = Posicao(4, 4);
         auto pos_adv = Posicao(5, 0);
 
-        Conjunto *con = CONJ;
+        Tabuleiro *con = CONJ;
 
         int resultado1 = CONJ->ocupadaPor(&pos_vazia);
         int resultado2 = CONJ->ocupadaPor(&pos_ali);

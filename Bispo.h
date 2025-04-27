@@ -14,7 +14,7 @@ class Bispo : public IPeca {
 public:
 	Bispo(int, Posicao*);
 
-	Bispo(int cor, Posicao * posicao, Conjunto * conjunto);
+	Bispo(int cor, Posicao * posicao, Tabuleiro * tabuleiro);
 
 	~Bispo() override = default;
 

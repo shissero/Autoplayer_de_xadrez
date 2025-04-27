@@ -6,7 +6,7 @@
 
 #include"Rei.h"
 
-#include"Conjunto.h"
+#include"Tabuleiro.h"
 #include"IPeca.h"
 
 /*
@@ -16,7 +16,7 @@ void filtrarMovimentos(vector<Movimento *> *movimentos, int adversaria){
 	
 		Posicao pos = (*movimentos)[i] -> obterDestino();
 		
-		if(Conjunto::atacadaPor(pos, adversaria)){
+		if(Tabuleiro::atacadaPor(pos, adversaria)){
 		
 			delete (*movimentos)[i];
 			movimentos -> erase(movimentos -> begin() + i);
@@ -46,5 +46,6 @@ void Rei::gerarMovimentos(std::vector<Movimento *> &movimentos){
 Rei::Rei(int cor, Posicao *posicao): IPeca(cor, posicao) {
 }
 
-Rei::Rei(int cor, Posicao *posicao, Conjunto *conjunto): IPeca(cor, posicao, conjunto) {
+Rei::Rei(int cor, Posicao *posicao, Tabuleiro *tabuleiro
+): IPeca(cor, posicao, tabuleiro) {
 }
