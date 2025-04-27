@@ -17,7 +17,7 @@ public:
 
         // Pecas prefixadas com i- estão em alguma das suas possíveis posições iniciais no tabuleiro
         static Torre *TP1;
-        static Dama DP1;
+        static Dama *DP1;
         static Peao *PP1;
         static Rei RP1;
 
@@ -36,6 +36,8 @@ public:
         static void obterTabTestMovsBispo();
 
         static void obterTabTestMovsTorre();
+
+        static void obterTabTestMovsDama();
 
         static void finalizarMock();
         static Time *obterBrancas();

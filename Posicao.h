@@ -15,6 +15,8 @@ public:
 
 	Posicao(int, int);
 
+	~Posicao() = default;
+
 	int coluna() const; // Esse métdodo é um getter
 	int linha() const; // Esse métdodo é um getter
 

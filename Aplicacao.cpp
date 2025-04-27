@@ -10,10 +10,11 @@
 void Aplicacao::iniciar()
 {
         Log::initLog();
-        Mock::initMock();
+        //Mock::initMock();
 }
 
 void Aplicacao::finalizar()
 {
+        Mock::finalizarMock();
         Log::finishLog();
 }

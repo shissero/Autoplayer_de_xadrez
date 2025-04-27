@@ -4,7 +4,6 @@
 
 #include "Mock.h"
 
-#include "Log.h"
 #include "Tabuleiro.h"
 #include "Time.h"
 
@@ -16,15 +15,16 @@ Bispo *Mock::BB2 = nullptr;
 
 Peao *Mock::PP1 = nullptr;
 Torre *Mock::TP1 = nullptr;
-Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
+Dama *Mock::DP1 = nullptr;
 Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(0, 6));
 
 Time *Mock::BRANCAS = nullptr;
 Time *Mock::PRETAS = nullptr;
 Tabuleiro *Mock::TAB = nullptr;
 
-void altTabBispoAli();
 void altTabTorreAdv();
+void altTabBispoAli();
+void altTabDamaAli();
 
 
 Tabuleiro *Mock::obterTabuleiro()
@@ -99,6 +99,35 @@ void Mock::obterTabTestMovsTorre()
         TAB->definirAdversarias(BRANCAS);
 }
 
+void Mock::obterTabTestMovsDama()
+{
+
+        //Instanciando as peças necessárias ao teste
+        DP1 = new Dama(IPeca::PRETO, new Posicao(3, 3));
+        PP1 = new Peao(IPeca::PRETO, new Posicao(2, 6));
+
+        CB1 = new Cavalo(IPeca::BRANCO, new Posicao(5, 4));
+
+
+        // Instanciando o time de aliadas
+        BRANCAS = new Time(IPeca::BRANCO);
+
+        // Adicione as peças ao time
+        BRANCAS->adicionarCavalo(CB1);
+
+        // Instancie as adversárias
+        PRETAS = new Time(IPeca::PRETO);
+
+        // Adicione peças
+        PRETAS->adicionarPeao(PP1);
+        PRETAS->adicionarDama(DP1);
+
+        TAB = new Tabuleiro();
+
+        TAB->definirAliadas(PRETAS);
+        TAB->definirAdversarias(BRANCAS);
+}
+
 void Mock::finalizarMock()
 {
         delete TAB; // NOTA DE ESTUDO: não é necessário testar se o ponteiro é nulo antes de chamar delete, nada acontece quando se tenta deletar nulptr
@@ -126,7 +155,7 @@ Time * Mock::obterPretas()
         PRETAS = new Time(IPeca::PRETO);
 
         PRETAS->adicionarPeao(PP1);
-        PRETAS->adicionarDama(&DP1);
+        PRETAS->adicionarDama(DP1);
 
         return PRETAS;
 }
@@ -172,13 +201,17 @@ void Mock::testarMovimentosTorre()
 
 void Mock::testarMovimentosDama()
 {
+        obterTabTestMovsDama();
+
         std::vector<Movimento *> movimentos;
 
-        DP1.gerarMovimentos(movimentos);
+        DP1->gerarMovimentos(movimentos);
 
-        bool result = false;
+        movimentos.clear();
 
-        for(Movimento *m : movimentos) if(m->obterNatureza() != Movimento::DESLOCAMENTO) result = true;
+        altTabTorreAdv();
+
+        DP1->gerarCasasAtacadas(movimentos);
 
         return;
 }
@@ -237,7 +270,12 @@ void altTabBispoAli()
         Mock::CB1->definirPosicao(new Posicao(5, 5), true);
 }
 
+void altTabDamaAli()
+{
+        Mock::PP1->definirPosicao(new Posicao(4, 5), true);
+}
+
 void altTabTorreAdv()
 {
-        Mock::CB1->definirPosicao(new Posicao(5, 3), true);
+        Mock::CB1->definirPosicao(new Posicao(3, 4), true);
 }
