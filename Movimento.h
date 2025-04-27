@@ -19,7 +19,7 @@ public:
 
         explicit Movimento(Posicao *destino);
 
-        Posicao &obterDestino() const; // TODO: conferir se os getters e setters em outras classes estão seguindo o padrão
+        Posicao *obterDestino() const; // TODO: conferir se os getters e setters em outras classes estão seguindo o padrão
 
         int obterNatureza() const;
 

@@ -4,17 +4,27 @@
 
 #ifndef ADMINISTRADORDEJOGO_H
 #define ADMINISTRADORDEJOGO_H
-
+#include "Tabuleiro.h"
 
 
 class AdministradorDeJogo {
 
-    static void capturar(Posicao, int);
+public:
 
-    static void definirEnPassant(Peao *);
+    void instanciarTabuleiro();
 
-    static void definirStatusEnPassant(bool);
+    void selecionarCasa(Posicao *);
 
+    //static void capturar(Posicao, int);
+
+    //static void definirEnPassant(Peao *);
+
+    //static void definirStatusEnPassant(bool);
+
+
+
+private:
+    Tabuleiro *tabPrincipal = nullptr;
 };
 
 

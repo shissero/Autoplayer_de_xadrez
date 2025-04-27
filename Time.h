@@ -35,15 +35,17 @@ public:
 
     void adicionarDama(Dama*);
 
-    //void definirRei(Rei*);
+    void adicionarRei(Rei*);
 
-    //void definirDama(Dama*);
+    void destruir(Posicao*);
 
     int obterCor() const;
 
     void definirTabuleiro(Tabuleiro*);
 
     bool ocupada(Posicao *) const;
+
+    IPeca *obterPeca(Posicao *) const;
 
 private:
     int cor = 0;

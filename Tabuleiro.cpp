@@ -50,6 +50,89 @@ int Tabuleiro::ocupadaPor(Posicao *posicao) const
 	return 0;
 }
 
+void Tabuleiro::executarMovimento(Movimento *movimento)
+{
+	tocada->definirPosicao(movimento->obterDestino(), true); // Mudamos a posição da peça
+
+	tocada = nullptr; // O movimento foi feito, então não há mais peça tocada
+
+	if(movimento->obterNatureza() == Movimento::CAPTURA) adversarias->destruir(movimento->obterDestino());
+}
+
+void Tabuleiro::passarVez()
+{
+	Time *aux = aliadas;
+
+	aliadas = adversarias;
+	adversarias = aux;
+}
+
+Peao *Tabuleiro::obterEnPassant() const
+{
+	return enPassant;
+}
+
+void Tabuleiro::definirEnPassant(Peao *en_passant)
+{
+	enPassant = en_passant;
+}
+
+bool Tabuleiro::obterStatusEnPassant() const
+{
+	return statusEnPassant;
+}
+
+void Tabuleiro::definirStatusEnPassant(bool status_en_passant)
+{
+	statusEnPassant = status_en_passant;
+}
+
+bool Tabuleiro::obterEmXeque() const
+{
+	return emXeque;
+}
+
+void Tabuleiro::definirEmXeque(bool em_xeque)
+{
+	emXeque = em_xeque;
+}
+
+IPeca *Tabuleiro::obterPecaTocada() const
+{
+	return tocada;
+}
+
+void Tabuleiro::definirTocada(IPeca *tocada)
+{
+	this->tocada = tocada;
+}
+
+void Tabuleiro::definirTocada(Posicao *toc)
+{
+	tocada = aliadas->obterPeca(toc);
+}
+
+IPeca * Tabuleiro::obterPeca(int, int)
+{
+
+}
+
+Movimento * Tabuleiro::buscarMovimentoTocada(Posicao *posicao)
+{
+	Movimento *resultado = nullptr;
+	std::vector<Movimento*> movimentos;
+
+	tocada->gerarMovimentos(movimentos);
+
+	for(Movimento *m : movimentos)
+	{
+		if(*(m->obterDestino()) == posicao) resultado = m;
+		else delete m;
+	}
+
+	return resultado;
+}
+
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************
@@ -82,16 +165,9 @@ void Tabuleiro::capturar(Posicao posicao, int cor){
 **********************************************************************************************
 *********************************************************************************************/
 
-void Tabuleiro::definirEnPassant(Peao *peao){ enPassant = peao; }
-
 /*********************************************************************************************
 **********************************************************************************************
 *********************************************************************************************/
-
-void Tabuleiro::definirStatusEnPassant(bool status){
-
-	statusEnPassant = status;
-}
 
 /*********************************************************************************************
 **********************************************************************************************
@@ -239,7 +315,7 @@ void Tabuleiro::jogar(int cor){
 
 /*********************************************************************************************
 **********************************************************************************************
-*********************************************************************************************/
+*********************************************************************************************
 
 void Tabuleiro::limparEnPassant() const { enPassant == nullptr;}
 
@@ -289,7 +365,7 @@ IPeca *Tabuleiro::promover(Peao *peao){
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
-**********************************************************************************************************************/
+**********************************************************************************************************************
 
 Peao *Tabuleiro::obterEnPassant() const { return enPassant; }
 
@@ -306,7 +382,7 @@ Rei Tabuleiro::obterRei(int cor){
 
 /**********************************************************************************************************************
 ***********************************************************************************************************************
-**********************************************************************************************************************/
+**********************************************************************************************************************
 
 bool Tabuleiro::obterStatusEnPassant() const {
 

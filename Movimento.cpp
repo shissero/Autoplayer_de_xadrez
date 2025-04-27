@@ -18,9 +18,9 @@ Movimento::Movimento(Posicao *destino): destino(destino)
 {
 }
 
-Posicao &Movimento::obterDestino() const
+Posicao *Movimento::obterDestino() const
 {
-        return *destino;
+        return destino;
 }
 
 /***********************************************************************************************************************
