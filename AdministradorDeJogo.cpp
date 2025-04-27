@@ -22,11 +22,12 @@ void AdministradorDeJogo::selecionarCasa(Posicao *selecao)
                 if(aux != nullptr)
                 {
                         tabPrincipal->executarMovimento(aux);
+                        delete aux;
                         tabPrincipal->passarVez();
                 }
                 else
                 {
-                        //tocarPeca(coluna, linha);
+                        tabPrincipal->definirTocada(selecao);
                 }
         }
 }
