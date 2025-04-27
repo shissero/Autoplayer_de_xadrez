@@ -13,6 +13,11 @@
 #include<vector>
 
 
+Peao::Peao(const Peao &p) : IPeca(p)
+{
+    primeiroMovimento = p.primeiroMovimento;
+}
+
 Peao::Peao(int cor, Posicao *posicao) : IPeca(cor, posicao) {
 }
 

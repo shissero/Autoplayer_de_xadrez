@@ -19,6 +19,8 @@ class Tabuleiro
 public:
         Tabuleiro() = default;
 
+        Tabuleiro(const Tabuleiro &);
+
         ~Tabuleiro();
 
         // Getters e setters
@@ -53,6 +55,8 @@ public:
 
         Movimento *buscarMovimentoTocada(Posicao*);
 
+        void gerarMovimentosTocada();
+
         static Tabuleiro *criarTabuleiroCompleto();
 
 
@@ -62,7 +66,11 @@ public:
 
         void executarMovimento(Movimento*);
 
+        void executarMovimento(Posicao *, Movimento*);
+
         void passarVez();
+
+        int calcularXeque();
 
         /*void capturar(Posicao, int);
 
@@ -105,6 +113,7 @@ private:
         bool statusEnPassant = false;
         bool emXeque = false;
         IPeca *tocada = nullptr;
+        std::vector<Movimento *> movimentosTocada;
 
         Time *aliadas = nullptr;
         Time *adversarias = nullptr;

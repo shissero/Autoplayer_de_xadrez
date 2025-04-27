@@ -13,6 +13,8 @@
 class Peao : public IPeca
 {
 public:
+        Peao(const Peao &p);
+
         Peao(int cor, Posicao *posicao);
 
         Peao(int cor, Posicao *posicao, Tabuleiro *tabuleiro);

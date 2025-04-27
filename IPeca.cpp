@@ -119,6 +119,12 @@ void IPeca::gerarMovs(std::vector<Movimento *> &movimentos, bool reiChamou, bool
 ***********************************************************************************************************
 **********************************************************************************************************/
 
+IPeca::IPeca(const IPeca &peca)
+{
+        posicao = new Posicao( *(peca.posicao) );
+        cor = peca.cor;
+}
+
 IPeca::IPeca(int cor, Posicao *posicao): cor(cor),
                                          posicao(posicao)
 {
@@ -133,7 +139,7 @@ int IPeca::obterCor() const
 ***********************************************************************************************************
 **********************************************************************************************************/
 
-const Posicao *IPeca::obterPosicao() const
+Posicao *IPeca::obterPosicao() const
 {
         return posicao;
 }

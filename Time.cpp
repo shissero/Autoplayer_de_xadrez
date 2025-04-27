@@ -11,6 +11,19 @@ Time::Time(int cor) : cor(cor), linhaPeca(3.5f - cor * (3.5f))
 {
 }
 
+Time::Time(const Time &time)
+{
+        cor = time.cor;
+        linhaPeca = time.linhaPeca;
+
+        for(Peao *p : time.peoes) this->adicionarPeao(new Peao(*p));
+        for(Torre *t : time.torres) this->adicionarTorre(new Torre(*t));
+        for(Bispo *b : time.bispos) this->adicionarBispo(new Bispo(*b));
+        for(Cavalo *c : time.cavalos) this->adicionarCavalo(new Cavalo(*c));
+        for(Dama *d : time.damas) this->adicionarDama(new Dama(*d));
+        this->adicionarRei(new Rei(*(time.rei)));
+}
+
 Time::~Time()
 {
     for(IPeca *p : todasPecas) delete p;
@@ -80,7 +93,7 @@ void Time::adicionarRei(Rei *n_rei)
 
 void Time::destruir(Posicao *pos)
 {
-        for(int i = 0; i < todasPecas.size(); ++i)
+        for(size_t i = 0; i < todasPecas.size(); ++i)
         {
                 if(*(todasPecas[i]->obterPosicao()) == pos)
                 {
@@ -112,7 +125,32 @@ bool Time::ocupada(Posicao *pos) const
         return false;
 }
 
-IPeca * Time::obterPeca(Posicao *posicao) const
+bool Time::atacada(const Posicao *posicao) const
+{
+        bool retorno = false;
+
+        for(size_t i = 0; (i < todasPecas.size()) && (retorno == false); ++i)
+        {
+                std::vector<Movimento*> movimentos;
+
+                todasPecas[i] -> gerarMovimentos(movimentos);
+
+                for(Movimento *m : movimentos)
+                {
+                        if(m->obterDestino() == posicao) retorno = true;
+                        delete m;
+                }
+        }
+
+        return retorno;
+}
+
+const Posicao *Time::obterPosicaoRei() const
+{
+        return rei->obterPosicao();
+}
+
+IPeca * Time::obterPeca(const Posicao *posicao) const
 {
         for(IPeca *p : todasPecas)
         {

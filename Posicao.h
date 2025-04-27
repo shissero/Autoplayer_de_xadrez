@@ -13,6 +13,8 @@ public:
 
 	Posicao() = default;
 
+	Posicao(const Posicao &posicao) = default;
+
 	Posicao(int, int);
 
 	~Posicao() = default;

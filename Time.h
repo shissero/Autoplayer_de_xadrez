@@ -21,6 +21,8 @@ class Time {
 public:
     explicit Time(int);
 
+    Time(const Time&);
+
     ~Time();
 
     static Time *criarTimeCompleto(int, Tabuleiro *tabuleiro);
@@ -45,7 +47,11 @@ public:
 
     bool ocupada(Posicao *) const;
 
-    IPeca *obterPeca(Posicao *) const;
+    bool atacada(const Posicao *) const;
+
+    const Posicao *obterPosicaoRei() const;
+
+    IPeca *obterPeca(const Posicao *) const;
 
 private:
     int cor = 0;

@@ -10,6 +10,14 @@
 **********************************************************************************************
 **********************************************************************************************/
 
+Tabuleiro::Tabuleiro(const Tabuleiro &tab)
+{
+	emXeque = tab.emXeque;
+
+	aliadas = new Time(*(tab.aliadas));
+	adversarias = new Time(*(tab.adversarias));
+}
+
 Tabuleiro::~Tabuleiro()
 {
 
@@ -59,12 +67,29 @@ void Tabuleiro::executarMovimento(Movimento *movimento)
 	if(movimento->obterNatureza() == Movimento::CAPTURA) adversarias->destruir(movimento->obterDestino());
 }
 
+void Tabuleiro::executarMovimento(Posicao *pos, Movimento *movimento)
+{
+	aliadas->obterPeca(pos)->definirPosicao(pos, true);
+
+	if(movimento->obterNatureza() == Movimento::CAPTURA) adversarias->destruir(movimento->obterDestino());
+
+}
+
 void Tabuleiro::passarVez()
 {
 	Time *aux = aliadas;
 
 	aliadas = adversarias;
 	adversarias = aux;
+}
+
+int Tabuleiro::calcularXeque()
+{
+	int cheques = 0;
+	if( aliadas->atacada( adversarias->obterPosicaoRei()) ) cheques++;
+	if( adversarias->atacada( aliadas->obterPosicaoRei()) ) cheques += 2;
+
+	return cheques;
 }
 
 Peao *Tabuleiro::obterEnPassant() const
@@ -105,6 +130,7 @@ IPeca *Tabuleiro::obterPecaTocada() const
 void Tabuleiro::definirTocada(IPeca *tocada)
 {
 	this->tocada = tocada;
+	this->gerarMovimentosTocada();
 }
 
 void Tabuleiro::definirTocada(Posicao *toc)
@@ -120,17 +146,36 @@ IPeca * Tabuleiro::obterPeca(int, int)
 Movimento * Tabuleiro::buscarMovimentoTocada(Posicao *posicao)
 {
 	Movimento *resultado = nullptr;
-	std::vector<Movimento*> movimentos;
 
-	tocada->gerarMovimentos(movimentos);
-
-	for(Movimento *m : movimentos)
+	for(Movimento *m : movimentosTocada)
 	{
 		if(*(m->obterDestino()) == posicao) resultado = m;
 		else delete m;
 	}
 
 	return resultado;
+}
+
+void Tabuleiro::gerarMovimentosTocada()
+{
+	for(Movimento *m : movimentosTocada) delete m;
+	movimentosTocada.clear();
+
+	tocada->gerarMovimentos(movimentosTocada);
+
+	for(size_t i = 0; i < movimentosTocada.size(); ++i)
+	{
+		auto tab = new Tabuleiro(*this);
+
+		tab->executarMovimento(tocada->obterPosicao(), movimentosTocada[i]);
+
+		if(tab->calcularXeque() > 1)
+		{
+			delete tab;
+			delete movimentosTocada[i];
+			movimentosTocada.erase(movimentosTocada.begin() + i);
+		}
+	}
 }
 
 /*********************************************************************************************

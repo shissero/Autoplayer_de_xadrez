@@ -19,6 +19,8 @@ class IPeca
 public:
         IPeca() = default;
 
+        IPeca(const IPeca &);
+
         IPeca(int cor, Posicao *);
 
         IPeca(int cor, Posicao *, Tabuleiro *);
@@ -37,29 +39,29 @@ public:
 
         int obterCor() const;
 
-        const Posicao *obterPosicao() const;
+        Posicao *obterPosicao() const;
 
-    void definirPosicao(Posicao*, bool);
+        void definirPosicao(Posicao *, bool);
 
         void definirTabuleiro(Tabuleiro *);
 
-    /*
-     * Checa se as duas tem o mesmo tipo
-     */
-	//virtual bool eIgual(const IPeca&) const;
+        /*
+         * Checa se as duas tem o mesmo tipo
+         */
+        //virtual bool eIgual(const IPeca&) const;
 
-    template<typename T, typename B>/* requires requires
+        template<typename T, typename B> /* requires requires
     {
         std::same_as<T, B> &&
             std::derived_from<T, IPeca> &&
                 std::derived_from<B, IPeca>;
     }*/
-    static bool eIgual(const T &peca1, const B &peca2);
+        static bool eIgual(const T &peca1, const B &peca2);
 
 protected:
-    int cor = 0;
-    Posicao *posicao = nullptr;
-    Tabuleiro *tabuleiro = nullptr;
+        int cor = 0;
+        Posicao *posicao = nullptr;
+        Tabuleiro *tabuleiro = nullptr;
 
         void gerarMovimentosCardeais(std::vector<Movimento *> &, bool, bool ataque) const;
 
@@ -69,9 +71,9 @@ protected:
 };
 
 template<typename T> requires std::derived_from<T, IPeca>
-T * IPeca::criarPeca(int cor, Posicao *pos) {
-
-    return new T(cor, pos);
+T *IPeca::criarPeca(int cor, Posicao *pos)
+{
+        return new T(cor, pos);
 }
 
 #endif
