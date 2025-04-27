@@ -21,6 +21,8 @@ class Time {
 public:
     explicit Time(int);
 
+    ~Time();
+
     static Time *criarTimeCompleto(int, Tabuleiro *tabuleiro);
 
     void adicionarPeao(Peao*);

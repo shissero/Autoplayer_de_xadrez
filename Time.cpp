@@ -40,6 +40,12 @@ void Time::adicionarPeao(Peao *peao)
         todasPecas.emplace_back(peao);
 }
 
+void Time::adicionarTorre(Torre *torre)
+{
+        torres.emplace_back(torre);
+        todasPecas.emplace_back(torre);
+}
+
 void Time::adicionarBispo(Bispo *bispo)
 {
         if(bispo->obterCor() != cor) throw ExcecaoPecaIntrusa(*bispo);

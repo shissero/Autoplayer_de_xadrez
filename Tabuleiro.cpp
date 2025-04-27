@@ -10,6 +10,13 @@
 **********************************************************************************************
 **********************************************************************************************/
 
+Tabuleiro::~Tabuleiro()
+{
+
+	delete aliadas;
+	delete adversarias;
+}
+
 Tabuleiro *Tabuleiro::criarTabuleiroCompleto(){
 
 	auto tabuleiro = new Tabuleiro();

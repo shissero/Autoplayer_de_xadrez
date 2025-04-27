@@ -4,41 +4,104 @@
 
 #include "Mock.h"
 
+#include "Log.h"
 #include "Tabuleiro.h"
 #include "Time.h"
 
 
-Cavalo Mock::CB1 = Cavalo(IPeca::BRANCO, new Posicao(4, 4));
+Cavalo *Mock::CB1 = nullptr;
 Cavalo Mock::CB2 = Cavalo(IPeca::BRANCO, new Posicao(6, 5));
-Bispo Mock::iBB1 = Bispo(IPeca::BRANCO, new Posicao(1, 2));
-Bispo Mock::BB2 = Bispo(IPeca::BRANCO, new Posicao(3, 2));
+Bispo *Mock::iBB1 = nullptr;
+Bispo *Mock::BB2 = nullptr;
 
-Peao Mock::PP1 = Peao(IPeca::PRETO, new Posicao(2, 3));
-Torre Mock::TP1 = Torre(IPeca::PRETO, new Posicao(4, 3));
+Peao *Mock::PP1 = nullptr;
+Torre *Mock::TP1 = nullptr;
 Dama Mock::DP1 = Dama(IPeca::PRETO, new Posicao(5, 5));
 Rei Mock::RP1 = Rei(IPeca::PRETO, new Posicao(0, 6));
 
 Time *Mock::BRANCAS = nullptr;
 Time *Mock::PRETAS = nullptr;
-Tabuleiro *Mock::CONJ = nullptr;
+Tabuleiro *Mock::TAB = nullptr;
 
-Mock::~Mock()
-{
-}
+void altTabBispoAli();
+void altTabTorreAdv();
+
 
 Tabuleiro *Mock::obterTabuleiro()
 {
-        if(CONJ != nullptr) return CONJ;
+        if(TAB != nullptr) return TAB;
 
         obterBrancas();
         obterPretas();
 
-        CONJ = new Tabuleiro();
+        TAB = new Tabuleiro();
 
-        CONJ->definirAliadas(BRANCAS);
-        CONJ->definirAdversarias(PRETAS);
+        TAB->definirAliadas(BRANCAS);
+        TAB->definirAdversarias(PRETAS);
 
-        return CONJ;
+        return TAB;
+}
+
+void Mock::obterTabTestMovsBispo()
+{
+
+        //Instanciando as peças necessárias ao teste
+        BB2 = new Bispo(IPeca::BRANCO, new Posicao(3, 3));
+        CB1 = new Cavalo(IPeca::BRANCO, new Posicao(5, 3));
+        PP1 = new Peao(IPeca::PRETO, new Posicao(2, 6));
+
+
+        // Instanciando o time de aliadas
+        BRANCAS = new Time(IPeca::BRANCO);
+
+        // Adicione as peças ao time
+        BRANCAS->adicionarBispo(BB2);
+        BRANCAS->adicionarCavalo(CB1);
+
+        // Instancie as adversárias
+        PRETAS = new Time(IPeca::PRETO);
+
+        // Adicione peças
+        PRETAS->adicionarPeao(PP1);
+
+        TAB = new Tabuleiro();
+
+        TAB->definirAliadas(BRANCAS);
+        TAB->definirAdversarias(PRETAS);
+}
+
+void Mock::obterTabTestMovsTorre()
+{
+
+        //Instanciando as peças necessárias ao teste
+        TP1 = new Torre(IPeca::PRETO, new Posicao(3, 3));
+        PP1 = new Peao(IPeca::PRETO, new Posicao(2, 6));
+
+        CB1 = new Cavalo(IPeca::BRANCO, new Posicao(5, 4));
+
+
+        // Instanciando o time de aliadas
+        BRANCAS = new Time(IPeca::BRANCO);
+
+        // Adicione as peças ao time
+        BRANCAS->adicionarCavalo(CB1);
+
+        // Instancie as adversárias
+        PRETAS = new Time(IPeca::PRETO);
+
+        // Adicione peças
+        PRETAS->adicionarPeao(PP1);
+        PRETAS->adicionarTorre(TP1);
+
+        TAB = new Tabuleiro();
+
+        TAB->definirAliadas(PRETAS);
+        TAB->definirAdversarias(BRANCAS);
+}
+
+void Mock::finalizarMock()
+{
+        delete TAB; // NOTA DE ESTUDO: não é necessário testar se o ponteiro é nulo antes de chamar delete, nada acontece quando se tenta deletar nulptr
 }
 
 Time *Mock::obterBrancas()
@@ -47,10 +110,10 @@ Time *Mock::obterBrancas()
 
         BRANCAS = new Time(IPeca::BRANCO);
 
-        BRANCAS->adicionarBispo(&iBB1);
-        BRANCAS->adicionarBispo(&BB2);
+        BRANCAS->adicionarBispo(iBB1);
+        BRANCAS->adicionarBispo(BB2);
 
-        BRANCAS->adicionarCavalo(&CB1);
+        BRANCAS->adicionarCavalo(CB1);
         BRANCAS->adicionarCavalo(&CB2);
 
         return BRANCAS;
@@ -62,7 +125,7 @@ Time * Mock::obterPretas()
 
         PRETAS = new Time(IPeca::PRETO);
 
-        PRETAS->adicionarPeao(&PP1);
+        PRETAS->adicionarPeao(PP1);
         PRETAS->adicionarDama(&DP1);
 
         return PRETAS;
@@ -75,20 +138,36 @@ void Mock::initMock()
 
 void Mock::testarMovimentosBispo()
 {
+        obterTabTestMovsBispo();
+
         std::vector<Movimento *> movimentos;
 
-        BB2.gerarCasasAtacadas(movimentos);
+        BB2->gerarMovimentos(movimentos);
+
+        movimentos.clear();
+
+        altTabBispoAli();
+
+        BB2->gerarCasasAtacadas(movimentos);
 
         return;
 }
 
 void Mock::testarMovimentosTorre()
 {
+        obterTabTestMovsTorre();
+
         std::vector<Movimento *> movimentos;
 
-        TP1.gerarMovimentos(movimentos);
+        TP1->gerarMovimentos(movimentos);
 
         movimentos.clear();
+
+        altTabTorreAdv();
+
+        TP1->gerarCasasAtacadas(movimentos);
+
+        return;
 }
 
 void Mock::testarMovimentosDama()
@@ -101,14 +180,14 @@ void Mock::testarMovimentosDama()
 
         for(Movimento *m : movimentos) if(m->obterNatureza() != Movimento::DESLOCAMENTO) result = true;
 
-        return;;
+        return;
 }
 
 void Mock::testarMovimentosCavalo()
 {
         std::vector<Movimento *> movimentos;
 
-        CB1.gerarMovimentos(movimentos);
+        CB1->gerarMovimentos(movimentos);
 
         return;
 }
@@ -117,13 +196,13 @@ void Mock::testarMovimentosPeao()
 {
         std::vector<Movimento *> movimentos;
 
-        PP1.gerarMovimentos(movimentos);
+        PP1->gerarMovimentos(movimentos);
 
         movimentos.clear();
 
-        PP1.definirPrimeiroMovimento(false);
+        PP1->definirPrimeiroMovimento(false);
 
-        PP1.gerarMovimentos(movimentos);
+        PP1->gerarMovimentos(movimentos);
 
         return;
 }
@@ -143,11 +222,22 @@ void Mock::testarTimeOcupada()
         auto pos_ali = Posicao(4, 4);
         auto pos_adv = Posicao(5, 0);
 
-        Tabuleiro *con = CONJ;
+        Tabuleiro *con = TAB;
 
-        int resultado1 = CONJ->ocupadaPor(&pos_vazia);
-        int resultado2 = CONJ->ocupadaPor(&pos_ali);
-        int resultado3 = CONJ->ocupadaPor(&pos_adv);
+        int resultado1 = TAB->ocupadaPor(&pos_vazia);
+        int resultado2 = TAB->ocupadaPor(&pos_ali);
+        int resultado3 = TAB->ocupadaPor(&pos_adv);
 
         return;
+}
+
+
+void altTabBispoAli()
+{
+        Mock::CB1->definirPosicao(new Posicao(5, 5), true);
+}
+
+void altTabTorreAdv()
+{
+        Mock::CB1->definirPosicao(new Posicao(5, 3), true);
 }

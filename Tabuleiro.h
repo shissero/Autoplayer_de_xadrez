@@ -19,6 +19,8 @@ class Tabuleiro
 public:
         Tabuleiro() = default;
 
+        ~Tabuleiro();
+
         static Tabuleiro *criarTabuleiroCompleto();
 
         void definirAliadas(Time*);
